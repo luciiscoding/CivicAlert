@@ -1,0 +1,65 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="400" height="400" fill="#0E2148"/>
+  
+  <!-- Creator Figure -->
+  <circle cx="200" cy="120" r="70" fill="#7965C1"/>
+  <path d="M200 200V350" stroke="#7965C1" stroke-width="40"/>
+  
+  <!-- Head -->
+  <circle cx="200" cy="120" r="50" fill="#E8D8A6"/>
+  
+  <!-- Glasses -->
+  <circle cx="180" cy="110" r="15" stroke="#483AA0" stroke-width="3" fill="transparent"/>
+  <circle cx="220" cy="110" r="15" stroke="#483AA0" stroke-width="3" fill="transparent"/>
+  <path d="M195 110H205" stroke="#483AA0" stroke-width="3"/>
+  <path d="M160 110H165" stroke="#483AA0" stroke-width="3"/>
+  <path d="M235 110H240" stroke="#483AA0" stroke-width="3"/>
+  
+  <!-- Eyes -->
+  <circle cx="180" cy="110" r="5" fill="#0E2148"/>
+  <circle cx="220" cy="110" r="5" fill="#0E2148"/>
+  
+  <!-- Mouth -->
+  <path d="M185 135C190 140 210 140 215 135" stroke="#0E2148" stroke-width="2"/>
+  
+  <!-- Hair -->
+  <path d="M150 80C150 60 170 40 200 40C230 40 250 60 250 80V90C250 100 240 110 230 110H170C160 110 150 100 150 90V80Z" fill="#0E2148"/>
+  
+  <!-- Casual Clothes -->
+  <rect x="180" y="200" width="40" height="150" fill="#E3D095"/>
+  <path d="M180 200H220" stroke="#483AA0" stroke-width="10"/>
+  <rect x="190" y="215" width="20" height="20" rx="3" fill="#0E2148"/>
+  
+  <!-- Programming Laptop -->
+  <rect x="110" y="270" width="80" height="60" rx="5" fill="#444444"/>
+  <rect x="115" y="275" width="70" height="45" rx="2" fill="#222222"/>
+  <path d="M120 285H150" stroke="#7965C1" stroke-width="2"/>
+  <path d="M120 295H140" stroke="#7965C1" stroke-width="2"/>
+  <path d="M120 305H160" stroke="#7965C1" stroke-width="2"/>
+  <path d="M120 315H145" stroke="#7965C1" stroke-width="2"/>
+  
+  <!-- Map Marker -->
+  <path d="M280 290C274.477 290 270 294.477 270 300C270 305.523 274.477 310 280 310C285.523 310 290 305.523 290 300C290 294.477 285.523 290 280 290ZM280 320C269.25 320 260 310.75 260 300C260 289.25 269.25 280 280 280C290.75 280 300 289.25 300 300C300 310.75 290.75 320 280 320Z" fill="#E3D095"/>
+  <path d="M280 270C272.5 270 265 273.5 260 280C255 286.5 250 295 250 310C250 325 280 350 280 350C280 350 310 325 310 310C310 295 305 286.5 300 280C295 273.5 287.5 270 280 270Z" fill="#483AA0"/>
+  <circle cx="280" cy="300" r="10" fill="white"/>
+  
+  <!-- Light Bulb (Idea) -->
+  <circle cx="350" cy="250" r="20" fill="#E3D095" fill-opacity="0.8"/>
+  <path d="M350 210V230" stroke="#E3D095" stroke-width="3"/>
+  <path d="M325 235L335 245" stroke="#E3D095" stroke-width="3"/>
+  <path d="M375 235L365 245" stroke="#E3D095" stroke-width="3"/>
+  <path d="M320 260H330" stroke="#E3D095" stroke-width="3"/>
+  <path d="M380 260H370" stroke="#E3D095" stroke-width="3"/>
+  
+  <!-- Stars (Inspiration) -->
+  <path d="M350 90L353 100L363 100L355 106L358 116L350 110L342 116L345 106L337 100L347 100L350 90Z" fill="#E3D095"/>
+  <path d="M320 60L322 65L327 65L323 68L325 73L320 70L315 73L317 68L313 65L318 65L320 60Z" fill="#E3D095"/>
+  <path d="M380 60L382 65L387 65L383 68L385 73L380 70L375 73L377 68L373 65L378 65L380 60Z" fill="#E3D095"/>
+  
+  <!-- Code Brackets -->
+  <path d="M40 260L60 280L40 300" stroke="#483AA0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M70 240L90 320" stroke="#483AA0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M120 240L100 320" stroke="#483AA0" stroke-width="4" stroke-linecap="round"/>
+  <path d="M150 260L130 280L150 300" stroke="#483AA0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

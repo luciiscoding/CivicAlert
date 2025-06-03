@@ -1,0 +1,56 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="#F5F7FF"/>
+  
+  <!-- Warning Sign -->
+  <path d="M150 50L250 200H50L150 50Z" fill="#FFE082"/>
+  <path d="M150 50L250 200H50L150 50Z" stroke="#FF9800" stroke-width="4"/>
+  <path d="M150 90V140" stroke="#FF9800" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="150" cy="170" r="5" fill="#FF9800"/>
+  
+  <!-- Character -->
+  <circle cx="150" cy="250" r="30" fill="#483AA0"/>
+  <path d="M130 250C130 239.507 138.507 231 149 231C159.493 231 168 239.507 168 250" stroke="#7965C1" stroke-width="4"/>
+  <circle cx="140" cy="245" r="3" fill="white"/>
+  <circle cx="160" cy="245" r="3" fill="white"/>
+  <path d="M140 265C146.667 259 153.333 259 160 265" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Cogs -->
+  <circle cx="60" cy="80" r="20" fill="#7965C1"/>
+  <circle cx="60" cy="80" r="10" fill="#F5F7FF"/>
+  <path d="M60 50V60" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 100V110" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M30 80H40" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M80 80H90" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M39.3934 59.3934L46.4645 66.4645" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M73.5355 93.5355L80.6066 100.607" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M39.3934 100.607L46.4645 93.5355" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  <path d="M73.5355 66.4645L80.6066 59.3934" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+  
+  <circle cx="240" cy="80" r="15" fill="#0E2148"/>
+  <circle cx="240" cy="80" r="7" fill="#F5F7FF"/>
+  <path d="M240 57V65" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M240 95V103" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M217 80H225" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M255 80H263" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M223.787 63.7868L229.142 69.1421" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M250.858 90.8579L256.213 96.2132" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M223.787 96.2132L229.142 90.8579" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M250.858 69.1421L256.213 63.7868" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- X Mark -->
+  <circle cx="150" cy="150" r="40" fill="white" stroke="#FF5252" stroke-width="3"/>
+  <path d="M130 130L170 170" stroke="#FF5252" stroke-width="6" stroke-linecap="round"/>
+  <path d="M170 130L130 170" stroke="#FF5252" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Broken Circuit Lines -->
+  <path d="M50 150H90" stroke="#0E2148" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 5"/>
+  <path d="M110 150H130" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M170 150H190" stroke="#0E2148" stroke-width="3" stroke-linecap="round"/>
+  <path d="M210 150H250" stroke="#0E2148" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 5"/>
+  
+  <!-- Code Brackets -->
+  <path d="M70 200L50 220L70 240" stroke="#483AA0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M230 200L250 220L230 240" stroke="#483AA0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M120 190L180 250" stroke="#7965C1" stroke-width="4" stroke-linecap="round"/>
+</svg>

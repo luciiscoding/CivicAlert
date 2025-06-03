@@ -1,0 +1,45 @@
+<svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <circle cx="150" cy="150" r="150" fill="#F5F7FF"/>
+  
+  <!-- 404 Text -->
+  <path d="M77 130H97V170H137V130H157V210H137V190H97V210H77V130Z" fill="#0E2148"/>
+  <path d="M167 130H187V150H207V170H187V210H167V170H147V150H167V130Z" fill="#0E2148"/>
+  <path d="M217 130H237V170H277V130H297V210H277V190H237V210H217V130Z" fill="#0E2148"/>
+  
+  <!-- Character -->
+  <circle cx="150" cy="80" r="30" fill="#483AA0"/>
+  <path d="M130 80C130 69.5066 138.507 61 149 61C159.493 61 168 69.5066 168 80" stroke="#7965C1" stroke-width="4"/>
+  <circle cx="140" cy="75" r="3" fill="white"/>
+  <circle cx="160" cy="75" r="3" fill="white"/>
+  <path d="M140 90C146.667 96 153.333 96 160 90" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Map Pin -->
+  <path d="M150 40C140.06 40 130.578 44.2143 123.787 51.0051C117.004 57.7958 112.791 67.2868 112.791 77.2263C112.791 87.1658 117.004 96.6568 123.787 103.447C130.578 110.238 140.06 114.453 150 114.453C159.94 114.453 169.431 110.238 176.213 103.447C183.004 96.6568 187.209 87.1658 187.209 77.2263C187.209 67.2868 183.004 57.7958 176.213 51.0051C169.431 44.2143 159.94 40 150 40V40Z" stroke="#E3D095" stroke-width="4"/>
+  
+  <!-- Magnifying Glass -->
+  <circle cx="100" cy="220" r="25" stroke="#483AA0" stroke-width="6"/>
+  <path d="M120 240L150 270" stroke="#483AA0" stroke-width="6" stroke-linecap="round"/>
+  
+  <!-- Map Elements -->
+  <rect x="50" y="160" width="20" height="20" rx="5" fill="#E3D095"/>
+  <rect x="80" y="160" width="30" height="20" rx="5" fill="#7965C1"/>
+  <rect x="230" y="160" width="40" height="20" rx="5" fill="#483AA0"/>
+  
+  <rect x="190" y="200" width="35" height="20" rx="5" fill="#E3D095"/>
+  <rect x="235" y="200" width="20" height="20" rx="5" fill="#7965C1"/>
+  
+  <rect x="50" y="200" width="20" height="20" rx="5" fill="#483AA0"/>
+  
+  <!-- Compass -->
+  <circle cx="230" cy="80" r="20" fill="white" stroke="#0E2148" stroke-width="2"/>
+  <path d="M230 60L230 100" stroke="#0E2148" stroke-width="2"/>
+  <path d="M210 80L250 80" stroke="#0E2148" stroke-width="2"/>
+  <path d="M230 60L235 80L230 100L225 80L230 60Z" fill="#E3D095"/>
+  
+  <!-- Question Mark -->
+  <circle cx="60" cy="80" r="15" fill="#7965C1"/>
+  <path d="M60 70C56.5 70 55 72 55 75" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <path d="M60 78V80" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="60" cy="85" r="1" fill="white"/>
+</svg>

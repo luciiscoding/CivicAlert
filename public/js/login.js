@@ -103,49 +103,149 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
     
-    // Verificare complexitate parolă în timp real
+    // Verificare complexitate parolă în timp real - VERSIUNE CORECTATĂ
     const parolaInput = document.getElementById('parola');
     if (parolaInput) {
+      // Creează indicatorul o singură dată și îl poziționează fix
+      const createPasswordStrengthIndicator = () => {
+        let indicatorElement = document.getElementById('parolaStrength');
+        
+        if (!indicatorElement) {
+          // Creează container-ul pentru indicator
+          const passwordContainer = parolaInput.closest('.mb-3');
+          
+          // Creează indicatorul cu înălțime fixă
+          indicatorElement = document.createElement('div');
+          indicatorElement.id = 'parolaStrength';
+          indicatorElement.classList.add('password-strength-indicator');
+          
+          // Stiluri inline pentru a preveni redimensionarea
+          indicatorElement.style.cssText = `
+            min-height: 20px;
+            height: 20px;
+            margin-top: 4px;
+            font-size: 0.875rem;
+            line-height: 1.2;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+          `;
+          
+          // Inserează indicatorul după input-group
+          const inputGroup = passwordContainer.querySelector('.input-group');
+          inputGroup.insertAdjacentElement('afterend', indicatorElement);
+        }
+        
+        return indicatorElement;
+      };
+      
+      // Inițializează indicatorul
+      const strengthIndicator = createPasswordStrengthIndicator();
+      
       parolaInput.addEventListener('input', function() {
         const parola = this.value;
         let mesaj = '';
         let clasa = '';
+        let icon = '';
         
         // Verificare complexitate
         if (parola.length === 0) {
           mesaj = '';
-        } else if (parola.length < 6) {
-          mesaj = 'Parolă slabă - Prea scurtă';
-          clasa = 'text-danger';
-        } else if (parola.length < 8) {
-          mesaj = 'Parolă medie - Folosește minim 8 caractere';
-          clasa = 'text-warning';
-        } else if (!/[A-Z]/.test(parola) || !/[0-9]/.test(parola)) {
-          mesaj = 'Parolă medie - Adaugă o literă mare și o cifră';
-          clasa = 'text-warning';
+          strengthIndicator.style.opacity = '0';
         } else {
-          mesaj = 'Parolă puternică';
-          clasa = 'text-success';
-        }
-        
-        // Afișare indicator complexitate
-        let indicatorElement = document.getElementById('parolaStrength');
-        
-        if (!indicatorElement && mesaj) {
-          indicatorElement = document.createElement('div');
-          indicatorElement.id = 'parolaStrength';
-          indicatorElement.classList.add('form-text', 'mt-1');
-          parolaInput.parentNode.appendChild(indicatorElement);
-        }
-        
-        if (indicatorElement) {
-          indicatorElement.textContent = mesaj;
-          indicatorElement.className = 'form-text mt-1';
-          if (clasa) {
-            indicatorElement.classList.add(clasa);
+          strengthIndicator.style.opacity = '1';
+          
+          if (parola.length < 6) {
+            mesaj = '🔴 Parolă slabă';
+            clasa = 'text-danger';
+          } else if (parola.length < 8) {
+            mesaj = '🟡 Parolă medie';
+            clasa = 'text-warning';
+          } else if (!/[A-Z]/.test(parola) || !/[0-9]/.test(parola)) {
+            mesaj = '🟡 Adaugă literă mare și cifră';
+            clasa = 'text-warning';
+          } else {
+            mesaj = '🟢 Parolă puternică';
+            clasa = 'text-success';
           }
         }
+        
+        // Actualizare indicator fără a afecta layout-ul
+        strengthIndicator.textContent = mesaj;
+        strengthIndicator.className = 'password-strength-indicator';
+        if (clasa) {
+          strengthIndicator.classList.add(clasa);
+        }
       });
+      
+      // Adaugă CSS pentru indicator în head
+      const addPasswordStrengthStyles = () => {
+        const existingStyle = document.getElementById('passwordStrengthStyles');
+        if (existingStyle) return;
+        
+        const style = document.createElement('style');
+        style.id = 'passwordStrengthStyles';
+        style.textContent = `
+          .password-strength-indicator {
+            min-height: 20px !important;
+            height: 20px !important;
+            margin-top: 4px !important;
+            font-size: 0.875rem !important;
+            line-height: 1.2 !important;
+            display: flex !important;
+            align-items: center !important;
+            transition: opacity 0.3s ease !important;
+            position: relative !important;
+            overflow: hidden !important;
+            white-space: nowrap !important;
+          }
+          
+          .password-strength-indicator.text-danger {
+            color: #dc3545 !important;
+          }
+          
+          .password-strength-indicator.text-warning {
+            color: #ffc107 !important;
+          }
+          
+          .password-strength-indicator.text-success {
+            color: #198754 !important;
+          }
+          
+          /* Previne redimensionarea input-group-urilor */
+          .input-group {
+            margin-bottom: 0 !important;
+          }
+          
+          .mb-3 {
+            margin-bottom: 1rem !important;
+            min-height: auto !important;
+          }
+          
+          /* Fix pentru a preveni layout shifts */
+          .password-group {
+            position: relative !important;
+          }
+          
+          .password-group .form-control {
+            flex: 1 1 auto !important;
+            width: 1% !important;
+            min-width: 0 !important;
+          }
+          
+          .password-group .toggle-password {
+            flex: 0 0 auto !important;
+            width: auto !important;
+            min-width: 44px !important;
+          }
+        `;
+        document.head.appendChild(style);
+      };
+      
+      // Adaugă stilurile
+      addPasswordStrengthStyles();
     }
   }
   

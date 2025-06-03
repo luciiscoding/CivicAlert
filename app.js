@@ -66,11 +66,46 @@ app.use('/admin', adminRoutes);
 app.get('/', (req, res) => {
   res.render('index', { titlu: 'CivicAlert - Raportează probleme din comunitatea ta' });
 });
+
+// Ruta pentru pagina Despre Noi
+app.get('/despre', (req, res) => {
+  res.render('despre', { titlu: 'Despre Noi - CivicAlert' });
+});
+
+// Ruta pentru pagina Termeni și Condiții
+app.get('/termeni', (req, res) => {
+  res.render('termeni', { titlu: 'Termeni și Condiții - CivicAlert' });
+});
+
+// Ruta pentru pagina Politica de Confidențialitate
+app.get('/confidentialitate', (req, res) => {
+  res.render('confidentialitate', { titlu: 'Politica de Confidențialitate - CivicAlert' });
+});
+
 // Rută temporară pentru debugging sesiune
 app.get('/check-session', (req, res) => {
   res.json({
     session: req.session,
     utilizator: req.session.utilizator || null
+  });
+});
+
+// Rută pentru eroarea 404 (Not Found) - Trebuie adăugată la sfârșitul fișierului, după toate celelalte rute
+app.use((req, res) => {
+  res.status(404).render('error', { 
+    titlu: 'Pagină negăsită - CivicAlert',
+    statusCode: 404,
+    mesaj: 'Pagina pe care o cauți nu există sau a fost mutată.' 
+  });
+});
+
+// Middleware pentru gestionarea erorilor - Trebuie adăugat după middleware-ul 404
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).render('error', { 
+    titlu: 'Eroare - CivicAlert',
+    statusCode: 500,
+    mesaj: 'A apărut o eroare neașteptată. Te rugăm să încerci din nou mai târziu.' 
   });
 });
 
