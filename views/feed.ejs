@@ -1,0 +1,143 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="feed-page">
+  <div class="container">
+    <!-- Header-ul paginii de feed -->
+    <div class="feed-header" data-aos="fade-up">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1>Probleme în județul <%= judet %></h1>
+          <p>Vezi problemele raportate de cetățeni și contribuie cu soluții</p>
+        </div>
+        <div class="col-md-4 text-md-end">
+          <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent) { %>
+            <a href="/postari/creare/<%= judet %>" class="btn btn-primary">
+              <i class="fas fa-plus-circle"></i> Raportează o problemă
+            </a>
+          <% } else { %>
+            <a href="/utilizatori/login" class="btn btn-primary">
+              <i class="fas fa-sign-in-alt"></i> Autentifică-te pentru a raporta
+            </a>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filtre și sortare -->
+    <div class="feed-filters" data-aos="fade-up">
+      <div class="row g-2">
+        <div class="col-md-6">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-search"></i></span>
+            <input type="text" class="form-control" id="cautareProbleme" placeholder="Caută probleme...">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" id="filtruStatus">
+            <option value="toate">Toate statusurile</option>
+            <option value="inAsteptare">În așteptare</option>
+            <option value="inLucru">În lucru</option>
+            <option value="rezolvat">Rezolvate</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" id="sortareProbleme">
+            <option value="dataDesc">Cele mai recente</option>
+            <option value="dataAsc">Cele mai vechi</option>
+            <option value="voturiDesc">Cele mai votate</option>
+            <option value="comentariiDesc">Cele mai comentate</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lista de postări -->
+    <div class="row g-4 mt-3" id="listaPostari">
+      <% if (postari && postari.length > 0) { %>
+        <% postari.forEach((postare, index) => { %>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="<%= index * 50 %>">
+            <div class="postare-card <%= postare.status === 'inAsteptare' ? 'status-asteptare' : 
+                                        postare.status === 'inLucru' ? 'status-lucru' : 
+                                        'status-rezolvat' %>">
+              <div class="postare-header">
+                <div class="postare-status">
+                  <span class="status-indicator"></span>
+                  <%= postare.status === 'inAsteptare' ? 'În așteptare' : 
+                     postare.status === 'inLucru' ? 'În lucru' : 
+                     'Rezolvat' %>
+                </div>
+                <div class="postare-date">
+                  <%= new Date(postare.dataPostare).toLocaleDateString('ro-RO') %>
+                </div>
+              </div>
+              
+              <div class="postare-img">
+                <% if (postare.imagini && postare.imagini.length > 0) { %>
+                  <img src="/uploads/posts/<%= postare.imagini[0] %>" alt="<%= postare.titlu %>">
+                <% } else { %>
+                  <div class="no-image">
+                    <i class="fas fa-image"></i>
+                    <span>Fără imagine</span>
+                  </div>
+                <% } %>
+              </div>
+              
+              <div class="postare-body">
+                <h3 class="postare-title"><%= postare.titlu %></h3>
+                <div class="postare-autor">
+                  <img src="/uploads/profile/<%= postare.autorId.pozaProfil %>" alt="<%= postare.autorId.username %>">
+                  <span><%= postare.autorId.username %></span>
+                </div>
+                <p class="postare-desc"><%= postare.descriere.substring(0, 100) %>...</p>
+              </div>
+              
+              <div class="postare-footer">
+                <div class="postare-stats">
+                  <span class="postare-voturi">
+                    <i class="fas fa-thumbs-up"></i> <%= postare.voturi.length %>
+                  </span>
+                  <span class="postare-comentarii">
+                    <i class="fas fa-comments"></i> <%= postare.comentarii.length %>
+                  </span>
+                </div>
+                <a href="/postari/<%= postare._id %>" class="btn btn-sm btn-outline-primary">
+                  Vezi Detalii
+                </a>
+              </div>
+              
+              <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent) { %>
+                <div class="postare-actions">
+                  <button class="btn-vot <%= postare.voturi.includes(utilizatorCurent._id) ? 'votat' : '' %>"
+                          data-id="<%= postare._id %>">
+                    <i class="fas fa-thumbs-up"></i>
+                  </button>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        <% }); %>
+      <% } else { %>
+        <div class="col-12 text-center mt-5">
+          <div class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>Nicio problemă raportată încă</h3>
+            <p>Fii primul care raportează o problemă în județul <%= judet %></p>
+            <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent) { %>
+              <a href="/postari/creare/<%= judet %>" class="btn btn-primary mt-3">
+                <i class="fas fa-plus-circle"></i> Raportează o problemă
+              </a>
+            <% } else { %>
+              <a href="/utilizatori/login" class="btn btn-primary mt-3">
+                <i class="fas fa-sign-in-alt"></i> Autentifică-te pentru a raporta
+              </a>
+            <% } %>
+          </div>
+        </div>
+      <% } %>
+    </div>
+  </div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQouI75hLaezXr3A04qaBABq9mVEkdRgg&callback=initMap"></script>
+</main>
+
+<%- include('partials/footer', { page: 'feed' }) %>

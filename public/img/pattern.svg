@@ -1,0 +1,121 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g opacity="0.8">
+    <!-- Location pins pattern -->
+    <path d="M50 50C46.5 50 43 51.5 40 54C37 56.5 35 60 35 64C35 71 50 86 50 86C50 86 65 71 65 64C65 60 63 56.5 60 54C57 51.5 53.5 50 50 50Z" fill="white" fill-opacity="0.15"/>
+    <path d="M150 50C146.5 50 143 51.5 140 54C137 56.5 135 60 135 64C135 71 150 86 150 86C150 86 165 71 165 64C165 60 163 56.5 160 54C157 51.5 153.5 50 150 50Z" fill="white" fill-opacity="0.15"/>
+    <path d="M250 50C246.5 50 243 51.5 240 54C237 56.5 235 60 235 64C235 71 250 86 250 86C250 86 265 71 265 64C265 60 263 56.5 260 54C257 51.5 253.5 50 250 50Z" fill="white" fill-opacity="0.15"/>
+    <path d="M350 50C346.5 50 343 51.5 340 54C337 56.5 335 60 335 64C335 71 350 86 350 86C350 86 365 71 365 64C365 60 363 56.5 360 54C357 51.5 353.5 50 350 50Z" fill="white" fill-opacity="0.15"/>
+    
+    <path d="M50 150C46.5 150 43 151.5 40 154C37 156.5 35 160 35 164C35 171 50 186 50 186C50 186 65 171 65 164C65 160 63 156.5 60 154C57 151.5 53.5 150 50 150Z" fill="white" fill-opacity="0.15"/>
+    <path d="M150 150C146.5 150 143 151.5 140 154C137 156.5 135 160 135 164C135 171 150 186 150 186C150 186 165 171 165 164C165 160 163 156.5 160 154C157 151.5 153.5 150 150 150Z" fill="white" fill-opacity="0.15"/>
+    <path d="M250 150C246.5 150 243 151.5 240 154C237 156.5 235 160 235 164C235 171 250 186 250 186C250 186 265 171 265 164C265 160 263 156.5 260 154C257 151.5 253.5 150 250 150Z" fill="white" fill-opacity="0.15"/>
+    <path d="M350 150C346.5 150 343 151.5 340 154C337 156.5 335 160 335 164C335 171 350 186 350 186C350 186 365 171 365 164C365 160 363 156.5 360 154C357 151.5 353.5 150 350 150Z" fill="white" fill-opacity="0.15"/>
+    
+    <path d="M50 250C46.5 250 43 251.5 40 254C37 256.5 35 260 35 264C35 271 50 286 50 286C50 286 65 271 65 264C65 260 63 256.5 60 254C57 251.5 53.5 250 50 250Z" fill="white" fill-opacity="0.15"/>
+    <path d="M150 250C146.5 250 143 251.5 140 254C137 256.5 135 260 135 264C135 271 150 286 150 286C150 286 165 271 165 264C165 260 163 256.5 160 254C157 251.5 153.5 250 150 250Z" fill="white" fill-opacity="0.15"/>
+    <path d="M250 250C246.5 250 243 251.5 240 254C237 256.5 235 260 235 264C235 271 250 286 250 286C250 286 265 271 265 264C265 260 263 256.5 260 254C257 251.5 253.5 250 250 250Z" fill="white" fill-opacity="0.15"/>
+    <path d="M350 250C346.5 250 343 251.5 340 254C337 256.5 335 260 335 264C335 271 350 286 350 286C350 286 365 271 365 264C365 260 363 256.5 360 254C357 251.5 353.5 250 350 250Z" fill="white" fill-opacity="0.15"/>
+    
+    <path d="M50 350C46.5 350 43 351.5 40 354C37 356.5 35 360 35 364C35 371 50 386 50 386C50 386 65 371 65 364C65 360 63 356.5 60 354C57 351.5 53.5 350 50 350Z" fill="white" fill-opacity="0.15"/>
+    <path d="M150 350C146.5 350 143 351.5 140 354C137 356.5 135 360 135 364C135 371 150 386 150 386C150 386 165 371 165 364C165 360 163 356.5 160 354C157 351.5 153.5 350 150 350Z" fill="white" fill-opacity="0.15"/>
+    <path d="M250 350C246.5 350 243 351.5 240 354C237 356.5 235 360 235 364C235 371 250 386 250 386C250 386 265 371 265 364C265 360 263 356.5 260 354C257 351.5 253.5 350 250 350Z" fill="white" fill-opacity="0.15"/>
+    <path d="M350 350C346.5 350 343 351.5 340 354C337 356.5 335 360 335 364C335 371 350 386 350 386C350 386 365 371 365 364C365 360 363 356.5 360 354C357 351.5 353.5 350 350 350Z" fill="white" fill-opacity="0.15"/>
+  </g>
+  
+  <!-- Circle patterns -->
+  <circle cx="100" cy="100" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="200" cy="100" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="300" cy="100" r="8" fill="white" fill-opacity="0.1"/>
+  
+  <circle cx="100" cy="200" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="200" cy="200" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="300" cy="200" r="8" fill="white" fill-opacity="0.1"/>
+  
+  <circle cx="100" cy="300" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="200" cy="300" r="8" fill="white" fill-opacity="0.1"/>
+  <circle cx="300" cy="300" r="8" fill="white" fill-opacity="0.1"/>
+  
+  <!-- Dots pattern -->
+  <circle cx="25" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="25" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="75" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="125" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="175" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="225" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="275" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="325" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <circle cx="25" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="75" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="125" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="175" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="225" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="275" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="325" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  <circle cx="375" cy="375" r="2" fill="white" fill-opacity="0.2"/>
+  
+  <!-- Small plus symbols -->
+  <path d="M25 50H35M30 45V55" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M125 50H135M130 45V55" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M225 50H235M230 45V55" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M325 50H335M330 45V55" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  
+  <path d="M25 350H35M30 345V355" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M125 350H135M130 345V355" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M225 350H235M230 345V355" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+  <path d="M325 350H335M330 345V355" stroke="white" stroke-opacity="0.15" stroke-width="1" stroke-linecap="round"/>
+</svg>

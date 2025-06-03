@@ -1,0 +1,339 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="editare-profil-page">
+  <div class="container">
+    <div class="back-button mb-3" data-aos="fade-right">
+      <a href="/utilizatori/profil/<%= utilizatorCurent._id %>" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la profil
+      </a>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-sm" data-aos="fade-up">
+          <div class="card-header">
+            <h2>Editare Profil</h2>
+            <p>Actualizează informațiile profilului tău</p>
+          </div>
+          
+          <div class="card-body">
+            <form action="/utilizatori/editare-profil" method="POST" enctype="multipart/form-data" id="formEditareProfil">
+              <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                  <div class="avatar-container">
+                    <img id="previewAvatar" src="/uploads/profile/<%= utilizator.pozaProfil %>" alt="Avatar" class="avatar-img">
+                    <div class="avatar-overlay">
+                      <label for="pozaProfil" class="avatar-edit-btn">
+                        <i class="fas fa-camera"></i>
+                      </label>
+                    </div>
+                  </div>
+                  <input type="file" id="pozaProfil" name="pozaProfil" accept="image/*" class="visually-hidden">
+                  <p class="text-muted small mt-2">Click pe imagine pentru a schimba poza de profil</p>
+                </div>
+                
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="username" class="form-label">Nume utilizator</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-user"></i></span>
+                      <input type="text" class="form-control" id="username" name="username" value="<%= utilizator.username %>" required>
+                    </div>
+                    <div class="invalid-feedback" id="usernameError"></div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                      <input type="email" class="form-control" id="email" value="<%= utilizator.email %>" disabled>
+                    </div>
+                    <small class="text-muted">Adresa de email nu poate fi modificată</small>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="telefon" class="form-label">Telefon (opțional)</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                      <input type="tel" class="form-control" id="telefon" name="telefon" value="<%= utilizator.telefon || '' %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <a href="/utilizatori/profil/<%= utilizatorCurent._id %>" class="btn btn-outline-secondary">Anulează</a>
+                <button type="submit" class="btn btn-primary" id="btnSubmit">Salvează modificările</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Opțiuni avansate -->
+        <div class="card shadow-sm mt-4" data-aos="fade-up">
+          <div class="card-header bg-warning text-dark">
+            <h3>Opțiuni avansate</h3>
+            <p class="mb-0">Acțiuni care necesită atenție sporită</p>
+          </div>
+          
+          <div class="card-body">
+            <div class="d-grid gap-2">
+              <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#dezactivareContModal">
+                <i class="fas fa-user-slash"></i> Dezactivare cont
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal dezactivare cont -->
+  <div class="modal fade" id="dezactivareContModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmare dezactivare cont</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-warning">
+            <i class="fas fa-exclamation-triangle"></i> Atenție!
+            <p class="mb-0">Dezactivarea contului va restricționa accesul la toate funcționalitățile platformei. Poți contacta un administrator pentru reactivare.</p>
+          </div>
+          
+          <p>Te rugăm să introduci parola pentru a confirma dezactivarea contului.</p>
+          
+          <form id="formDezactivareCont">
+            <div class="mb-3">
+              <label for="parolaDezactivare" class="form-label">Parola ta</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="parolaDezactivare" required>
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-danger" id="btnDezactivareCont">Dezactivează contul</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Preview avatar
+    const pozaProfil = document.getElementById('pozaProfil');
+    const previewAvatar = document.getElementById('previewAvatar');
+    const avatarContainer = document.querySelector('.avatar-container');
+    
+    // Click pe container pentru a declansa inputul de fisier
+    avatarContainer.addEventListener('click', function() {
+      pozaProfil.click();
+    });
+    
+    // Actualizare preview la selectare imagine
+    pozaProfil.addEventListener('change', function(e) {
+      if (e.target.files.length > 0) {
+        const file = e.target.files[0];
+        
+        // Verificare tip fisier
+        if (!file.type.match('image.*')) {
+          alert('Te rugăm să selectezi o imagine.');
+          return;
+        }
+        
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+          previewAvatar.src = e.target.result;
+        };
+        
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Toggle vizibilitate parolă
+    document.querySelectorAll('.toggle-password').forEach(button => {
+      button.addEventListener('click', function() {
+        const input = this.closest('.input-group').querySelector('input');
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        
+        // Schimbare icon
+        const icon = this.querySelector('i');
+        if (type === 'text') {
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+        } else {
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+        }
+      });
+    });
+    
+    // Validare formular editare profil
+    const formEditareProfil = document.getElementById('formEditareProfil');
+    
+    if (formEditareProfil) {
+      formEditareProfil.addEventListener('submit', function(e) {
+        let isValid = true;
+        
+        // Validare username
+        const username = document.getElementById('username');
+        const usernameError = document.getElementById('usernameError');
+        
+        if (username.value.trim().length < 3) {
+          e.preventDefault();
+          username.classList.add('is-invalid');
+          usernameError.textContent = 'Username-ul trebuie să aibă minim 3 caractere';
+          isValid = false;
+        } else {
+          username.classList.remove('is-invalid');
+          usernameError.textContent = '';
+        }
+        
+        return isValid;
+      });
+    }
+    
+    // Dezactivare cont
+    const btnDezactivareCont = document.getElementById('btnDezactivareCont');
+    
+    if (btnDezactivareCont) {
+      btnDezactivareCont.addEventListener('click', function() {
+        const parolaDezactivare = document.getElementById('parolaDezactivare');
+        
+        if (!parolaDezactivare.value) {
+          alert('Te rugăm să introduci parola pentru a confirma dezactivarea contului.');
+          return;
+        }
+        
+        if (confirm('Ești sigur că vrei să dezactivezi contul? Această acțiune va restricționa accesul la platformă.')) {
+          // Aici ar trebui să fie un fetch către endpoint-ul de dezactivare cont
+          // Exemplu:
+          /*
+          fetch('/utilizatori/dezactivare-cont', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ parola: parolaDezactivare.value })
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.succes) {
+              window.location.href = '/utilizatori/logout';
+            } else {
+              alert(data.mesaj || 'Eroare la dezactivarea contului');
+            }
+          })
+          .catch(error => {
+            console.error('Eroare:', error);
+            alert('Eroare la dezactivarea contului');
+          });
+          */
+          
+          // Pentru moment, doar redirectionăm către logout
+          alert('Contul a fost dezactivat. Vei fi redirecționat către pagina de autentificare.');
+          window.location.href = '/utilizatori/logout';
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Adăugare CSS specific pentru pagina de editare profil -->
+<style>
+  .editare-profil-page {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  }
+  
+  .card-header {
+    background-color: var(--primary-bg);
+    color: white;
+    padding: 1.5rem;
+  }
+  
+  .card-header h2, .card-header h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-header p {
+    margin-bottom: 0;
+    opacity: 0.8;
+  }
+  
+  .avatar-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .avatar-container:hover {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .avatar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .avatar-container:hover .avatar-overlay {
+    opacity: 1;
+  }
+  
+  .avatar-edit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    color: var(--primary-bg);
+    cursor: pointer;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: var(--primary-bg);
+  }
+  
+  .card.bg-warning .card-header {
+    background-color: var(--warning);
+  }
+</style>
+
+<%- include('partials/footer', { page: 'feed' }) %>

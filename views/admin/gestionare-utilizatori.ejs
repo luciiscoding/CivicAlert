@@ -1,0 +1,526 @@
+<%- include('../partials/header', { page: 'admin' }) %>
+<%- include('../partials/navbar') %>
+
+<main class="admin-page">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-2 admin-sidebar">
+        <div class="sidebar-content">
+          <div class="admin-profile">
+            <img src="/uploads/profile/<%= utilizatorCurent.pozaProfil || 'default-profile.png' %>" alt="Admin Profile">
+            <h4><%= utilizatorCurent.username %></h4>
+            <p>Administrator</p>
+          </div>
+          
+          <nav class="admin-nav">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/gestionare-probleme">
+                  <i class="fas fa-exclamation-triangle"></i> Gestionare Probleme
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/admin/gestionare-utilizatori">
+                  <i class="fas fa-users"></i> Gestionare Utilizatori
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="fas fa-home"></i> Înapoi la Site
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-10 admin-content">
+        <div class="content-header">
+          <h1>Gestionare Utilizatori</h1>
+          <p>Administrează conturile utilizatorilor și aplică restricții.</p>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters-bar" data-aos="fade-up">
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="searchUtilizatori" placeholder="Caută utilizatori...">
+              </div>
+            </div>
+            
+            <div class="col-md-3">
+              <select class="form-select" id="filtruStatus">
+                <option value="">Toate statusurile</option>
+                <option value="activ">Activ</option>
+                <option value="inactiv">Inactiv</option>
+                <option value="restrictionat">Restricționat</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <select class="form-select" id="filtruRol">
+                <option value="">Toate rolurile</option>
+                <option value="user">Utilizator</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+            
+            <div class="col-md-2">
+              <button type="button" class="btn btn-primary w-100" id="btnAplicaFiltru">
+                <i class="fas fa-filter"></i> Filtrează
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Utilizatori Table -->
+        <div class="data-table-container" data-aos="fade-up">
+          <div class="table-responsive">
+            <table class="table table-hover table-utilizatori">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Utilizator</th>
+                  <th>Email</th>
+                  <th>Data înregistrării</th>
+                  <th>Rol</th>
+                  <th>Status</th>
+                  <th>Acțiuni</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (utilizatori && utilizatori.length > 0) { %>
+                  <% utilizatori.forEach(utilizator => { %>
+                    <tr data-id="<%= utilizator._id %>" <%= utilizator._id.toString() === utilizatorCurent._id ? 'class="current-user"' : '' %>>
+                      <td><small class="text-muted"><%= utilizator._id %></small></td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img src="/uploads/profile/<%= utilizator.pozaProfil %>" alt="<%= utilizator.username %>" class="user-avatar">
+                          <div class="ms-2">
+                            <%= utilizator.username %>
+                            <% if (utilizator._id.toString() === utilizatorCurent._id) { %>
+                              <span class="badge bg-info">Tu</span>
+                            <% } %>
+                          </div>
+                        </div>
+                      </td>
+                      <td><%= utilizator.email %></td>
+                      <td><%= new Date(utilizator.dataCreare).toLocaleDateString('ro-RO') %></td>
+                      <td>
+                        <span class="badge <%= utilizator.rol === 'admin' ? 'bg-danger' : 'bg-primary' %>">
+                          <%= utilizator.rol === 'admin' ? 'Administrator' : 'Utilizator' %>
+                        </span>
+                      </td>
+                      <td>
+                        <div class="status-badge <%= utilizator.status === 'activ' ? 'status-active' : 
+                                                    utilizator.status === 'inactiv' ? 'status-inactive' : 
+                                                    'status-restricted' %>">
+                          <%= utilizator.status === 'activ' ? 'Activ' : 
+                             utilizator.status === 'inactiv' ? 'Inactiv' : 
+                             'Restricționat' %>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="action-buttons">
+                          <a href="/utilizatori/profil/<%= utilizator._id %>" class="btn btn-sm btn-outline-primary" title="Vezi profil">
+                            <i class="fas fa-user"></i>
+                          </a>
+                          
+                          <% if (utilizator._id.toString() !== utilizatorCurent._id) { %>
+                            <div class="dropdown d-inline-block">
+                              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                      data-bs-toggle="dropdown" aria-expanded="false" title="Schimbă status">
+                                <i class="fas fa-sync-alt"></i>
+                              </button>
+                              <ul class="dropdown-menu">
+                                <li>
+                                  <button class="dropdown-item btn-change-status" data-id="<%= utilizator._id %>" data-status="activ">
+                                    <span class="status-dot status-active"></span> Activ
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item btn-change-status" data-id="<%= utilizator._id %>" data-status="inactiv">
+                                    <span class="status-dot status-inactive"></span> Inactiv
+                                  </button>
+                                </li>
+                                <li>
+                                  <button class="dropdown-item btn-change-status" data-id="<%= utilizator._id %>" data-status="restrictionat">
+                                    <span class="status-dot status-restricted"></span> Restricționat
+                                  </button>
+                                </li>
+                              </ul>
+                            </div>
+                            
+                            <button class="btn btn-sm btn-outline-warning btn-add-restriction" 
+                                    data-id="<%= utilizator._id %>" 
+                                    data-username="<%= utilizator.username %>" 
+                                    title="Adaugă restricție">
+                              <i class="fas fa-ban"></i>
+                            </button>
+                          <% } %>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="7" class="text-center">Nu există utilizatori înregistrați</td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Paginare -->
+          <nav class="pagination-container">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Anterior</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Următor</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        
+        <!-- Restricții Active -->
+        <div class="section-header mt-4" data-aos="fade-up">
+          <h2>Restricții Active</h2>
+          <p>Vezi și gestionează restricțiile aplicate utilizatorilor</p>
+        </div>
+        
+        <div class="data-table-container" data-aos="fade-up">
+          <div class="table-responsive">
+            <table class="table table-hover table-restrictii">
+              <thead>
+                <tr>
+                  <th>Utilizator</th>
+                  <th>Tip Restricție</th>
+                  <th>Motiv</th>
+                  <th>Data Aplicării</th>
+                  <th>Data Expirării</th>
+                  <th>Acțiuni</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% if (restrictii && restrictii.length > 0) { %>
+                  <% restrictii.forEach(restrictie => { %>
+                    <tr data-id="<%= restrictie._id %>">
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <img src="/uploads/profile/<%= restrictie.userId.pozaProfil %>" alt="<%= restrictie.userId.username %>" class="user-avatar">
+                          <div class="ms-2">
+                            <%= restrictie.userId.username %>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge bg-warning">
+                          <%= restrictie.tipRestrictie === 'vizualizare' ? 'Vizualizare' : 
+                             restrictie.tipRestrictie === 'postare' ? 'Postare' : 
+                             restrictie.tipRestrictie === 'vot' ? 'Votare' : 
+                             'Comentarii' %>
+                        </span>
+                      </td>
+                      <td><%= restrictie.motivRestrictie %></td>
+                      <td><%= new Date(restrictie.dataRestrictie).toLocaleDateString('ro-RO') %></td>
+                      <td><%= new Date(restrictie.dataExpirare).toLocaleDateString('ro-RO') %></td>
+                      <td>
+                        <button class="btn btn-sm btn-outline-danger btn-delete-restriction" data-id="<%= restrictie._id %>" title="Șterge restricția">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  <% }); %>
+                <% } else { %>
+                  <tr>
+                    <td colspan="6" class="text-center">Nu există restricții active</td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal adăugare restricție -->
+  <div class="modal fade" id="addRestrictionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Adaugă restricție</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formAddRestriction">
+            <input type="hidden" id="userId" name="userId">
+            
+            <div class="mb-3">
+              <label class="form-label">Utilizator</label>
+              <div class="form-control bg-light">
+                <span id="usernameDisplay"></span>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="tipRestrictie" class="form-label">Tip restricție</label>
+              <select class="form-select" id="tipRestrictie" name="tipRestrictie" required>
+                <option value="">Selectează tipul restricției</option>
+                <option value="vizualizare">Restricție vizualizare</option>
+                <option value="postare">Restricție postare</option>
+                <option value="vot">Restricție votare</option>
+                <option value="comentariu">Restricție comentarii</option>
+              </select>
+            </div>
+            
+            <div class="mb-3">
+              <label for="motivRestrictie" class="form-label">Motiv restricție</label>
+              <textarea class="form-control" id="motivRestrictie" name="motivRestrictie" rows="3" required
+                        placeholder="Descrie motivul pentru care aplici această restricție"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label for="zileRestrictie" class="form-label">Durata restricției (în zile)</label>
+              <input type="number" class="form-control" id="zileRestrictie" name="zileRestrictie" min="1" max="90" value="7" required>
+              <div class="form-text">Perioada maximă este de 90 de zile</div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-primary" id="btnSaveRestriction">Aplică restricția</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal confirmare ștergere restricție -->
+  <div class="modal fade" id="deleteRestrictionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmare ștergere restricție</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Ești sigur că vrei să ștergi această restricție? Utilizatorul va putea accesa din nou funcționalitatea restricționată.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteRestriction">Șterge restricția</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Schimbare status utilizator
+  document.querySelectorAll('.btn-change-status').forEach(button => {
+    button.addEventListener('click', function() {
+      const userId = this.dataset.id;
+      const newStatus = this.dataset.status;
+      
+      fetch(`/admin/utilizatori/${userId}/status`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.succes) {
+          // Actualizare UI
+          const statusCell = document.querySelector(`tr[data-id="${userId}"] .status-badge`);
+          
+          // Eliminare clase vechi
+          statusCell.classList.remove('status-active', 'status-inactive', 'status-restricted');
+          
+          // Adăugare clasă nouă
+          if (newStatus === 'activ') {
+            statusCell.classList.add('status-active');
+            statusCell.textContent = 'Activ';
+          } else if (newStatus === 'inactiv') {
+            statusCell.classList.add('status-inactive');
+            statusCell.textContent = 'Inactiv';
+          } else {
+            statusCell.classList.add('status-restricted');
+            statusCell.textContent = 'Restricționat';
+          }
+          
+          // Notificare succes
+          alert('Status actualizat cu succes!');
+        } else {
+          alert('Eroare la actualizarea statusului: ' + data.mesaj);
+        }
+      })
+      .catch(error => {
+        console.error('Eroare:', error);
+        alert('Eroare la actualizarea statusului!');
+      });
+    });
+  });
+  
+  // Adăugare restricție
+  let userIdToRestrict, usernameToRestrict;
+  
+  document.querySelectorAll('.btn-add-restriction').forEach(button => {
+    button.addEventListener('click', function() {
+      userIdToRestrict = this.dataset.id;
+      usernameToRestrict = this.dataset.username;
+      
+      // Completare formular modal
+      document.getElementById('userId').value = userIdToRestrict;
+      document.getElementById('usernameDisplay').textContent = usernameToRestrict;
+      
+      // Afișare modal
+      const addRestrictionModal = new bootstrap.Modal(document.getElementById('addRestrictionModal'));
+      addRestrictionModal.show();
+    });
+  });
+  
+  // Salvare restricție
+  document.getElementById('btnSaveRestriction').addEventListener('click', function() {
+    const form = document.getElementById('formAddRestriction');
+    
+    // Verificare validare formular
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    
+    const formData = {
+      userId: document.getElementById('userId').value,
+      tipRestrictie: document.getElementById('tipRestrictie').value,
+      motivRestrictie: document.getElementById('motivRestrictie').value,
+      zileRestrictie: document.getElementById('zileRestrictie').value
+    };
+    
+    fetch('/admin/restrictii', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.succes) {
+        // Reîncărcare pagină pentru a vedea noua restricție
+        location.reload();
+      } else {
+        alert('Eroare la adăugarea restricției: ' + data.mesaj);
+      }
+    })
+    .catch(error => {
+      console.error('Eroare:', error);
+      alert('Eroare la adăugarea restricției!');
+    });
+  });
+  
+  // Ștergere restricție
+  let restrictieIdToDelete;
+  
+  document.querySelectorAll('.btn-delete-restriction').forEach(button => {
+    button.addEventListener('click', function() {
+      restrictieIdToDelete = this.dataset.id;
+      
+      // Afișare modal confirmare
+      const deleteRestrictionModal = new bootstrap.Modal(document.getElementById('deleteRestrictionModal'));
+      deleteRestrictionModal.show();
+    });
+  });
+  
+  document.getElementById('confirmDeleteRestriction').addEventListener('click', function() {
+    if (!restrictieIdToDelete) return;
+    
+    fetch(`/admin/restrictii/${restrictieIdToDelete}?_method=DELETE`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.succes) {
+        // Eliminare rând din tabel
+        const row = document.querySelector(`tr[data-id="${restrictieIdToDelete}"]`);
+        row.remove();
+        
+        // Ascundere modal
+        const deleteRestrictionModal = bootstrap.Modal.getInstance(document.getElementById('deleteRestrictionModal'));
+        deleteRestrictionModal.hide();
+        
+        // Notificare succes
+        alert('Restricție ștearsă cu succes!');
+        
+        // Dacă nu mai sunt restricții, afișare mesaj
+        const tbody = document.querySelector('.table-restrictii tbody');
+        if (tbody.children.length === 0) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = '<td colspan="6" class="text-center">Nu există restricții active</td>';
+          tbody.appendChild(tr);
+        }
+      } else {
+        alert('Eroare la ștergerea restricției: ' + data.mesaj);
+      }
+    })
+    .catch(error => {
+      console.error('Eroare:', error);
+      alert('Eroare la ștergerea restricției!');
+    });
+  });
+  
+  // Filtrare utilizatori
+  document.getElementById('btnAplicaFiltru').addEventListener('click', function() {
+    const searchText = document.getElementById('searchUtilizatori').value.toLowerCase();
+    const statusFilter = document.getElementById('filtruStatus').value;
+    const rolFilter = document.getElementById('filtruRol').value;
+    
+    document.querySelectorAll('.table-utilizatori tbody tr').forEach(row => {
+      const username = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+      const email = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+      const rol = row.querySelector('td:nth-child(5) .badge').textContent.toLowerCase();
+      const status = row.querySelector('td:nth-child(6) .status-badge').textContent.toLowerCase();
+      
+      // Verificare text căutare
+      const matchesSearch = searchText === '' || 
+                           username.includes(searchText) || 
+                           email.includes(searchText);
+      
+      // Verificare filtru status
+      const matchesStatus = statusFilter === '' || 
+                           status.toLowerCase() === statusFilter.toLowerCase();
+      
+      // Verificare filtru rol
+      const matchesRol = rolFilter === '' || 
+                        (rolFilter === 'admin' && rol.toLowerCase().includes('administrator')) || 
+                        (rolFilter === 'user' && rol.toLowerCase().includes('utilizator'));
+      
+      // Afișare/ascundere rând
+      if (matchesSearch && matchesStatus && matchesRol) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+<%- include('../partials/footer', { page: 'admin' }) %>

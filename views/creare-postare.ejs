@@ -1,0 +1,289 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="creare-postare-page">
+  <div class="container">
+    <div class="back-button mb-3" data-aos="fade-right">
+      <a href="/postari/feed/<%= judet %>" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la feed
+      </a>
+    </div>
+    
+    <div class="card shadow-sm" data-aos="fade-up">
+      <div class="card-header">
+        <h2>Raportează o problemă în județul <%= judet %></h2>
+        <p>Completează toate câmpurile pentru a raporta o problemă civică</p>
+      </div>
+      
+      <div class="card-body">
+        <form action="/postari/creare" method="POST" enctype="multipart/form-data" id="formCrearePostare">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="titlu" class="form-label">Titlul problemei *</label>
+                <input type="text" class="form-control" id="titlu" name="titlu" required
+                       placeholder="Ex: Groapă în asfalt, Iluminat defect, etc.">
+                <div class="invalid-feedback">Te rugăm să introduci un titlu.</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="descriere" class="form-label">Descriere detaliată *</label>
+                <textarea class="form-control" id="descriere" name="descriere" rows="5" required
+                          placeholder="Descrie problema în detaliu, menționând de cât timp există, impactul asupra comunității, etc."></textarea>
+                <div class="invalid-feedback">Te rugăm să introduci o descriere.</div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="imagini" class="form-label">Imagini (opțional, max. 5)</label>
+                <input type="file" class="form-control" id="imagini" name="imagini" multiple accept="image/*">
+                <div class="form-text">Adaugă imagini relevante pentru a ilustra problema. Maxim 5 imagini, fiecare de maxim 10MB.</div>
+                <div class="invalid-feedback">Unul sau mai multe fișiere nu sunt valide.</div>
+              </div>
+              
+              <div class="mb-3" id="previews">
+                <div class="row g-2" id="imagePreviewContainer"></div>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label class="form-label">Localizare pe hartă *</label>
+                <div id="mapContainer">
+                  <div id="map" class="create-map"></div>
+                  <div class="map-search">
+                    <div class="input-group">
+                      <input type="text" id="searchAddress" class="form-control" placeholder="Caută adresa...">
+                      <button class="btn btn-outline-secondary" type="button" id="btnSearchAddress">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="map-instructions">
+                    <p><i class="fas fa-info-circle"></i> Fă click pe hartă pentru a marca locația exactă a problemei</p>
+                  </div>
+                </div>
+                <div class="form-text">Localizarea precisă ajută autoritățile să identifice și să rezolve problema mai rapid.</div>
+              </div>
+              
+              <!-- Câmpuri ascunse pentru coordonate și județ -->
+              <input type="hidden" id="lat" name="lat" required>
+              <input type="hidden" id="lng" name="lng" required>
+              <input type="hidden" id="judet" name="judet" value="<%= judet %>">
+              
+              <div class="location-preview mt-3" id="locationPreview">
+                <p><strong>Coordonate:</strong> <span id="coordsDisplay">Nicio locație selectată</span></p>
+                <p><strong>Județul:</strong> <%= judet %></p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+            <button type="button" class="btn btn-outline-secondary" onclick="window.history.back();">Anulează</button>
+            <button type="submit" class="btn btn-primary" id="btnSubmit">Raportează Problema</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay" class="loading-overlay d-none">
+    <div class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Se încarcă...</span>
+    </div>
+    <p>Se trimite raportarea...</p>
+  </div>
+</main>
+
+<!-- Script pentru inițializare hartă Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+<script>
+  let map, marker;
+  
+  function initMap() {
+    // Centrul hărții pe județul selectat (coordonate aproximative)
+    const centerCoordinates = getCenterForJudet('<%= judet %>');
+    
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: centerCoordinates,
+      zoom: 10,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    // Adăugare listener pentru click pe hartă
+    map.addListener('click', function(e) {
+      placeMarker(e.latLng);
+    });
+    
+    // Inițializare căutare locații
+    const input = document.getElementById('searchAddress');
+    const searchBox = new google.maps.places.SearchBox(input);
+    
+    // Limitare rezultate căutare la zona vizibilă pe hartă
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+    
+    // Listener pentru selectarea unei locații din căutare
+    searchBox.addListener('places_changed', function() {
+      const places = searchBox.getPlaces();
+      
+      if (places.length === 0) return;
+      
+      const place = places[0];
+      
+      if (!place.geometry || !place.geometry.location) return;
+      
+      // Centrare hartă pe locația selectată
+      map.setCenter(place.geometry.location);
+      map.setZoom(15);
+      
+      // Plasare marker
+      placeMarker(place.geometry.location);
+    });
+  }
+  
+  function placeMarker(location) {
+    // Ștergere marker existent dacă există
+    if (marker) {
+      marker.setMap(null);
+    }
+    
+    // Creare marker nou
+    marker = new google.maps.Marker({
+      position: location,
+      map: map,
+      draggable: true,
+      animation: google.maps.Animation.DROP
+    });
+    
+    // Actualizare câmpuri ascunse cu coordonatele
+    document.getElementById('lat').value = location.lat();
+    document.getElementById('lng').value = location.lng();
+    
+    // Afișare coordonate în preview
+    document.getElementById('coordsDisplay').textContent = 
+      location.lat().toFixed(6) + ', ' + location.lng().toFixed(6);
+    
+    // Listener pentru drag end (în cazul în care utilizatorul mută markerul)
+    google.maps.event.addListener(marker, 'dragend', function() {
+      const position = marker.getPosition();
+      document.getElementById('lat').value = position.lat();
+      document.getElementById('lng').value = position.lng();
+      document.getElementById('coordsDisplay').textContent = 
+        position.lat().toFixed(6) + ', ' + position.lng().toFixed(6);
+    });
+  }
+  
+  // Funcție pentru obținerea coordonatelor aproximative ale centrului unui județ
+  function getCenterForJudet(judet) {
+    const centerCoordinates = {
+      'Alba': {lat: 46.0732, lng: 23.5804},
+      'Arad': {lat: 46.1866, lng: 21.3123},
+      'Argeș': {lat: 44.8567, lng: 24.8691},
+      'Bacău': {lat: 46.5670, lng: 26.9145},
+      'Bihor': {lat: 47.0465, lng: 21.9189},
+      'Bistrița-Năsăud': {lat: 47.1334, lng: 24.5000},
+      'Botoșani': {lat: 47.7486, lng: 26.6693},
+      'Brașov': {lat: 45.6556, lng: 25.6108},
+      'Brăila': {lat: 45.2692, lng: 27.9575},
+      'București': {lat: 44.4323, lng: 26.1063},
+      'Buzău': {lat: 45.1500, lng: 26.8167},
+      'Caraș-Severin': {lat: 45.3000, lng: 21.8833},
+      'Călărași': {lat: 44.2000, lng: 27.3333},
+      'Cluj': {lat: 46.7667, lng: 23.6000},
+      'Constanța': {lat: 44.1733, lng: 28.6383},
+      'Covasna': {lat: 45.8500, lng: 25.8000},
+      'Dâmbovița': {lat: 44.9333, lng: 25.4667},
+      'Dolj': {lat: 44.3167, lng: 23.8000},
+      'Galați': {lat: 45.4267, lng: 28.0442},
+      'Giurgiu': {lat: 43.9000, lng: 25.9667},
+      'Gorj': {lat: 45.0333, lng: 23.2667},
+      'Harghita': {lat: 46.3000, lng: 25.3000},
+      'Hunedoara': {lat: 45.7500, lng: 22.9000},
+      'Ialomița': {lat: 44.5667, lng: 27.3667},
+      'Iași': {lat: 47.1622, lng: 27.5889},
+      'Ilfov': {lat: 44.4323, lng: 26.1063},
+      'Maramureș': {lat: 47.6567, lng: 23.5690},
+      'Mehedinți': {lat: 44.6333, lng: 22.6500},
+      'Mureș': {lat: 46.5436, lng: 24.5617},
+      'Neamț': {lat: 46.9257, lng: 26.3730},
+      'Olt': {lat: 44.4333, lng: 24.3667},
+      'Prahova': {lat: 44.9400, lng: 26.0300},
+      'Satu Mare': {lat: 47.7927, lng: 22.8830},
+      'Sălaj': {lat: 47.1933, lng: 23.0617},
+      'Sibiu': {lat: 45.7983, lng: 24.1469},
+      'Suceava': {lat: 47.6458, lng: 26.2500},
+      'Teleorman': {lat: 43.7928, lng: 25.3322},
+      'Timiș': {lat: 45.7489, lng: 21.2087},
+      'Tulcea': {lat: 45.1733, lng: 28.8000},
+      'Vaslui': {lat: 46.6333, lng: 27.7333},
+      'Vâlcea': {lat: 45.1000, lng: 24.3667},
+      'Vrancea': {lat: 45.7000, lng: 27.1833}
+    };
+    
+    return centerCoordinates[judet] || {lat: 45.9443, lng: 25.0094}; // Centrul României ca fallback
+  }
+  
+  // Preview imagini încărcate
+  document.getElementById('imagini').addEventListener('change', function(e) {
+    const files = e.target.files;
+    const container = document.getElementById('imagePreviewContainer');
+    container.innerHTML = '';
+    
+    if (files.length > 5) {
+      alert('Poți încărca maxim 5 imagini!');
+      e.target.value = '';
+      return;
+    }
+    
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      
+      // Verificare tip fișier
+      if (!file.type.match('image.*')) {
+        continue;
+      }
+      
+      const reader = new FileReader();
+      const col = document.createElement('div');
+      col.className = 'col-4';
+      
+      const previewCard = document.createElement('div');
+      previewCard.className = 'preview-card';
+      
+      const img = document.createElement('img');
+      img.className = 'img-fluid';
+      
+      reader.onload = (function(theFile, theImg) {
+        return function(e) {
+          theImg.src = e.target.result;
+        };
+      })(file, img);
+      
+      reader.readAsDataURL(file);
+      
+      previewCard.appendChild(img);
+      col.appendChild(previewCard);
+      container.appendChild(col);
+    }
+  });
+  
+  // Validare formular la submit
+  document.getElementById('formCrearePostare').addEventListener('submit', function(e) {
+    const lat = document.getElementById('lat').value;
+    const lng = document.getElementById('lng').value;
+    
+    if (!lat || !lng) {
+      e.preventDefault();
+      alert('Te rugăm să selectezi locația pe hartă!');
+      return;
+    }
+    
+    // Afișare loading overlay
+    document.getElementById('loadingOverlay').classList.remove('d-none');
+  });
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQ0cWGtPHn_JD9-OGQiNi2iU9Hr9b0ok&callback=initMap" async defer></script>
+
+<%- include('partials/footer', { page: 'feed' }) %>

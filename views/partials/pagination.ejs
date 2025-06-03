@@ -1,0 +1,72 @@
+<!-- 
+  Componentă pentru paginare
+  Utilizare: 
+  <%- include('partials/pagination', { 
+    baseUrl: '/postari/feed/Bucuresti', 
+    currentPage: 1, 
+    totalPages: 5,
+    queryParams: { status: 'inAsteptare' } // opțional 
+  }) %>
+-->
+
+<% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+  <nav aria-label="Navigare pagini">
+    <ul class="pagination justify-content-center">
+      <!-- Buton Anterior -->
+      <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+        <a class="page-link" href="<%= baseUrl %>?page=<%= currentPage - 1 %><%= typeof queryParams !== 'undefined' ? '&' + new URLSearchParams(queryParams).toString() : '' %>" <%= currentPage === 1 ? 'tabindex="-1" aria-disabled="true"' : '' %>>
+          <i class="fas fa-chevron-left me-1"></i> Anterior
+        </a>
+      </li>
+      
+      <!-- Pagini -->
+      <% 
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+        if (endPage - startPage + 1 < maxVisiblePages) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+        
+        // Prima pagină și elipsis
+        if (startPage > 1) { 
+      %>
+        <li class="page-item">
+          <a class="page-link" href="<%= baseUrl %>?page=1<%= typeof queryParams !== 'undefined' ? '&' + new URLSearchParams(queryParams).toString() : '' %>">1</a>
+        </li>
+        <% if (startPage > 2) { %>
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+        <% } %>
+      <% } %>
+      
+      <!-- Paginile din mijloc -->
+      <% for (let i = startPage; i <= endPage; i++) { %>
+        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+          <a class="page-link" href="<%= baseUrl %>?page=<%= i %><%= typeof queryParams !== 'undefined' ? '&' + new URLSearchParams(queryParams).toString() : '' %>"><%= i %></a>
+        </li>
+      <% } %>
+      
+      <!-- Ultima pagină și elipsis -->
+      <% if (endPage < totalPages) { %>
+        <% if (endPage < totalPages - 1) { %>
+          <li class="page-item disabled">
+            <span class="page-link">...</span>
+          </li>
+        <% } %>
+        <li class="page-item">
+          <a class="page-link" href="<%= baseUrl %>?page=<%= totalPages %><%= typeof queryParams !== 'undefined' ? '&' + new URLSearchParams(queryParams).toString() : '' %>"><%= totalPages %></a>
+        </li>
+      <% } %>
+      
+      <!-- Buton Următor -->
+      <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+        <a class="page-link" href="<%= baseUrl %>?page=<%= currentPage + 1 %><%= typeof queryParams !== 'undefined' ? '&' + new URLSearchParams(queryParams).toString() : '' %>" <%= currentPage === totalPages ? 'tabindex="-1" aria-disabled="true"' : '' %>>
+          Următor <i class="fas fa-chevron-right ms-1"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+<% } %>

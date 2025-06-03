@@ -1,0 +1,37 @@
+<!-- 
+  Componentă pentru afișarea unui indicator de încărcare
+  Utilizare: 
+  <%- include('partials/loading', { 
+    text: 'Se încarcă...', // opțional
+    size: 'lg',            // opțional: sm, md, lg
+    color: 'primary'       // opțional: primary, secondary, success, danger, warning, info
+  }) %>
+-->
+
+<div class="loading-indicator text-center <%= typeof fullscreen !== 'undefined' && fullscreen ? 'loading-fullscreen' : '' %>">
+  <div class="spinner-border text-<%= typeof color !== 'undefined' ? color : 'primary' %> spinner-border-<%= typeof size !== 'undefined' ? size : 'md' %>" role="status">
+    <span class="visually-hidden">Încărcare...</span>
+  </div>
+  <% if (typeof text !== 'undefined' && text) { %>
+    <p class="mt-2"><%= text %></p>
+  <% } %>
+</div>
+
+<% if (typeof fullscreen !== 'undefined' && fullscreen) { %>
+  <style>
+    .loading-fullscreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      color: white;
+    }
+  </style>
+<% } %>

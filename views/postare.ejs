@@ -1,0 +1,296 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="postare-page">
+  <div class="container">
+    <div class="back-button mb-3" data-aos="fade-right">
+      <a href="/postari/feed/<%= postare.localizare.judet %>" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la feed
+      </a>
+    </div>
+    
+    <div class="postare-detail-container">
+      <div class="row">
+        <!-- Galerie imagini (stânga) -->
+        <div class="col-lg-4" data-aos="fade-right">
+          <div class="postare-gallery">
+            <% if (postare.imagini && postare.imagini.length > 0) { %>
+              <div class="postare-main-image">
+                <img id="mainImage" src="/uploads/posts/<%= postare.imagini[0] %>" alt="<%= postare.titlu %>">
+              </div>
+              <% if (postare.imagini.length > 1) { %>
+                <div class="postare-thumbnails">
+                  <% postare.imagini.forEach((imagine, index) => { %>
+                    <div class="thumbnail <%= index === 0 ? 'active' : '' %>" 
+                         onclick="changeMainImage('/uploads/posts/<%= imagine %>', this)">
+                      <img src="/uploads/posts/<%= imagine %>" alt="Thumbnail <%= index + 1 %>">
+                    </div>
+                  <% }); %>
+                </div>
+              <% } %>
+            <% } else { %>
+              <div class="no-image-large">
+                <i class="fas fa-image"></i>
+                <p>Nicio imagine disponibilă</p>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        
+        <!-- Detalii postare (mijloc) -->
+        <div class="col-lg-5" data-aos="fade-up">
+          <div class="postare-details">
+            <div class="postare-status-indicator <%= postare.status === 'inAsteptare' ? 'status-asteptare' : 
+                                                     postare.status === 'inLucru' ? 'status-lucru' : 
+                                                     'status-rezolvat' %>">
+              <%= postare.status === 'inAsteptare' ? 'În așteptare' : 
+                 postare.status === 'inLucru' ? 'În lucru' : 
+                 'Rezolvat' %>
+            </div>
+            
+            <h1 class="postare-title"><%= postare.titlu %></h1>
+            
+            <div class="postare-meta">
+              <div class="autor-info">
+                <img src="/uploads/profile/<%= postare.autorId.pozaProfil %>" alt="<%= postare.autorId.username %>">
+                <div>
+                  <p class="autor-name"><%= postare.autorId.username %></p>
+                  <p class="post-date">
+                    <i class="fas fa-calendar-alt"></i> 
+                    <%= new Date(postare.dataPostare).toLocaleDateString('ro-RO', { 
+                      year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                    }) %>
+                  </p>
+                </div>
+              </div>
+              
+              <div class="postare-actions">
+                <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent) { %>
+                  <button id="btnVot" class="btn-vot <%= postare.voturi.includes(utilizatorCurent._id) ? 'votat' : '' %>"
+                          data-id="<%= postare._id %>">
+                    <i class="fas fa-thumbs-up"></i> <span id="numarVoturi"><%= postare.voturi.length %></span>
+                  </button>
+                  
+                  <% if (utilizatorCurent._id === postare.autorId._id.toString() || 
+                        (utilizatorCurent.rol === 'admin')) { %>
+                    <div class="dropdown">
+                      <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+                              data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v"></i>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li>
+                          <a class="dropdown-item" href="/postari/editare/<%= postare._id %>">
+                            <i class="fas fa-edit"></i> Editează
+                          </a>
+                        </li>
+                        <li>
+                          <form action="/postari/<%= postare._id %>?_method=DELETE" method="POST" class="d-inline"
+                                onsubmit="return confirm('Ești sigur că vrei să ștergi această postare?');">
+                            <button type="submit" class="dropdown-item text-danger">
+                              <i class="fas fa-trash-alt"></i> Șterge
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  <% } %>
+                  
+                  <% if (utilizatorCurent.rol === 'admin') { %>
+                    <div class="dropdown ms-2">
+                      <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" 
+                              id="dropdownStatusButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        Schimbă Status
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownStatusButton">
+                        <li>
+                          <form action="/postari/<%= postare._id %>/status?_method=PATCH" method="POST">
+                            <input type="hidden" name="status" value="inAsteptare">
+                            <button type="submit" class="dropdown-item">
+                              <span class="status-dot status-asteptare"></span> În așteptare
+                            </button>
+                          </form>
+                        </li>
+                        <li>
+                          <form action="/postari/<%= postare._id %>/status?_method=PATCH" method="POST">
+                            <input type="hidden" name="status" value="inLucru">
+                            <button type="submit" class="dropdown-item">
+                              <span class="status-dot status-lucru"></span> În lucru
+                            </button>
+                          </form>
+                        </li>
+                        <li>
+                          <form action="/postari/<%= postare._id %>/status?_method=PATCH" method="POST">
+                            <input type="hidden" name="status" value="rezolvat">
+                            <button type="submit" class="dropdown-item">
+                              <span class="status-dot status-rezolvat"></span> Rezolvat
+                            </button>
+                          </form>
+                        </li>
+                      </ul>
+                    </div>
+                  <% } %>
+                <% } %>
+              </div>
+            </div>
+            
+            <div class="postare-descriere">
+              <h4>Descriere</h4>
+              <p><%= postare.descriere %></p>
+            </div>
+            
+            <div class="postare-locatie">
+              <h4>Localizare</h4>
+              <p><i class="fas fa-map-marker-alt"></i> <%= postare.localizare.judet %></p>
+              <div id="map" class="postare-map" 
+                   data-lat="<%= postare.localizare.lat %>" 
+                   data-lng="<%= postare.localizare.lng %>"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Comentarii (dreapta) -->
+        <div class="col-lg-3" data-aos="fade-left">
+          <div class="comentarii-section">
+            <h3>Comentarii (<%= postare.comentarii.length %>)</h3>
+            
+            <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent) { %>
+              <div class="adauga-comentariu">
+                <form id="formComentariu" action="/comentarii/postare/<%= postare._id %>" method="POST">
+                  <div class="input-group">
+                    <textarea class="form-control" name="text" placeholder="Adaugă un comentariu..." required></textarea>
+                    <button class="btn btn-primary" type="submit">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            <% } %>
+            
+            <div class="lista-comentarii" id="listaComentarii">
+              <% if (postare.comentarii && postare.comentarii.length > 0) { %>
+                <% postare.comentarii.forEach(comentariu => { %>
+                  <div class="comentariu-item" id="comentariu-<%= comentariu._id %>">
+                    <div class="comentariu-header">
+                      <div class="comentariu-autor">
+                        <img src="/uploads/profile/<%= comentariu.autorId.pozaProfil %>" alt="<%= comentariu.autorId.username %>">
+                        <div>
+                          <p class="autor-name"><%= comentariu.autorId.username %></p>
+                          <p class="comentariu-date">
+                            <%= new Date(comentariu.dataComentariu).toLocaleDateString('ro-RO', { 
+                              year: 'numeric', month: 'short', day: 'numeric' 
+                            }) %>
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && 
+                            (utilizatorCurent._id === comentariu.autorId._id.toString() || 
+                             utilizatorCurent.rol === 'admin')) { %>
+                        <div class="comentariu-actions">
+                          <div class="dropdown">
+                            <button class="btn btn-sm btn-link dropdown-toggle" type="button" 
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                              <li>
+                                <button class="dropdown-item btn-editeaza-comentariu" 
+                                        data-id="<%= comentariu._id %>" 
+                                        data-text="<%= comentariu.text %>">
+                                  <i class="fas fa-edit"></i> Editează
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item text-danger btn-sterge-comentariu" 
+                                        data-id="<%= comentariu._id %>">
+                                  <i class="fas fa-trash-alt"></i> Șterge
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      <% } %>
+                    </div>
+                    
+                    <div class="comentariu-text">
+                      <p><%= comentariu.text %></p>
+                    </div>
+                  </div>
+                <% }); %>
+              <% } else { %>
+                <div class="no-comentarii" id="noComentarii">
+                  <i class="far fa-comment-dots"></i>
+                  <p>Niciun comentariu încă</p>
+                  <% if (typeof utilizatorCurent === 'undefined' || !utilizatorCurent) { %>
+                    <a href="/utilizatori/login" class="btn btn-sm btn-outline-primary mt-2">
+                      Autentifică-te pentru a comenta
+                    </a>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal pentru editare comentariu -->
+  <div class="modal fade" id="editComentariuModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editare comentariu</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formEditComentariu">
+            <input type="hidden" id="comentariuId" name="comentariuId">
+            <div class="mb-3">
+              <label for="textComentariu" class="form-label">Text comentariu</label>
+              <textarea class="form-control" id="textComentariu" name="text" rows="3" required></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-primary" id="btnSalveazaComentariu">Salvează</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Script pentru inițializare hartă Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQ0cWGtPHn_JD9-OGQiNi2iU9Hr9b0ok&callback=initMap" async defer></script>
+<script>
+  function initMap() {
+    const mapElement = document.getElementById('map');
+    const lat = parseFloat(mapElement.dataset.lat);
+    const lng = parseFloat(mapElement.dataset.lng);
+    
+    const map = new google.maps.Map(mapElement, {
+      center: { lat, lng },
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      map,
+      title: '<%= postare.titlu %>'
+    });
+  }
+  
+  function changeMainImage(src, thumbnailElement) {
+    document.getElementById('mainImage').src = src;
+    
+    // Actualizare clasă active pentru thumbnail
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach(thumb => thumb.classList.remove('active'));
+    thumbnailElement.classList.add('active');
+  }
+</script>
+
+<%- include('partials/footer', { page: 'feed' }) %>

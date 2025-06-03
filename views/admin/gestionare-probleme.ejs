@@ -1,0 +1,316 @@
+<%- include('../partials/header', { page: 'admin' }) %>
+<%- include('../partials/navbar') %>
+
+<main class="admin-page">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-2 admin-sidebar">
+        <div class="sidebar-content">
+          <div class="admin-profile">
+            <img src="/uploads/profile/<%= utilizatorCurent.pozaProfil || 'default-profile.png' %>" alt="Admin Profile">
+            <h4><%= utilizatorCurent.username %></h4>
+            <p>Administrator</p>
+          </div>
+          
+          <nav class="admin-nav">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/admin">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/admin/gestionare-probleme">
+                  <i class="fas fa-exclamation-triangle"></i> Gestionare Probleme
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/gestionare-utilizatori">
+                  <i class="fas fa-users"></i> Gestionare Utilizatori
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="fas fa-home"></i> Înapoi la Site
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-10 admin-content">
+        <div class="content-header">
+          <h1>Gestionare Probleme</h1>
+          <p>Administrează problemele raportate de utilizatori din toate județele.</p>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters-bar" data-aos="fade-up">
+          <form action="/admin/gestionare-probleme" method="GET" class="row g-3">
+            <div class="col-md-4">
+              <label for="judet" class="form-label">Județ</label>
+              <select class="form-select" id="judet" name="judet" onchange="this.form.submit()">
+                <option value="">Toate județele</option>
+                <% judete.forEach(judet => { %>
+                  <option value="<%= judet %>" <%= judetSelectat === judet ? 'selected' : '' %>><%= judet %></option>
+                <% }); %>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="status" class="form-label">Status</label>
+              <select class="form-select" id="status" name="status">
+                <option value="">Toate</option>
+                <option value="inAsteptare">În așteptare</option>
+                <option value="inLucru">În lucru</option>
+                <option value="rezolvat">Rezolvate</option>
+              </select>
+            </div>
+            
+            <div class="col-md-3">
+              <label for="searchProbleme" class="form-label">Caută</label>
+              <input type="text" class="form-control" id="searchProbleme" name="search" placeholder="Caută probleme...">
+            </div>
+            
+            <div class="col-md-2 d-flex align-items-end">
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fas fa-filter"></i> Filtrează
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <!-- Probleme Table -->
+        <div class="data-table-container" data-aos="fade-up">
+          <% if (judetSelectat) { %>
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i> Probleme din județul <strong><%= judetSelectat %></strong>
+              <% if (postari.length === 0) { %>
+                - Nu există probleme raportate
+              <% } else { %>
+                - <%= postari.length %> probleme găsite
+              <% } %>
+            </div>
+          <% } else if (!judete.length) { %>
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i> Nu există probleme raportate în niciun județ
+            </div>
+          <% } else { %>
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i> Selectează un județ pentru a vedea problemele raportate
+            </div>
+          <% } %>
+          
+          <% if (postari && postari.length > 0) { %>
+            <div class="table-responsive">
+              <table class="table table-hover table-probleme">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Titlu</th>
+                    <th>Autor</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                    <th>Voturi</th>
+                    <th>Acțiuni</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% postari.forEach(postare => { %>
+                    <tr data-id="<%= postare._id %>">
+                      <td><small class="text-muted"><%= postare._id %></small></td>
+                      <td><%= postare.titlu %></td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          
+                          <div>
+                            <div><%= postare.autorId.username %></div>
+                            <small class="text-muted"><%= postare.autorId.email %></small>
+                          </div>
+                        </div>
+                      </td>
+                      <td><%= new Date(postare.dataPostare).toLocaleDateString('ro-RO') %></td>
+                      <td>
+                        <div class="status-badge <%= postare.status === 'inAsteptare' ? 'status-waiting' : 
+                                                    postare.status === 'inLucru' ? 'status-working' : 
+                                                    'status-resolved' %>">
+                          <%= postare.status === 'inAsteptare' ? 'În așteptare' : 
+                             postare.status === 'inLucru' ? 'În lucru' : 
+                             'Rezolvat' %>
+                        </div>
+                      </td>
+                      <td><%= postare.voturi.length %></td>
+                      <td>
+                        <div class="action-buttons">
+                          <a href="/postari/<%= postare._id %>" class="btn btn-sm btn-outline-primary" title="Vezi detalii">
+                            <i class="fas fa-eye"></i>
+                          </a>
+                          <div class="dropdown d-inline-block">
+                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" 
+                                    data-bs-toggle="dropdown" aria-expanded="false" title="Schimbă status">
+                              <i class="fas fa-sync-alt"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li>
+                                <button class="dropdown-item btn-change-status" data-id="<%= postare._id %>" data-status="inAsteptare">
+                                  <span class="status-dot status-waiting"></span> În așteptare
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item btn-change-status" data-id="<%= postare._id %>" data-status="inLucru">
+                                  <span class="status-dot status-working"></span> În lucru
+                                </button>
+                              </li>
+                              <li>
+                                <button class="dropdown-item btn-change-status" data-id="<%= postare._id %>" data-status="rezolvat">
+                                  <span class="status-dot status-resolved"></span> Rezolvat
+                                </button>
+                              </li>
+                            </ul>
+                          </div>
+                          <button class="btn btn-sm btn-outline-danger btn-delete-postare" data-id="<%= postare._id %>" title="Șterge">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  <% }); %>
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- Paginare -->
+            <nav class="pagination-container">
+              <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">Următor</a>
+                </li>
+              </ul>
+            </nav>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal confirmare ștergere -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmare ștergere</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Ești sigur că vrei să ștergi această postare? Această acțiune nu poate fi anulată.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+          <button type="button" class="btn btn-danger" id="confirmDelete">Șterge definitiv</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  // Schimbare status postare
+  document.querySelectorAll('.btn-change-status').forEach(button => {
+    button.addEventListener('click', function() {
+      const postareId = this.dataset.id;
+      const newStatus = this.dataset.status;
+      
+      fetch(`/admin/postari/${postareId}/status`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.succes) {
+          // Actualizare UI
+          const statusCell = document.querySelector(`tr[data-id="${postareId}"] .status-badge`);
+          
+          // Eliminare clase vechi
+          statusCell.classList.remove('status-waiting', 'status-working', 'status-resolved');
+          
+          // Adăugare clasă nouă
+          if (newStatus === 'inAsteptare') {
+            statusCell.classList.add('status-waiting');
+            statusCell.textContent = 'În așteptare';
+          } else if (newStatus === 'inLucru') {
+            statusCell.classList.add('status-working');
+            statusCell.textContent = 'În lucru';
+          } else {
+            statusCell.classList.add('status-resolved');
+            statusCell.textContent = 'Rezolvat';
+          }
+          
+          // Notificare succes
+          alert('Status actualizat cu succes!');
+        } else {
+          alert('Eroare la actualizarea statusului: ' + data.mesaj);
+        }
+      })
+      .catch(error => {
+        console.error('Eroare:', error);
+        alert('Eroare la actualizarea statusului!');
+      });
+    });
+  });
+  
+  // Ștergere postare
+  let postareIdToDelete;
+  
+  document.querySelectorAll('.btn-delete-postare').forEach(button => {
+    button.addEventListener('click', function() {
+      postareIdToDelete = this.dataset.id;
+      const deleteModal = new bootstrap.Modal(document.getElementById('deleteModal'));
+      deleteModal.show();
+    });
+  });
+  
+  document.getElementById('confirmDelete').addEventListener('click', function() {
+    if (!postareIdToDelete) return;
+    
+    fetch(`/postari/${postareIdToDelete}?_method=DELETE`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => {
+      if (response.ok) {
+        // Eliminare rând din tabel
+        const row = document.querySelector(`tr[data-id="${postareIdToDelete}"]`);
+        row.remove();
+        
+        // Ascundere modal
+        const deleteModal = bootstrap.Modal.getInstance(document.getElementById('deleteModal'));
+        deleteModal.hide();
+        
+        // Notificare succes
+        alert('Postare ștearsă cu succes!');
+      } else {
+        throw new Error('Eroare la ștergerea postării');
+      }
+    })
+    .catch(error => {
+      console.error('Eroare:', error);
+      alert('Eroare la ștergerea postării!');
+    });
+  });
+</script>
+
+<%- include('../partials/footer', { page: 'admin' }) %>

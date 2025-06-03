@@ -1,0 +1,291 @@
+<%- include('../partials/header', { page: 'admin' }) %>
+<%- include('../partials/navbar') %>
+
+<main class="admin-page">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-lg-2 admin-sidebar">
+        <div class="sidebar-content">
+          <div class="admin-profile">
+            <h4><%= utilizatorCurent.username %></h4>
+            <p>Administrator</p>
+          </div>
+          
+          <nav class="admin-nav">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="/admin">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/gestionare-probleme">
+                  <i class="fas fa-exclamation-triangle"></i> Gestionare Probleme
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/gestionare-utilizatori">
+                  <i class="fas fa-users"></i> Gestionare Utilizatori
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/">
+                  <i class="fas fa-home"></i> Înapoi la Site
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-lg-10 admin-content">
+        <div class="content-header">
+          <h1>Panou de Control</h1>
+          <p>Bine ai venit, <%= utilizatorCurent.username %>! Vezi statisticile generale ale platformei.</p>
+        </div>
+        
+        <!-- Stats Cards -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+            <div class="stats-card">
+              <div class="stats-card-body">
+                <div class="stats-icon">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="stats-info">
+                  <h3><%= numarUtilizatori %></h3>
+                  <p>Utilizatori</p>
+                </div>
+              </div>
+              <div class="stats-footer">
+                <a href="/admin/gestionare-utilizatori">Vezi detalii <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+            <div class="stats-card">
+              <div class="stats-card-body">
+                <div class="stats-icon">
+                  <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="stats-info">
+                  <h3><%= numarPostari %></h3>
+                  <p>Total Probleme</p>
+                </div>
+              </div>
+              <div class="stats-footer">
+                <a href="/admin/gestionare-probleme">Vezi detalii <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+            <div class="stats-card">
+              <div class="stats-card-body">
+                <div class="stats-icon in-asteptare">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="stats-info">
+                  <h3><%= numarPostariInAsteptare %></h3>
+                  <p>În Așteptare</p>
+                </div>
+              </div>
+              <div class="stats-footer">
+                <a href="/admin/gestionare-probleme?status=inAsteptare">Vezi detalii <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-3" data-aos="fade-up" data-aos-delay="400">
+            <div class="stats-card">
+              <div class="stats-card-body">
+                <div class="stats-icon rezolvat">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="stats-info">
+                  <h3><%= numarPostariRezolvate %></h3>
+                  <p>Rezolvate</p>
+                </div>
+              </div>
+              <div class="stats-footer">
+                <a href="/admin/gestionare-probleme?status=rezolvat">Vezi detalii <i class="fas fa-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Charts Section -->
+        <div class="row g-4">
+          <div class="col-lg-8" data-aos="fade-up">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Activitate Lunară</h3>
+                <div class="dropdown">
+                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Ultimele 6 luni
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Ultimele 6 luni</a></li>
+                    <li><a class="dropdown-item" href="#">Ultimul an</a></li>
+                    <li><a class="dropdown-item" href="#">Toată perioada</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="chart-card-body">
+                <canvas id="activityChart"></canvas>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <h3>Probleme pe Status</h3>
+              </div>
+              <div class="chart-card-body">
+                <canvas id="statusChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recent Activity -->
+        <div class="row mt-4">
+          <div class="col-12" data-aos="fade-up">
+            <div class="activity-card">
+              <div class="activity-card-header">
+                <h3>Activitate Recentă</h3>
+                <a href="#" class="view-all">Vezi toate</a>
+              </div>
+              <div class="activity-card-body">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Acțiune</th>
+                        <th>Utilizator</th>
+                        <th>Detalii</th>
+                        <th>Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><span class="badge bg-success">Problemă rezolvată</span></td>
+                        <td>Andrei Popescu</td>
+                        <td>Groapă în asfalt pe strada Libertății</td>
+                        <td><%= new Date().toLocaleDateString('ro-RO') %></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge bg-warning">Status actualizat</span></td>
+                        <td>Maria Ionescu</td>
+                        <td>Iluminat defect în Parcul Central</td>
+                        <td><%= new Date().toLocaleDateString('ro-RO') %></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge bg-info">Comentariu nou</span></td>
+                        <td>Mihai Dumitrescu</td>
+                        <td>Problemă gunoi neridicat</td>
+                        <td><%= new Date().toLocaleDateString('ro-RO') %></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge bg-primary">Problemă nouă</span></td>
+                        <td>Elena Georgescu</td>
+                        <td>Trecere de pietoni necorespunzătoare</td>
+                        <td><%= new Date().toLocaleDateString('ro-RO') %></td>
+                      </tr>
+                      <tr>
+                        <td><span class="badge bg-danger">Restricție adăugată</span></td>
+                        <td>Admin</td>
+                        <td>Utilizator restrictionat temporar</td>
+                        <td><%= new Date().toLocaleDateString('ro-RO') %></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Script pentru grafice -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Activitate lunară - Line Chart
+    const activityCtx = document.getElementById('activityChart').getContext('2d');
+    const activityChart = new Chart(activityCtx, {
+      type: 'line',
+      data: {
+        labels: ['Ianuarie', 'Februarie', 'Martie', 'Aprilie', 'Mai', 'Iunie'],
+        datasets: [
+          {
+            label: 'Probleme raportate',
+            data: [65, 59, 80, 81, 56, 85],
+            borderColor: '#483AA0',
+            backgroundColor: 'rgba(72, 58, 160, 0.1)',
+            tension: 0.3,
+            fill: true
+          },
+          {
+            label: 'Probleme rezolvate',
+            data: [28, 48, 40, 69, 36, 47],
+            borderColor: '#7965C1',
+            backgroundColor: 'rgba(121, 101, 193, 0.1)',
+            tension: 0.3,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+    
+    // Probleme pe Status - Pie Chart
+    const statusCtx = document.getElementById('statusChart').getContext('2d');
+    const statusChart = new Chart(statusCtx, {
+      type: 'doughnut',
+      data: {
+  labels: ['În Așteptare', 'În Lucru', 'Rezolvate'],
+  datasets: [{
+    data: [15, 10, 25], // Valori hard-coded pentru testare
+    backgroundColor: [
+      '#ff6b6b',
+      '#feca57',
+      '#1dd1a1'
+    ],
+    borderWidth: 0
+  }]  
+},
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+  });
+</script>
+
+<%- include('../partials/footer', { page: 'admin' }) %>

@@ -1,0 +1,59 @@
+<%- include('partials/header', { page: 'login' }) %>
+<%- include('partials/navbar') %>
+
+<main class="login-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="auth-card" data-aos="fade-up">
+          <div class="auth-card-header">
+            <h2>Autentificare</h2>
+            <p>Intră în contul tău CivicAlert</p>
+          </div>
+          
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger animate__animated animate__shakeX">
+              <%= error %>
+            </div>
+          <% } %>
+          
+          <form action="/utilizatori/login" method="POST" id="loginForm">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="parola" class="form-label">Parolă</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="parola" name="parola" required>
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="rememberMe">
+              <label class="form-check-label" for="rememberMe">
+                Ține-mă conectat
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Autentificare</button>
+          </form>
+          
+          <div class="auth-footer">
+            <p>Nu ai cont? <a href="/utilizatori/register">Înregistrează-te</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer', { page: 'login' }) %>

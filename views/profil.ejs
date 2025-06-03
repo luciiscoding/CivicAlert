@@ -1,0 +1,685 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="profil-page">
+  <div class="container">
+    <div class="back-button mb-3" data-aos="fade-right">
+      <a href="javascript:history.back()" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi
+      </a>
+    </div>
+    
+    <div class="row">
+      <!-- Card Profil Utilizator -->
+      <div class="col-lg-4 mb-4" data-aos="fade-up">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="profile-cover"></div>
+            <div class="profile-avatar">
+              <img src="/uploads/profile/<%= utilizator.pozaProfil %>" alt="<%= utilizator.username %>" class="profile-img">
+            </div>
+          </div>
+          
+          <div class="profile-body">
+            <h2 class="profile-name"><%= utilizator.username %></h2>
+            <p class="profile-info">
+              <i class="fas fa-envelope"></i> <%= utilizator.email %>
+            </p>
+            
+            <% if (utilizator.telefon) { %>
+              <p class="profile-info">
+                <i class="fas fa-phone"></i> <%= utilizator.telefon %>
+              </p>
+            <% } %>
+            
+            <p class="profile-info">
+              <i class="fas fa-calendar-alt"></i> Membru din <%= new Date(utilizator.dataCreare).toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+            </p>
+            
+            <div class="profile-stats">
+              <div class="stat-item">
+                <span class="stat-number"><%= postari.length %></span>
+                <span class="stat-label">Probleme raportate</span>
+              </div>
+              
+              <div class="stat-item">
+                <span class="stat-number">
+                  <%= postari.reduce((count, postare) => count + (postare.status === 'rezolvat' ? 1 : 0), 0) %>
+                </span>
+                <span class="stat-label">Probleme rezolvate</span>
+              </div>
+            </div>
+            
+            <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && utilizatorCurent._id === utilizator._id.toString()) { %>
+              <div class="profile-actions">
+                <a href="/utilizatori/editare-profil" class="btn btn-primary w-100">
+                  <i class="fas fa-edit"></i> Editează Profil
+                </a>
+                
+                <button type="button" class="btn btn-outline-secondary w-100 mt-2" data-bs-toggle="modal" data-bs-target="#schimbareParolaModal">
+                  <i class="fas fa-key"></i> Schimbă Parola
+                </button>
+              </div>
+            <% } else if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && utilizatorCurent.rol === 'admin') { %>
+              <div class="profile-actions">
+                <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
+                  <i class="fas fa-cog"></i> Acțiuni Administrator
+                </button>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Probleme Raportate -->
+      <div class="col-lg-8" data-aos="fade-up">
+        <div class="profile-content">
+          <div class="content-header">
+            <h3>
+              <i class="fas fa-exclamation-triangle"></i> 
+              Probleme Raportate (<%= postari.length %>)
+            </h3>
+            
+            <div class="content-filters">
+              <select class="form-select form-select-sm" id="filtruStatusPostari">
+                <option value="toate">Toate statusurile</option>
+                <option value="inAsteptare">În așteptare</option>
+                <option value="inLucru">În lucru</option>
+                <option value="rezolvat">Rezolvate</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="postari-container" id="postariContainer">
+            <% if (postari && postari.length > 0) { %>
+              <% postari.forEach(postare => { %>
+                <div class="postare-item <%= postare.status %>">
+                  <div class="postare-status <%= postare.status === 'inAsteptare' ? 'status-asteptare' : 
+                                               postare.status === 'inLucru' ? 'status-lucru' : 
+                                               'status-rezolvat' %>">
+                    <span class="status-indicator"></span>
+                    <%= postare.status === 'inAsteptare' ? 'În așteptare' : 
+                       postare.status === 'inLucru' ? 'În lucru' : 
+                       'Rezolvat' %>
+                  </div>
+                  
+                  <div class="postare-content">
+                    <h4 class="postare-title">
+                      <a href="/postari/<%= postare._id %>"><%= postare.titlu %></a>
+                    </h4>
+                    
+                    <div class="postare-details">
+                      <span class="postare-location">
+                        <i class="fas fa-map-marker-alt"></i> <%= postare.localizare.judet %>
+                      </span>
+                      <span class="postare-date">
+                        <i class="fas fa-calendar-alt"></i> <%= new Date(postare.dataPostare).toLocaleDateString('ro-RO') %>
+                      </span>
+                      <span class="postare-votes">
+                        <i class="fas fa-thumbs-up"></i> <%= postare.voturi.length %> voturi
+                      </span>
+                      <% if (postare.comentarii && postare.comentarii.length > 0) { %>
+                        <span class="postare-comments">
+                          <i class="fas fa-comments"></i> <%= postare.comentarii.length %> comentarii
+                        </span>
+                      <% } %>
+                    </div>
+                    
+                    <p class="postare-desc"><%= postare.descriere.substring(0, 150) %>...</p>
+                  </div>
+                  
+                  <div class="postare-actions">
+                    <a href="/postari/<%= postare._id %>" class="btn btn-sm btn-outline-primary">
+                      <i class="fas fa-eye"></i> Vezi Detalii
+                    </a>
+                    
+                    <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && 
+                          (utilizatorCurent._id === utilizator._id.toString() || utilizatorCurent.rol === 'admin')) { %>
+                      <a href="/postari/editare/<%= postare._id %>" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-edit"></i> Editează
+                      </a>
+                      
+                      <form action="/postari/<%= postare._id %>?_method=DELETE" method="POST" class="d-inline"
+                            onsubmit="return confirm('Ești sigur că vrei să ștergi această postare?');">
+                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                          <i class="fas fa-trash-alt"></i> Șterge
+                        </button>
+                      </form>
+                    <% } %>
+                  </div>
+                </div>
+              <% }); %>
+            <% } else { %>
+              <div class="no-postari">
+                <i class="fas fa-search"></i>
+                <h4>Nicio problemă raportată</h4>
+                <p>Utilizatorul nu a raportat încă nicio problemă.</p>
+                
+                <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && utilizatorCurent._id === utilizator._id.toString()) { %>
+                  <a href="/" class="btn btn-primary mt-3">
+                    <i class="fas fa-plus-circle"></i> Raportează o problemă
+                  </a>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Modal Schimbare Parolă -->
+  <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && utilizatorCurent._id === utilizator._id.toString()) { %>
+    <div class="modal fade" id="schimbareParolaModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Schimbare Parolă</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="/utilizatori/schimbare-parola" method="POST" id="formSchimbareParola">
+              <div class="mb-3">
+                <label for="parolaVeche" class="form-label">Parola actuală</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <input type="password" class="form-control" id="parolaVeche" name="parolaVeche" required>
+                  <button class="btn btn-outline-secondary toggle-password" type="button">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="parolaNoua" class="form-label">Parola nouă</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <input type="password" class="form-control" id="parolaNoua" name="parolaNoua" required>
+                  <button class="btn btn-outline-secondary toggle-password" type="button">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <div class="form-text" id="parolaStrength"></div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="confirmaParolaNoua" class="form-label">Confirmă parola nouă</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                  <input type="password" class="form-control" id="confirmaParolaNoua" name="confirmaParolaNoua" required>
+                  <button class="btn btn-outline-secondary toggle-password" type="button">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+            <button type="submit" form="formSchimbareParola" class="btn btn-primary">Salvează</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+  
+  <!-- Modal Acțiuni Administrator -->
+  <% if (typeof utilizatorCurent !== 'undefined' && utilizatorCurent && utilizatorCurent.rol === 'admin' && utilizatorCurent._id !== utilizator._id.toString()) { %>
+    <div class="modal fade" id="adminActionsModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Acțiuni Administrator</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h6>Schimbare Status Utilizator</h6>
+            <div class="d-flex gap-2 mb-4">
+              <form action="/admin/utilizatori/<%= utilizator._id %>/status" method="POST" class="d-inline">
+                <input type="hidden" name="status" value="activ">
+                <button type="submit" class="btn btn-success">
+                  <i class="fas fa-check-circle"></i> Activ
+                </button>
+              </form>
+              
+              <form action="/admin/utilizatori/<%= utilizator._id %>/status" method="POST" class="d-inline">
+                <input type="hidden" name="status" value="inactiv">
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fas fa-times-circle"></i> Inactiv
+                </button>
+              </form>
+              
+              <form action="/admin/utilizatori/<%= utilizator._id %>/status" method="POST" class="d-inline">
+                <input type="hidden" name="status" value="restrictionat">
+                <button type="submit" class="btn btn-danger">
+                  <i class="fas fa-ban"></i> Restricționat
+                </button>
+              </form>
+            </div>
+            
+            <h6>Adăugare Restricție</h6>
+            <form action="/admin/restrictii" method="POST">
+              <input type="hidden" name="userId" value="<%= utilizator._id %>">
+              
+              <div class="mb-3">
+                <label for="tipRestrictie" class="form-label">Tip restricție</label>
+                <select class="form-select" id="tipRestrictie" name="tipRestrictie" required>
+                  <option value="">Selectează tipul restricției</option>
+                  <option value="vizualizare">Restricție vizualizare</option>
+                  <option value="postare">Restricție postare</option>
+                  <option value="vot">Restricție votare</option>
+                  <option value="comentariu">Restricție comentarii</option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+                <label for="motivRestrictie" class="form-label">Motiv restricție</label>
+                <textarea class="form-control" id="motivRestrictie" name="motivRestrictie" rows="3" required
+                          placeholder="Descrie motivul pentru care aplici această restricție"></textarea>
+              </div>
+              
+              <div class="mb-3">
+                <label for="zileRestrictie" class="form-label">Durata restricției (în zile)</label>
+                <input type="number" class="form-control" id="zileRestrictie" name="zileRestrictie" min="1" max="90" value="7" required>
+                <div class="form-text">Perioada maximă este de 90 de zile</div>
+              </div>
+              
+              <button type="submit" class="btn btn-warning">
+                <i class="fas fa-shield-alt"></i> Aplică Restricția
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filtrare postări după status
+    const filtruStatusPostari = document.getElementById('filtruStatusPostari');
+    const postariContainer = document.getElementById('postariContainer');
+    
+    if (filtruStatusPostari && postariContainer) {
+      filtruStatusPostari.addEventListener('change', function() {
+        const status = this.value;
+        const postariItems = postariContainer.querySelectorAll('.postare-item');
+        
+        postariItems.forEach(item => {
+          if (status === 'toate' || item.classList.contains(status)) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        // Verificare dacă există postări vizibile
+        const postariVizibile = Array.from(postariItems).filter(item => item.style.display !== 'none');
+        
+        if (postariVizibile.length === 0) {
+          // Afișare mesaj dacă nu există postări vizibile pentru filtrul selectat
+          const noPostariFiltered = postariContainer.querySelector('.no-postari-filtered');
+          
+          if (!noPostariFiltered) {
+            const noPostariHtml = `
+              <div class="no-postari no-postari-filtered">
+                <i class="fas fa-filter"></i>
+                <h4>Nicio problemă găsită</h4>
+                <p>Nu există probleme cu statusul "${status === 'inAsteptare' ? 'În așteptare' : 
+                                                   status === 'inLucru' ? 'În lucru' : 
+                                                   status === 'rezolvat' ? 'Rezolvat' : 
+                                                   'selectat'}".</p>
+              </div>
+            `;
+            postariContainer.insertAdjacentHTML('beforeend', noPostariHtml);
+          }
+        } else {
+          // Eliminare mesaj dacă există postări vizibile
+          const noPostariFiltered = postariContainer.querySelector('.no-postari-filtered');
+          if (noPostariFiltered) {
+            noPostariFiltered.remove();
+          }
+        }
+      });
+    }
+    
+    // Verificare complexitate parolă
+    const parolaNoua = document.getElementById('parolaNoua');
+    const parolaStrength = document.getElementById('parolaStrength');
+    
+    if (parolaNoua && parolaStrength) {
+      parolaNoua.addEventListener('input', function() {
+        const parola = this.value;
+        let mesaj = '';
+        let clasa = '';
+        
+        // Verificare complexitate
+        if (parola.length === 0) {
+          mesaj = '';
+        } else if (parola.length < 6) {
+          mesaj = 'Parolă slabă - Prea scurtă';
+          clasa = 'text-danger';
+        } else if (parola.length < 8) {
+          mesaj = 'Parolă medie - Folosește minim 8 caractere';
+          clasa = 'text-warning';
+        } else if (!/[A-Z]/.test(parola) || !/[0-9]/.test(parola)) {
+          mesaj = 'Parolă medie - Adaugă o literă mare și o cifră';
+          clasa = 'text-warning';
+        } else {
+          mesaj = 'Parolă puternică';
+          clasa = 'text-success';
+        }
+        
+        // Actualizare indicator
+        parolaStrength.textContent = mesaj;
+        parolaStrength.className = 'form-text';
+        if (clasa) {
+          parolaStrength.classList.add(clasa);
+        }
+      });
+    }
+    
+    // Toggle vizibilitate parolă
+    document.querySelectorAll('.toggle-password').forEach(button => {
+      button.addEventListener('click', function() {
+        const input = this.closest('.input-group').querySelector('input');
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        
+        // Schimbare icon
+        const icon = this.querySelector('i');
+        if (type === 'text') {
+          icon.classList.remove('fa-eye');
+          icon.classList.add('fa-eye-slash');
+        } else {
+          icon.classList.remove('fa-eye-slash');
+          icon.classList.add('fa-eye');
+        }
+      });
+    });
+    
+    // Validare formular schimbare parolă
+    const formSchimbareParola = document.getElementById('formSchimbareParola');
+    
+    if (formSchimbareParola) {
+      formSchimbareParola.addEventListener('submit', function(e) {
+        const parolaNoua = document.getElementById('parolaNoua').value;
+        const confirmaParolaNoua = document.getElementById('confirmaParolaNoua').value;
+        
+        if (parolaNoua !== confirmaParolaNoua) {
+          e.preventDefault();
+          alert('Parolele noi nu coincid!');
+        }
+        
+        if (parolaNoua.length < 6) {
+          e.preventDefault();
+          alert('Parola trebuie să aibă minim 6 caractere!');
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Adăugare CSS specific pentru pagina de profil -->
+<style>
+  .profil-page {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  }
+  
+  .profile-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    position: relative;
+    height: 150px;
+  }
+  
+  .profile-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent-1) 0%, var(--primary-bg) 100%);
+    z-index: 1;
+  }
+  
+  .profile-avatar {
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 5px solid white;
+    object-fit: cover;
+    background-color: white;
+  }
+  
+  .profile-body {
+    padding: 60px 1.5rem 1.5rem;
+    text-align: center;
+  }
+  
+  .profile-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-bg);
+  }
+  
+  .profile-info {
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profile-info i {
+    color: var(--accent-2);
+    margin-right: 0.5rem;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .profile-stats {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-1);
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+  }
+  
+  .profile-actions {
+    margin-top: 1.5rem;
+  }
+  
+  .profile-content {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    height: 100%;
+  }
+  
+  .content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .content-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0;
+    color: var(--primary-bg);
+  }
+  
+  .content-header h3 i {
+    color: var(--accent-1);
+    margin-right: 0.5rem;
+  }
+  
+  .postare-item {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+  }
+  
+  .postare-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .postare-item.inAsteptare {
+    border-left-color: var(--status-waiting);
+  }
+  
+  .postare-item.inLucru {
+    border-left-color: var(--status-working);
+  }
+  
+  .postare-item.rezolvat {
+    border-left-color: var(--status-resolved);
+  }
+  
+  .postare-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .status-indicator {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+  }
+  
+  .status-asteptare .status-indicator {
+    background-color: var(--status-waiting);
+  }
+  
+  .status-lucru .status-indicator {
+    background-color: var(--status-working);
+  }
+  
+  .status-rezolvat .status-indicator {
+    background-color: var(--status-resolved);
+  }
+  
+  .postare-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .postare-title a {
+    color: var(--primary-bg);
+    transition: color 0.3s ease;
+  }
+  
+  .postare-title a:hover {
+    color: var(--accent-1);
+    text-decoration: none;
+  }
+  
+  .postare-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+  
+  .postare-details i {
+    margin-right: 0.25rem;
+  }
+  
+  .postare-desc {
+    color: #6c757d;
+    margin-bottom: 1rem;
+  }
+  
+  .postare-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .no-postari {
+    text-align: center;
+    padding: 3rem 0;
+    color: #6c757d;
+  }
+  
+  .no-postari i {
+    font-size: 3rem;
+    color: #dee2e6;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 991.98px) {
+    .profile-card {
+      margin-bottom: 2rem;
+    }
+    
+    .content-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .content-filters {
+      margin-top: 1rem;
+      width: 100%;
+    }
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAPS_API_KEY %>&libraries=places&callback=initMap" async defer></script>
+
+<%- include('partials/footer', { page: 'feed' }) %>

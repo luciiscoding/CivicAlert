@@ -1,0 +1,92 @@
+/* Stiluri pentru paginile de login și register */
+.login-page {
+  min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to right, rgba(14, 33, 72, 0.95), rgba(72, 58, 160, 0.9)), url('../img/login-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 4rem 0;
+}
+
+.auth-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.auth-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.auth-card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-card-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--primary-bg);
+}
+
+.auth-card-header p {
+  color: #6c757d;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.form-label {
+  font-weight: 500;
+  color: var(--primary-bg);
+}
+
+.input-group-text {
+  background-color: var(--primary-bg);
+  color: white;
+  border-color: var(--primary-bg);
+}
+
+.toggle-password {
+  cursor: pointer;
+}
+
+.alert-danger.animate__shakeX {
+  animation-duration: 0.6s;
+}
+
+@media (max-width: 767.98px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+  
+  .auth-card-header h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animație de apariție formular */
+.login-page .auth-card {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

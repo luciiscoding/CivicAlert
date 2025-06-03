@@ -1,0 +1,82 @@
+<%- include('partials/header', { page: 'login' }) %>
+<%- include('partials/navbar') %>
+
+<main class="login-page">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="auth-card" data-aos="fade-up">
+          <div class="auth-card-header">
+            <h2>Înregistrare</h2>
+            <p>Creează un cont nou CivicAlert</p>
+          </div>
+          
+          <% if (typeof error !== 'undefined' && error) { %>
+            <div class="alert alert-danger animate__animated animate__shakeX">
+              <%= error %>
+            </div>
+          <% } %>
+          
+          <form action="/utilizatori/register" method="POST" id="registerForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Nume utilizator</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                <input type="text" class="form-control" id="username" name="username" required>
+              </div>
+              <div class="invalid-feedback" id="usernameError"></div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="invalid-feedback" id="emailError"></div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="parola" class="form-label">Parolă</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="parola" name="parola" required>
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback" id="parolaError"></div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="confirmaParola" class="form-label">Confirmă parola</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <input type="password" class="form-control" id="confirmaParola" name="confirmaParola" required>
+                <button class="btn btn-outline-secondary toggle-password" type="button">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+              <div class="invalid-feedback" id="confirmaParolaError"></div>
+            </div>
+            
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="acceptTermeni" required>
+              <label class="form-check-label" for="acceptTermeni">
+                Accept <a href="/termeni" target="_blank">Termenii și Condițiile</a>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Înregistrare</button>
+          </form>
+          
+          <div class="auth-footer">
+            <p>Ai deja cont? <a href="/utilizatori/login">Autentifică-te</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer', { page: 'login' }) %>
