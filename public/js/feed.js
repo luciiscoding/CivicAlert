@@ -195,12 +195,12 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.remove('votat');
           }
         } else {
-          window.showToast('Eroare la procesarea votului', 'danger');
+          //window.showToast('Eroare la procesarea votului', 'danger');
         }
       })
       .catch(error => {
         console.error('Eroare:', error);
-        window.showToast('Eroare la procesarea votului', 'danger');
+        //window.showToast('Eroare la procesarea votului', 'danger');
       });
     });
   });

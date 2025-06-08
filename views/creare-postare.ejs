@@ -52,7 +52,7 @@
                   <div id="map" class="create-map"></div>
                   <div class="map-search">
                     <div class="input-group">
-                      <input type="text" id="searchAddress" class="form-control" placeholder="Caută adresa...">
+                      <input type="text" id="searchAddress" class="form-control" placeholder="Caută adresa... (ex: Strada Unirii, Cluj-Napoca)">
                       <button class="btn btn-outline-secondary" type="button" id="btnSearchAddress">
                         <i class="fas fa-search"></i>
                       </button>
@@ -95,54 +95,162 @@
   </div>
 </main>
 
-<!-- Script pentru inițializare hartă Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap" async defer></script>
+<style>
+.create-map {
+  height: 300px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.map-search {
+  margin-top: 10px;
+}
+
+.map-instructions {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.preview-card {
+  position: relative;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 100px;
+}
+
+.preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  color: white;
+}
+
+.location-preview {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+</style>
+
 <script>
-  let map, marker;
+  let map, marker, geocoder;
+  let isMapLoaded = false;
   
+  // Funcție pentru inițializarea hărții
   function initMap() {
-    // Centrul hărții pe județul selectat (coordonate aproximative)
-    const centerCoordinates = getCenterForJudet('<%= judet %>');
+    // Previne inițializarea multiplă
+    if (isMapLoaded) return;
+    isMapLoaded = true;
     
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: centerCoordinates,
-      zoom: 10,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+    try {
+      // Centrul hărții pe județul selectat
+      const centerCoordinates = getCenterForJudet('<%= judet %>');
+      
+      // Inițializare geocoder pentru căutare
+      geocoder = new google.maps.Geocoder();
+      
+      // Creare hartă
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: centerCoordinates,
+        zoom: 10,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        streetViewControl: false,
+        mapTypeControl: true,
+        fullscreenControl: true,
+        zoomControl: true,
+        gestureHandling: 'cooperative'
+      });
+      
+      // Adăugare listener pentru click pe hartă
+      map.addListener('click', function(e) {
+        placeMarker(e.latLng);
+      });
+      
+      // Inițializare căutare cu Geocoding API (înlocuiește SearchBox)
+      initializeSearch();
+      
+      console.log('Google Maps inițializată cu succes');
+      
+    } catch (error) {
+      console.error('Eroare la inițializarea Google Maps:', error);
+      showMapError();
+    }
+  }
+  
+  // Funcție pentru căutare cu Geocoding API
+  function initializeSearch() {
+    const searchInput = document.getElementById('searchAddress');
+    const searchButton = document.getElementById('btnSearchAddress');
     
-    // Adăugare listener pentru click pe hartă
-    map.addListener('click', function(e) {
-      placeMarker(e.latLng);
-    });
+    // Event listener pentru butonul de căutare
+    searchButton.addEventListener('click', performSearch);
     
-    // Inițializare căutare locații
-    const input = document.getElementById('searchAddress');
-    const searchBox = new google.maps.places.SearchBox(input);
-    
-    // Limitare rezultate căutare la zona vizibilă pe hartă
-    map.addListener('bounds_changed', function() {
-      searchBox.setBounds(map.getBounds());
-    });
-    
-    // Listener pentru selectarea unei locații din căutare
-    searchBox.addListener('places_changed', function() {
-      const places = searchBox.getPlaces();
-      
-      if (places.length === 0) return;
-      
-      const place = places[0];
-      
-      if (!place.geometry || !place.geometry.location) return;
-      
-      // Centrare hartă pe locația selectată
-      map.setCenter(place.geometry.location);
-      map.setZoom(15);
-      
-      // Plasare marker
-      placeMarker(place.geometry.location);
+    // Event listener pentru Enter în input
+    searchInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        performSearch();
+      }
     });
   }
   
+  // Funcție pentru efectuarea căutării
+  function performSearch() {
+    const address = document.getElementById('searchAddress').value.trim();
+    
+    if (!address) {
+      alert('Te rugăm să introduci o adresă pentru căutare');
+      return;
+    }
+    
+    // Adăugare județ la căutare pentru rezultate mai precise
+    const searchQuery = address + ', județul <%= judet %>, România';
+    
+    geocoder.geocode({ 
+      address: searchQuery,
+      region: 'RO' // Restricționare la România
+    }, function(results, status) {
+      if (status === 'OK' && results[0]) {
+        const location = results[0].geometry.location;
+        
+        // Centrare hartă pe locația găsită
+        map.setCenter(location);
+        map.setZoom(15);
+        
+        // Plasare marker
+        placeMarker(location);
+        
+        // Actualizare input cu adresa formatată
+        document.getElementById('searchAddress').value = results[0].formatted_address;
+        
+      } else {
+        alert('Nu am putut găsi această adresă. Te rugăm să încerci o altă căutare sau să faci click direct pe hartă.');
+        console.log('Geocoding failed:', status);
+      }
+    });
+  }
+  
+  // Funcție pentru plasarea markerului
   function placeMarker(location) {
     // Ștergere marker existent dacă există
     if (marker) {
@@ -154,7 +262,8 @@
       position: location,
       map: map,
       draggable: true,
-      animation: google.maps.Animation.DROP
+      animation: google.maps.Animation.DROP,
+      title: 'Locația problemei'
     });
     
     // Actualizare câmpuri ascunse cu coordonatele
@@ -166,13 +275,27 @@
       location.lat().toFixed(6) + ', ' + location.lng().toFixed(6);
     
     // Listener pentru drag end (în cazul în care utilizatorul mută markerul)
-    google.maps.event.addListener(marker, 'dragend', function() {
+    marker.addListener('dragend', function() {
       const position = marker.getPosition();
       document.getElementById('lat').value = position.lat();
       document.getElementById('lng').value = position.lng();
       document.getElementById('coordsDisplay').textContent = 
         position.lat().toFixed(6) + ', ' + position.lng().toFixed(6);
     });
+  }
+  
+  // Funcție pentru afișarea erorii hărții
+  function showMapError() {
+    const mapContainer = document.getElementById('map');
+    mapContainer.innerHTML = `
+      <div style="height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 8px;">
+        <div style="text-align: center; padding: 20px;">
+          <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #6c757d; margin-bottom: 10px;"></i>
+          <p style="margin: 0; color: #6c757d;">Harta nu poate fi încărcată momentan</p>
+          <small style="color: #6c757d;">Te rugăm să introduci coordonatele manual sau să încerci din nou</small>
+        </div>
+      </div>
+    `;
   }
   
   // Funcție pentru obținerea coordonatelor aproximative ale centrului unui județ
@@ -245,6 +368,12 @@
         continue;
       }
       
+      // Verificare mărime fișier (10MB max)
+      if (file.size > 10 * 1024 * 1024) {
+        alert(`Imaginea "${file.name}" este prea mare. Mărimea maximă acceptată este 10MB.`);
+        continue;
+      }
+      
       const reader = new FileReader();
       const col = document.createElement('div');
       col.className = 'col-4';
@@ -283,7 +412,25 @@
     // Afișare loading overlay
     document.getElementById('loadingOverlay').classList.remove('d-none');
   });
+  
+  // Gestionare erori de încărcare a Google Maps
+  window.gm_authFailure = function() {
+    console.error('Google Maps authentication failed');
+    showMapError();
+  };
+  
+  // Fallback în cazul în care Google Maps nu se încarcă
+  setTimeout(function() {
+    if (!isMapLoaded) {
+      console.warn('Google Maps nu s-a încărcat în 10 secunde, se afișează fallback');
+      showMapError();
+    }
+  }, 10000);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQ0cWGtPHn_JD9-OGQiNi2iU9Hr9b0ok&callback=initMap" async defer></script>
+
+<!-- Script pentru inițializare hartă Google Maps - DOAR UNU! -->
+<script async defer 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiQ0cWGtPHn_JD9-OGQiNi2iU9Hr9b0ok&callback=initMap&libraries=geometry">
+</script>
 
 <%- include('partials/footer', { page: 'feed' }) %>

@@ -382,7 +382,7 @@ exports.votarePostare = async (req, res) => {
     if (req.xhr) {
       return res.status(500).json({
         succes: false,
-        mesaj: 'Eroare la procesarea votului'
+        //mesaj: 'Eroare la procesarea votului'
       });
     }
     
