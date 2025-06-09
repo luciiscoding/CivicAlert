@@ -5,7 +5,13 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start:vercel": "node api/index.js",
+    "dev:vercel": "nodemon api/index.js",
+    "build": "echo 'Build complete'"
+  },
+  "engines": {
+    "node": ">=18.x"
   },
   "author": "",
   "license": "ISC",
