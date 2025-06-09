@@ -1,0 +1,411 @@
+<%- include('partials/header', { page: 'feed' }) %>
+<%- include('partials/navbar') %>
+
+<main class="editare-postare-page">
+  <div class="container">
+    <div class="back-button mb-3" data-aos="fade-right">
+      <a href="/postari/<%= postare._id %>" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left"></i> Înapoi la postare
+      </a>
+    </div>
+    
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-sm" data-aos="fade-up">
+          <div class="card-header">
+            <h2>Editare Postare</h2>
+            <p>Actualizează detaliile problemei raportate</p>
+          </div>
+          
+          <div class="card-body">
+            <form action="/postari/<%= postare._id %>?_method=PUT" method="POST" enctype="multipart/form-data" id="formEditarePostare">
+              <div class="row">
+                <!-- Secțiunea de imagini -->
+                <div class="col-md-4 mb-4">
+                  <div class="images-section">
+                    <h5 class="form-label">Imagini curente</h5>
+                    
+                    <% if (postare.imagini && postare.imagini.length > 0) { %>
+                      <div class="current-images">
+                        <% postare.imagini.forEach((imagine, index) => { %>
+                          <div class="image-container mb-2">
+                            <img src="<%= imagine.startsWith('http') ? imagine : '/uploads/posts/' + imagine %>" 
+                                 alt="Imagine <%= index + 1 %>" class="current-image">
+                          </div>
+                        <% }); %>
+                      </div>
+                      <small class="text-muted">Imaginile vor fi înlocuite dacă încarci imagini noi.</small>
+                    <% } else { %>
+                      <div class="no-images text-center">
+                        <i class="fas fa-image text-muted" style="font-size: 3rem;"></i>
+                        <p class="text-muted">Nicio imagine</p>
+                      </div>
+                    <% } %>
+                    
+                    <!-- Upload imagini noi -->
+                    <div class="mt-3">
+                      <label for="imagini" class="form-label">Înlocuiește imaginile</label>
+                      <div class="upload-container">
+                        <label for="imagini" class="upload-btn">
+                          <i class="fas fa-camera"></i>
+                          <span>Selectează imagini</span>
+                        </label>
+                        <input type="file" id="imagini" name="imagini" multiple accept="image/*" class="visually-hidden">
+                      </div>
+                      <small class="text-muted">Maximum 5 imagini, 5MB fiecare</small>
+                      
+                      <!-- Preview imagini noi -->
+                      <div class="image-preview mt-3" id="imagePreview"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Secțiunea de detalii -->
+                <div class="col-md-8">
+                  <div class="mb-3">
+                    <label for="titlu" class="form-label">Titlul problemei</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-exclamation-triangle"></i></span>
+                      <input type="text" class="form-control" id="titlu" name="titlu" 
+                             value="<%= postare.titlu %>" required maxlength="100">
+                    </div>
+                    <div class="form-text">Descrie pe scurt problema (maxim 100 caractere)</div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="descriere" class="form-label">Descrierea problemei</label>
+                    <textarea class="form-control" id="descriere" name="descriere" rows="6" 
+                              required maxlength="1000"><%= postare.descriere %></textarea>
+                    <div class="form-text">Explică în detaliu problema (maxim 1000 caractere)</div>
+                  </div>
+                  
+                  <div class="mb-3">
+                    <label for="judet" class="form-label">Județul</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                      <select class="form-select" id="judet" name="judet" required>
+                        <option value="">Selectează județul</option>
+                        <option value="Alba" <%= postare.localizare.judet === 'Alba' ? 'selected' : '' %>>Alba</option>
+                        <option value="Arad" <%= postare.localizare.judet === 'Arad' ? 'selected' : '' %>>Arad</option>
+                        <option value="Argeș" <%= postare.localizare.judet === 'Argeș' ? 'selected' : '' %>>Argeș</option>
+                        <option value="Bacău" <%= postare.localizare.judet === 'Bacău' ? 'selected' : '' %>>Bacău</option>
+                        <option value="Bihor" <%= postare.localizare.judet === 'Bihor' ? 'selected' : '' %>>Bihor</option>
+                        <option value="Bistrița-Năsăud" <%= postare.localizare.judet === 'Bistrița-Năsăud' ? 'selected' : '' %>>Bistrița-Năsăud</option>
+                        <option value="Botoșani" <%= postare.localizare.judet === 'Botoșani' ? 'selected' : '' %>>Botoșani</option>
+                        <option value="Brașov" <%= postare.localizare.judet === 'Brașov' ? 'selected' : '' %>>Brașov</option>
+                        <option value="Brăila" <%= postare.localizare.judet === 'Brăila' ? 'selected' : '' %>>Brăila</option>
+                        <option value="București" <%= postare.localizare.judet === 'București' ? 'selected' : '' %>>București</option>
+                        <option value="Buzău" <%= postare.localizare.judet === 'Buzău' ? 'selected' : '' %>>Buzău</option>
+                        <option value="Caraș-Severin" <%= postare.localizare.judet === 'Caraș-Severin' ? 'selected' : '' %>>Caraș-Severin</option>
+                        <option value="Călărași" <%= postare.localizare.judet === 'Călărași' ? 'selected' : '' %>>Călărași</option>
+                        <option value="Cluj" <%= postare.localizare.judet === 'Cluj' ? 'selected' : '' %>>Cluj</option>
+                        <option value="Constanța" <%= postare.localizare.judet === 'Constanța' ? 'selected' : '' %>>Constanța</option>
+                        <option value="Covasna" <%= postare.localizare.judet === 'Covasna' ? 'selected' : '' %>>Covasna</option>
+                        <option value="Dâmbovița" <%= postare.localizare.judet === 'Dâmbovița' ? 'selected' : '' %>>Dâmbovița</option>
+                        <option value="Dolj" <%= postare.localizare.judet === 'Dolj' ? 'selected' : '' %>>Dolj</option>
+                        <option value="Galați" <%= postare.localizare.judet === 'Galați' ? 'selected' : '' %>>Galați</option>
+                        <option value="Giurgiu" <%= postare.localizare.judet === 'Giurgiu' ? 'selected' : '' %>>Giurgiu</option>
+                        <option value="Gorj" <%= postare.localizare.judet === 'Gorj' ? 'selected' : '' %>>Gorj</option>
+                        <option value="Harghita" <%= postare.localizare.judet === 'Harghita' ? 'selected' : '' %>>Harghita</option>
+                        <option value="Hunedoara" <%= postare.localizare.judet === 'Hunedoara' ? 'selected' : '' %>>Hunedoara</option>
+                        <option value="Ialomița" <%= postare.localizare.judet === 'Ialomița' ? 'selected' : '' %>>Ialomița</option>
+                        <option value="Iași" <%= postare.localizare.judet === 'Iași' ? 'selected' : '' %>>Iași</option>
+                        <option value="Ilfov" <%= postare.localizare.judet === 'Ilfov' ? 'selected' : '' %>>Ilfov</option>
+                        <option value="Maramureș" <%= postare.localizare.judet === 'Maramureș' ? 'selected' : '' %>>Maramureș</option>
+                        <option value="Mehedinți" <%= postare.localizare.judet === 'Mehedinți' ? 'selected' : '' %>>Mehedinți</option>
+                        <option value="Mureș" <%= postare.localizare.judet === 'Mureș' ? 'selected' : '' %>>Mureș</option>
+                        <option value="Neamț" <%= postare.localizare.judet === 'Neamț' ? 'selected' : '' %>>Neamț</option>
+                        <option value="Olt" <%= postare.localizare.judet === 'Olt' ? 'selected' : '' %>>Olt</option>
+                        <option value="Prahova" <%= postare.localizare.judet === 'Prahova' ? 'selected' : '' %>>Prahova</option>
+                        <option value="Sălaj" <%= postare.localizare.judet === 'Sălaj' ? 'selected' : '' %>>Sălaj</option>
+                        <option value="Satu Mare" <%= postare.localizare.judet === 'Satu Mare' ? 'selected' : '' %>>Satu Mare</option>
+                        <option value="Sibiu" <%= postare.localizare.judet === 'Sibiu' ? 'selected' : '' %>>Sibiu</option>
+                        <option value="Suceava" <%= postare.localizare.judet === 'Suceava' ? 'selected' : '' %>>Suceava</option>
+                        <option value="Teleorman" <%= postare.localizare.judet === 'Teleorman' ? 'selected' : '' %>>Teleorman</option>
+                        <option value="Timiș" <%= postare.localizare.judet === 'Timiș' ? 'selected' : '' %>>Timiș</option>
+                        <option value="Tulcea" <%= postare.localizare.judet === 'Tulcea' ? 'selected' : '' %>>Tulcea</option>
+                        <option value="Vaslui" <%= postare.localizare.judet === 'Vaslui' ? 'selected' : '' %>>Vaslui</option>
+                        <option value="Vâlcea" <%= postare.localizare.judet === 'Vâlcea' ? 'selected' : '' %>>Vâlcea</option>
+                        <option value="Vrancea" <%= postare.localizare.judet === 'Vrancea' ? 'selected' : '' %>>Vrancea</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Secțiunea de localizare -->
+              <div class="row mt-3">
+                <div class="col-12">
+                  <div class="mb-3">
+                    <label class="form-label">Localizarea exactă</label>
+                    <div class="map-search mb-3">
+                      <input type="text" class="form-control" id="searchBox" 
+                             placeholder="Caută o adresă pe hartă...">
+                    </div>
+                    <div id="map" class="edit-map" 
+                         data-lat="<%= postare.localizare.lat %>" 
+                         data-lng="<%= postare.localizare.lng %>"></div>
+                    <div class="map-instructions mt-2">
+                      <small class="text-muted">
+                        <i class="fas fa-info-circle"></i>
+                        Caută o adresă sau fă click pe hartă pentru a actualiza locația
+                      </small>
+                    </div>
+                    <input type="hidden" id="lat" name="lat" value="<%= postare.localizare.lat %>" required>
+                    <input type="hidden" id="lng" name="lng" value="<%= postare.localizare.lng %>" required>
+                    
+                    <div class="location-preview mt-3" id="locationPreview">
+                      <strong>Locația selectată:</strong>
+                      <span id="selectedLocation"><%= postare.localizare.lat %>, <%= postare.localizare.lng %></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Butoane -->
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                <a href="/postari/<%= postare._id %>" class="btn btn-outline-secondary">Anulează</a>
+                <button type="submit" class="btn btn-primary" id="btnSubmit">
+                  <i class="fas fa-save"></i> Salvează modificările
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= process.env.GOOGLE_MAPS_API_KEY %>&libraries=places&callback=initMap" async defer></script>
+<script>
+  let map, marker, searchBox;
+  
+  function initMap() {
+    const mapElement = document.getElementById('map');
+    const lat = parseFloat(mapElement.dataset.lat) || 45.9432;
+    const lng = parseFloat(mapElement.dataset.lng) || 24.9668;
+    
+    map = new google.maps.Map(mapElement, {
+      center: { lat, lng },
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    
+    marker = new google.maps.Marker({
+      position: { lat, lng },
+      map: map,
+      draggable: true
+    });
+    
+    // Search box
+    const input = document.getElementById('searchBox');
+    searchBox = new google.maps.places.SearchBox(input);
+    
+    searchBox.addListener('places_changed', () => {
+      const places = searchBox.getPlaces();
+      if (places.length === 0) return;
+      
+      const place = places[0];
+      const location = place.geometry.location;
+      
+      map.setCenter(location);
+      map.setZoom(17);
+      marker.setPosition(location);
+      
+      updateLocationInputs(location.lat(), location.lng());
+    });
+    
+    // Click pe hartă
+    map.addListener('click', (e) => {
+      marker.setPosition(e.latLng);
+      updateLocationInputs(e.latLng.lat(), e.latLng.lng());
+    });
+    
+    // Drag marker
+    marker.addListener('dragend', (e) => {
+      updateLocationInputs(e.latLng.lat(), e.latLng.lng());
+    });
+    
+    // Actualizează inputs-urile cu locația curentă
+    updateLocationInputs(lat, lng);
+  }
+  
+  function updateLocationInputs(lat, lng) {
+    document.getElementById('lat').value = lat;
+    document.getElementById('lng').value = lng;
+    
+    // Afișează previzualizarea locației
+    const location = document.getElementById('selectedLocation');
+    location.textContent = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    // Preview imagini noi
+    const imaginiInput = document.getElementById('imagini');
+    const imagePreview = document.getElementById('imagePreview');
+    
+    imaginiInput.addEventListener('change', function(e) {
+      imagePreview.innerHTML = '';
+      
+      Array.from(e.target.files).forEach((file, index) => {
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const div = document.createElement('div');
+            div.className = 'preview-item mb-2';
+            div.innerHTML = `
+              <img src="${e.target.result}" alt="Preview ${index + 1}" class="preview-image">
+              <small class="text-muted d-block">${file.name}</small>
+            `;
+            imagePreview.appendChild(div);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+    
+    // Validare formular
+    const form = document.getElementById('formEditarePostare');
+    form.addEventListener('submit', function(e) {
+      const titlu = document.getElementById('titlu').value.trim();
+      const descriere = document.getElementById('descriere').value.trim();
+      const judet = document.getElementById('judet').value;
+      
+      if (!titlu || !descriere || !judet) {
+        e.preventDefault();
+        alert('Te rugăm să completezi toate câmpurile obligatorii.');
+      }
+    });
+  });
+</script>
+
+<!-- CSS specific pentru editare postare -->
+<style>
+  .editare-postare-page {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    min-height: calc(100vh - var(--navbar-height) - var(--footer-height));
+  }
+  
+  .card-header {
+    background-color: var(--primary-bg);
+    color: white;
+    padding: 1.5rem;
+  }
+  
+  .card-header h2 {
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+  
+  .card-header p {
+    margin-bottom: 0;
+    opacity: 0.8;
+  }
+  
+  .images-section {
+    height: 100%;
+  }
+  
+  .current-images {
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .image-container {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .current-image {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .no-images {
+    padding: 2rem 0;
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+  }
+  
+  .upload-container {
+    margin-top: 1rem;
+  }
+  
+  .upload-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    border: 2px dashed var(--primary-bg);
+    border-radius: 8px;
+    color: var(--primary-bg);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(var(--primary-bg-rgb), 0.05);
+  }
+  
+  .upload-btn:hover {
+    background-color: rgba(var(--primary-bg-rgb), 0.1);
+    border-color: var(--accent-1);
+    color: var(--accent-1);
+  }
+  
+  .upload-btn i {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .edit-map {
+    height: 300px;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .preview-item {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.5rem;
+  }
+  
+  .preview-image {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: var(--primary-bg);
+  }
+  
+  .location-preview {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .map-instructions {
+    color: #6c757d;
+  }
+  
+  @media (max-width: 767.98px) {
+    .edit-map {
+      height: 250px;
+    }
+    
+    .images-section {
+      margin-bottom: 2rem;
+    }
+  }
+</style>
+
+<%- include('partials/footer', { page: 'feed' }) %>
