@@ -208,6 +208,8 @@
 
 .btn-vot {
   display: flex;
+  margin-right: 12rem;
+  margin-top: -8px;
   align-items: center;
   justify-content: center;
   width: 40px;
