@@ -1,0 +1,183 @@
+\babel@toc {romanian}{}\relax 
+\contentsline {chapter}{Introducere}{9}{chapter*.2}%
+\contentsline {chapter}{\numberline {1}Contextul și fundamentarea teoretică}{13}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Problematica actuală în comunicarea civică}{13}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Impactul problemelor urbane nerezolvate}{13}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Barierele în comunicarea cu autoritățile}{14}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Digitalizarea serviciilor publice în era post-pandemie}{14}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Analiză comparativă a soluțiilor existente}{15}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Platforme internaționale de referință}{15}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Situația din România}{15}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Fundamentarea tehnologică}{16}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Arhitectura Model-View-Controller}{16}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Tehnologii web moderne}{17}{subsection.1.3.2}%
+\contentsline {subsubsection}{Node.js și ecosistemul JavaScript}{17}{section*.11}%
+\contentsline {subsubsection}{MongoDB și bazele de date NoSQL}{17}{section*.12}%
+\contentsline {section}{\numberline {1.4}Aspecte de securitate și confidențialitate}{17}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Criptarea datelor sensibile}{17}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Managementul sesiunilor și autorizarea}{18}{subsection.1.4.2}%
+\contentsline {section}{\numberline {1.5}Concluzii}{18}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Analiza și proiectarea sistemului}{19}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Analiza cerințelor}{19}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Cerințe funcționale}{19}{subsection.2.1.1}%
+\contentsline {subsubsection}{Gestionarea utilizatorilor}{19}{section*.13}%
+\contentsline {subsubsection}{Raportarea problemelor}{19}{section*.14}%
+\contentsline {subsubsection}{Interacțiunea comunitară}{19}{section*.15}%
+\contentsline {subsubsection}{Administrarea sistemului}{19}{section*.16}%
+\contentsline {subsection}{\numberline {2.1.2}Cerințe non-funcționale}{19}{subsection.2.1.2}%
+\contentsline {subsubsection}{Performanță}{19}{section*.17}%
+\contentsline {subsubsection}{Scalabilitate}{19}{section*.18}%
+\contentsline {subsubsection}{Securitate}{20}{section*.19}%
+\contentsline {subsubsection}{Utilizabilitate}{20}{section*.20}%
+\contentsline {section}{\numberline {2.2}Arhitectura sistemului}{20}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Arhitectura generală}{20}{subsection.2.2.1}%
+\contentsline {subsubsection}{Nivelul de prezentare}{20}{section*.22}%
+\contentsline {subsubsection}{Nivelul de logică de business}{20}{section*.23}%
+\contentsline {subsubsection}{Nivelul de persistență}{20}{section*.24}%
+\contentsline {subsection}{\numberline {2.2.2}Pattern-ul Model-View-Controller}{20}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Modelarea bazei de date}{21}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Schema conceptuală}{21}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Structura documentelor MongoDB}{21}{subsection.2.3.2}%
+\contentsline {subsubsection}{Colecția Users}{21}{section*.27}%
+\contentsline {subsubsection}{Colecția Postari}{21}{section*.28}%
+\contentsline {subsubsection}{Colecția Comentarii}{21}{section*.29}%
+\contentsline {subsection}{\numberline {2.3.3}Indexarea pentru performanță}{22}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Designul interfeței utilizator}{22}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Principii de design}{22}{subsection.2.4.1}%
+\contentsline {subsubsection}{Simplicitate și claritate}{22}{section*.31}%
+\contentsline {subsubsection}{Accessibility și inclusivitate}{22}{section*.32}%
+\contentsline {subsubsection}{Design responsive}{22}{section*.33}%
+\contentsline {subsection}{\numberline {2.4.2}Paleta cromatică și tipografia}{22}{subsection.2.4.2}%
+\contentsline {subsubsection}{Schema de culori}{22}{section*.34}%
+\contentsline {subsubsection}{Tipografia}{22}{section*.36}%
+\contentsline {subsection}{\numberline {2.4.3}Wireframe-uri și prototipuri}{23}{subsection.2.4.3}%
+\contentsline {subsubsection}{Pagina principală}{23}{section*.37}%
+\contentsline {subsubsection}{Feed-ul județelor}{23}{section*.39}%
+\contentsline {subsubsection}{Formularul de raportare}{23}{section*.41}%
+\contentsline {section}{\numberline {2.5}Arhitectura de securitate}{24}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Autentificarea și autorizarea}{24}{subsection.2.5.1}%
+\contentsline {subsubsection}{Procesul de autentificare}{24}{section*.43}%
+\contentsline {subsubsection}{Managementul rolurilor}{24}{section*.45}%
+\contentsline {subsection}{\numberline {2.5.2}Protecția împotriva atacurilor comune}{24}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Criptarea și hashing-ul parolelor}{24}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Integrarea serviciilor externe}{25}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Google Maps API}{25}{subsection.2.6.1}%
+\contentsline {subsubsection}{Configurarea și autentificarea}{25}{section*.47}%
+\contentsline {subsubsection}{Funcționalități implementate}{25}{section*.48}%
+\contentsline {subsection}{\numberline {2.6.2}Servicii de hosting și deployment}{25}{subsection.2.6.2}%
+\contentsline {subsubsection}{Render pentru backend}{25}{section*.50}%
+\contentsline {subsubsection}{MongoDB Atlas pentru baza de date}{25}{section*.51}%
+\contentsline {section}{\numberline {2.7}Concluzii}{25}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Implementarea tehnică}{26}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Tehnologii și instrumente utilizate}{26}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Stack-ul tehnologic}{26}{subsection.3.1.1}%
+\contentsline {subsubsection}{Backend - Node.js și Express.js}{26}{section*.52}%
+\contentsline {subsubsection}{Frontend - EJS, CSS și JavaScript}{26}{section*.54}%
+\contentsline {subsubsection}{Baza de date - MongoDB cu Mongoose}{26}{section*.55}%
+\contentsline {subsection}{\numberline {3.1.2}Instrumente de dezvoltare și deployment}{26}{subsection.3.1.2}%
+\contentsline {subsubsection}{Controlul versiunilor și CI/CD}{26}{section*.56}%
+\contentsline {subsubsection}{Managementul dependințelor}{27}{section*.57}%
+\contentsline {section}{\numberline {3.2}Arhitectura aplicației}{27}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Structura directoarelor}{27}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Sistemul de rutare}{27}{subsection.3.2.2}%
+\contentsline {subsubsection}{Rutele principale}{27}{section*.58}%
+\contentsline {subsubsection}{Middleware de autentificare}{27}{section*.60}%
+\contentsline {section}{\numberline {3.3}Implementarea funcționalităților principale}{27}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Sistemul de autentificare}{27}{subsection.3.3.1}%
+\contentsline {subsubsection}{Înregistrarea utilizatorilor}{27}{section*.61}%
+\contentsline {subsubsection}{Autentificarea utilizatorilor}{27}{section*.62}%
+\contentsline {subsection}{\numberline {3.3.2}Gestionarea postărilor}{27}{subsection.3.3.2}%
+\contentsline {subsubsection}{Crearea unei noi postări}{27}{section*.63}%
+\contentsline {subsubsection}{Sistemul de votare}{28}{section*.64}%
+\contentsline {subsection}{\numberline {3.3.3}Sistemul de comentarii}{28}{subsection.3.3.3}%
+\contentsline {subsubsection}{Adăugarea comentariilor}{28}{section*.65}%
+\contentsline {subsection}{\numberline {3.3.4}Panoul de administrare}{28}{subsection.3.3.4}%
+\contentsline {subsubsection}{Dashboard-ul administrativ}{28}{section*.66}%
+\contentsline {subsubsection}{Gestionarea utilizatorilor}{28}{section*.67}%
+\contentsline {section}{\numberline {3.4}Integrarea Google Maps}{28}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Configurarea API-ului}{28}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Funcționalități de mapping}{28}{subsection.3.4.2}%
+\contentsline {subsubsection}{Afișarea hărții interactive}{28}{section*.68}%
+\contentsline {subsubsection}{Geolocation și autocomplete}{28}{section*.70}%
+\contentsline {section}{\numberline {3.5}Optimizarea performanțelor}{29}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Optimizarea bazei de date}{29}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Caching și compression}{29}{subsection.3.5.2}%
+\contentsline {subsection}{\numberline {3.5.3}Optimizarea imaginilor}{29}{subsection.3.5.3}%
+\contentsline {section}{\numberline {3.6}Concluzii}{29}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Testarea și evaluarea sistemului}{30}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Strategia de testare}{30}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Tipuri de teste implementate}{30}{subsection.4.1.1}%
+\contentsline {subsubsection}{Teste unitare}{30}{section*.71}%
+\contentsline {subsubsection}{Teste de integrare}{30}{section*.72}%
+\contentsline {subsubsection}{Teste funcționale}{30}{section*.73}%
+\contentsline {subsubsection}{Teste de securitate}{30}{section*.74}%
+\contentsline {subsection}{\numberline {4.1.2}Instrumente de testare utilizate}{30}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Testarea funcționalităților}{30}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Testarea sistemului de autentificare}{30}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Testarea gestionării postărilor}{31}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Testarea sistemului de votare și comentarii}{31}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Testarea panoului de administrare}{31}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Testarea performanțelor}{31}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Teste de încărcare}{31}{subsection.4.3.1}%
+\contentsline {subsubsection}{Testarea cu utilizatori concurenți}{31}{section*.75}%
+\contentsline {subsubsection}{Testarea timpilor de răspuns}{31}{section*.76}%
+\contentsline {subsection}{\numberline {4.3.2}Teste de stress}{31}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Optimizarea bazată pe rezultate}{31}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Testarea compatibilității}{31}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Testarea pe diferite browsere}{31}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Testarea pe diferite dispozitive}{32}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Testarea accesibilității}{32}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Deployment și configurarea producției}{32}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Pregătirea pentru deployment}{32}{subsection.4.5.1}%
+\contentsline {subsubsection}{Configurarea variabilelor de mediu}{32}{section*.78}%
+\contentsline {subsubsection}{Optimizarea pentru producție}{32}{section*.79}%
+\contentsline {subsection}{\numberline {4.5.2}Deployment pe Render}{32}{subsection.4.5.2}%
+\contentsline {subsection}{\numberline {4.5.3}Configurarea MongoDB Atlas}{33}{subsection.4.5.3}%
+\contentsline {subsection}{\numberline {4.5.4}Configurarea domeniului și SSL}{33}{subsection.4.5.4}%
+\contentsline {section}{\numberline {4.6}Monitorizarea și maintenance}{33}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Sisteme de monitorizare}{33}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Logging și debugging}{33}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}Backup și recovery}{33}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}Evaluarea cu utilizatori reali}{33}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Testarea cu utilizatori beta}{33}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Colectarea feedback-ului}{33}{subsection.4.7.2}%
+\contentsline {subsection}{\numberline {4.7.3}Analiza rezultatelor}{34}{subsection.4.7.3}%
+\contentsline {section}{\numberline {4.8}Rezultate și metrici}{34}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Metrici de performanță}{34}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Metrici de utilizare}{34}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Rata de succes a testelor}{34}{subsection.4.8.3}%
+\contentsline {section}{\numberline {4.9}Concluzii și lecții învățate}{34}{section.4.9}%
+\contentsline {chapter}{\numberline {5}Concluzii și contribuții}{35}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Sinteza rezultatelor}{35}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Obiectivele atinse}{35}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Beneficiile identificate}{35}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Contribuții originale}{35}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Contribuții tehnice}{35}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Contribuții metodologice}{35}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Contribuții sociale}{35}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Limitări și provocări}{36}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Limitări tehnice identificate}{36}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Provocări de implementare}{36}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}Aspecte de scalabilitate}{36}{subsection.5.3.3}%
+\contentsline {section}{\numberline {5.4}Direcții viitoare de dezvoltare}{36}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Funcționalități planificate}{36}{subsection.5.4.1}%
+\contentsline {subsubsection}{Aplicație mobilă nativă}{36}{section*.83}%
+\contentsline {subsubsection}{Sistem de notificări avansate}{36}{section*.84}%
+\contentsline {subsubsection}{Integrare cu sisteme guvernamentale}{36}{section*.85}%
+\contentsline {subsubsection}{Analitice avansate și raportare}{36}{section*.86}%
+\contentsline {subsection}{\numberline {5.4.2}Îmbunătățiri tehnice}{36}{subsection.5.4.2}%
+\contentsline {subsubsection}{Optimizarea performanțelor}{36}{section*.87}%
+\contentsline {subsubsection}{Îmbunătățirea securității}{37}{section*.88}%
+\contentsline {subsubsection}{Scalabilitate îmbunătățită}{37}{section*.89}%
+\contentsline {subsection}{\numberline {5.4.3}Extensii funcționale}{37}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Impactul potențial}{37}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Impactul asupra administrației publice}{37}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Impactul asupra cetățenilor}{37}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.3}Impactul asupra participării civice}{37}{subsection.5.5.3}%
+\contentsline {section}{\numberline {5.6}Recomandări pentru implementare}{37}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Strategia de lansare}{37}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Partnerships necesare}{37}{subsection.5.6.2}%
+\contentsline {subsection}{\numberline {5.6.3}Aspecte de sustenabilitate}{37}{subsection.5.6.3}%
+\contentsline {section}{\numberline {5.7}Concluzii finale}{38}{section.5.7}%
+\contentsline {chapter}{Bibliografie}{39}{chapter*.90}%
+\contentsline {chapter}{Anexe}{42}{chapter*.92}%
