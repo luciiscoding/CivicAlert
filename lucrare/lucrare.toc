@@ -1,82 +1,82 @@
 \babel@toc {romanian}{}\relax 
-\contentsline {chapter}{Introducere}{7}{chapter*.3}%
-\contentsline {chapter}{\numberline {1}Contextul și fundamentarea teoretică}{11}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Problematica actuală în comunicarea civică}{11}{section.1.1}%
-\contentsline {subsection}{\numberline {1.1.1}Impactul problemelor urbane nerezolvate}{11}{subsection.1.1.1}%
-\contentsline {subsection}{\numberline {1.1.2}Barierele în comunicarea cu autoritățile}{12}{subsection.1.1.2}%
-\contentsline {subsection}{\numberline {1.1.3}Digitalizarea serviciilor publice în era post-pandemie}{12}{subsection.1.1.3}%
-\contentsline {section}{\numberline {1.2}Analiză comparativă a soluțiilor existente}{13}{section.1.2}%
-\contentsline {subsection}{\numberline {1.2.1}Platforme internaționale de referință}{13}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Situația din România}{13}{subsection.1.2.2}%
-\contentsline {chapter}{\numberline {2}Fundamentarea tehnologică}{14}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Arhitectura Model-View-Controller}{14}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Tehnologii web moderne}{15}{subsection.2.1.1}%
-\contentsline {subsubsection}{Node.js și ecosistemul JavaScript}{16}{section*.12}%
-\contentsline {paragraph}{Avantajele Node.js pentru CivicAlert}{16}{section*.13}%
-\contentsline {paragraph}{Implementarea arhitecturii}{16}{section*.14}%
-\contentsline {subsubsection}{MongoDB și bazele de date NoSQL}{16}{section*.15}%
-\contentsline {paragraph}{Avantajele MongoDB}{16}{section*.16}%
-\contentsline {paragraph}{Modelarea datelor}{17}{section*.17}%
-\contentsline {subsubsection}{Frontend cu EJS}{17}{section*.18}%
-\contentsline {section}{\numberline {2.2}Aspecte de securitate și confidențialitate}{17}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Criptarea datelor sensibile}{17}{subsection.2.2.1}%
-\contentsline {subsubsection}{Criptarea parolelor utilizatorilor}{17}{section*.19}%
-\contentsline {subsubsection}{Securizarea datelor în baza de date}{18}{section*.20}%
-\contentsline {subsection}{\numberline {2.2.2}Managementul sesiunilor și autorizarea}{18}{subsection.2.2.2}%
-\contentsline {subsubsection}{Arhitectura sistemului de autentificare}{18}{section*.21}%
-\contentsline {subsubsection}{Modelul de autorizare bazat pe roluri}{18}{section*.22}%
-\contentsline {subsubsection}{Middleware de securitate}{19}{section*.23}%
-\contentsline {subsection}{\numberline {2.2.3}Protecția împotriva vulnerabilităților comune}{19}{subsection.2.2.3}%
-\contentsline {subsubsection}{Prevenirea atacurilor de injecție}{19}{section*.24}%
-\contentsline {subsubsection}{Securizarea upload-ului de fișiere}{19}{section*.25}%
-\contentsline {subsection}{\numberline {2.2.4}Conformitatea cu reglementările de protecție a datelor}{19}{subsection.2.2.4}%
-\contentsline {subsubsection}{Principiile de minimizare a datelor}{20}{section*.26}%
-\contentsline {subsubsection}{Drepturile utilizatorilor}{20}{section*.27}%
-\contentsline {section}{\numberline {2.3}Concluzii}{20}{section.2.3}%
-\contentsline {chapter}{\numberline {3}Obiectivele atinse și contribuțiile realizate}{21}{chapter.3}%
-\contentsline {subsection}{\numberline {3.0.1}Impactul social și civic al platformei}{21}{subsection.3.0.1}%
-\contentsline {subsection}{\numberline {3.0.2}Limitări și provocări identificate}{22}{subsection.3.0.2}%
-\contentsline {subsection}{\numberline {3.0.3}Direcții de dezvoltare și viziune de viitor}{22}{subsection.3.0.3}%
-\contentsline {subsection}{\numberline {3.0.4}Reflecții finale și perspectiva de ansamblu}{22}{subsection.3.0.4}%
-\contentsline {chapter}{\numberline {4}Implementarea practică și scenarii de utilizare}{24}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Provocări tehnice și soluții adoptate}{24}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Scenarii de utilizare și studii de caz}{24}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Scenariul 1: Raportarea unei gropi periculoase}{24}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Scenariul 2: Campanie comunitară pentru parc abandonat}{25}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Scenariul 3: Monitorizarea progresului de către administrator}{25}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Integrarea cu autoritățile locale și ecosistemul administrativ}{26}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Modelul de parteneriat instituțional}{26}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Beneficii pentru administrația publică}{26}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Provocări și soluții pentru adoptarea instituțională}{27}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Ecosistemul tehnologic și perspective de dezvoltare}{27}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Interoperabilitatea cu sisteme naționale}{27}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Extinderi planificate pentru funcționalitatea platformei}{28}{subsection.4.4.2}%
-\contentsline {section}{\numberline {4.5}Concluzii}{28}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Evaluarea performanței și funcționalității aplicației}{29}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Introducere în evaluarea tehnică}{29}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Metodologia de evaluare}{29}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Instrumente de monitorizare utilizate}{29}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Metrici de performanță monitorizate}{30}{subsection.5.2.2}%
-\contentsline {section}{\numberline {5.3}Rezultatele evaluării performanței}{30}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}Performanța front-end}{30}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}Performanța back-end}{30}{subsection.5.3.2}%
-\contentsline {section}{\numberline {5.4}Evaluarea funcționalităților}{31}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Testarea scenariilor de utilizare}{31}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Compatibilitatea cross-browser}{32}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Analiza securității}{32}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Evaluarea vulnerabilităților}{32}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Gestionarea erorilor și autentificării}{33}{subsection.5.5.2}%
-\contentsline {section}{\numberline {5.6}Testarea responsive design}{33}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.1}Adaptabilitatea pe diferite dimensiuni}{33}{subsection.5.6.1}%
-\contentsline {section}{\numberline {5.7}Optimizări implementate}{33}{section.5.7}%
-\contentsline {subsection}{\numberline {5.7.1}Optimizări front-end}{33}{subsection.5.7.1}%
-\contentsline {subsection}{\numberline {5.7.2}Optimizări back-end}{34}{subsection.5.7.2}%
-\contentsline {section}{\numberline {5.8}Monitorizarea în timp real}{34}{section.5.8}%
-\contentsline {subsection}{\numberline {5.8.1}Dashboard de monitorizare}{34}{subsection.5.8.1}%
-\contentsline {section}{\numberline {5.9}Benchmark-uri și comparații}{35}{section.5.9}%
-\contentsline {subsection}{\numberline {5.9.1}Comparație cu standarde industrie}{35}{subsection.5.9.1}%
-\contentsline {section}{\numberline {5.10}Recomandări pentru îmbunătățiri}{35}{section.5.10}%
-\contentsline {subsection}{\numberline {5.10.1}Optimizări pe termen scurt}{35}{subsection.5.10.1}%
-\contentsline {subsection}{\numberline {5.10.2}Dezvoltări pe termen lung}{35}{subsection.5.10.2}%
-\contentsline {section}{\numberline {5.11}Concluzii evaluare tehnică}{36}{section.5.11}%
-\contentsline {chapter}{Bibliografie}{37}{section.5.11}%
+\contentsline {chapter}{Introducere}{4}{chapter*.3}%
+\contentsline {chapter}{\numberline {1}Contextul și fundamentarea teoretică}{7}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Problematica actuală în comunicarea civică}{7}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Impactul problemelor urbane nerezolvate}{7}{subsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Barierele în comunicarea cu autoritățile}{8}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}Digitalizarea serviciilor publice în era post-pandemie}{8}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}Analiză comparativă a soluțiilor existente}{9}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Platforme internaționale de referință}{9}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Situația din România}{9}{subsection.1.2.2}%
+\contentsline {chapter}{\numberline {2}Fundamentarea tehnologică}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Arhitectura Model-View-Controller}{10}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Tehnologii web moderne}{11}{subsection.2.1.1}%
+\contentsline {subsubsection}{Node.js și ecosistemul JavaScript}{12}{section*.11}%
+\contentsline {paragraph}{Avantajele Node.js pentru CivicAlert}{12}{section*.12}%
+\contentsline {paragraph}{Implementarea arhitecturii}{12}{section*.13}%
+\contentsline {subsubsection}{MongoDB și bazele de date NoSQL}{12}{section*.14}%
+\contentsline {paragraph}{Avantajele MongoDB}{12}{section*.15}%
+\contentsline {paragraph}{Modelarea datelor}{13}{section*.16}%
+\contentsline {subsubsection}{Frontend cu EJS}{13}{section*.17}%
+\contentsline {section}{\numberline {2.2}Aspecte de securitate și confidențialitate}{13}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Criptarea datelor sensibile}{13}{subsection.2.2.1}%
+\contentsline {subsubsection}{Criptarea parolelor utilizatorilor}{13}{section*.18}%
+\contentsline {subsubsection}{Securizarea datelor în baza de date}{14}{section*.19}%
+\contentsline {subsection}{\numberline {2.2.2}Managementul sesiunilor și autorizarea}{14}{subsection.2.2.2}%
+\contentsline {subsubsection}{Arhitectura sistemului de autentificare}{14}{section*.20}%
+\contentsline {subsubsection}{Modelul de autorizare bazat pe roluri}{14}{section*.21}%
+\contentsline {subsubsection}{Middleware de securitate}{15}{section*.22}%
+\contentsline {subsection}{\numberline {2.2.3}Protecția împotriva vulnerabilităților comune}{15}{subsection.2.2.3}%
+\contentsline {subsubsection}{Prevenirea atacurilor de injecție}{15}{section*.23}%
+\contentsline {subsubsection}{Securizarea upload-ului de fișiere}{15}{section*.24}%
+\contentsline {subsection}{\numberline {2.2.4}Conformitatea cu reglementările de protecție a datelor}{15}{subsection.2.2.4}%
+\contentsline {subsubsection}{Principiile de minimizare a datelor}{16}{section*.25}%
+\contentsline {subsubsection}{Drepturile utilizatorilor}{16}{section*.26}%
+\contentsline {section}{\numberline {2.3}Concluzii}{16}{section.2.3}%
+\contentsline {chapter}{\numberline {3}Obiectivele atinse și contribuțiile realizate}{17}{chapter.3}%
+\contentsline {subsection}{\numberline {3.0.1}Impactul social și civic al platformei}{17}{subsection.3.0.1}%
+\contentsline {subsection}{\numberline {3.0.2}Limitări și provocări identificate}{18}{subsection.3.0.2}%
+\contentsline {subsection}{\numberline {3.0.3}Direcții de dezvoltare și viziune de viitor}{18}{subsection.3.0.3}%
+\contentsline {subsection}{\numberline {3.0.4}Reflecții finale și perspectiva de ansamblu}{18}{subsection.3.0.4}%
+\contentsline {chapter}{\numberline {4}Implementarea practică și scenarii de utilizare}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Provocări tehnice și soluții adoptate}{20}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Scenarii de utilizare și studii de caz}{20}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Scenariul 1: Raportarea unei gropi periculoase}{20}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Scenariul 2: Campanie comunitară pentru parc abandonat}{21}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Scenariul 3: Monitorizarea progresului de către administrator}{21}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Integrarea cu autoritățile locale și ecosistemul administrativ}{22}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Modelul de parteneriat instituțional}{22}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Beneficii pentru administrația publică}{22}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Provocări și soluții pentru adoptarea instituțională}{23}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Ecosistemul tehnologic și perspective de dezvoltare}{23}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Interoperabilitatea cu sisteme naționale}{23}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Extinderi planificate pentru funcționalitatea platformei}{24}{subsection.4.4.2}%
+\contentsline {section}{\numberline {4.5}Concluzii}{24}{section.4.5}%
+\contentsline {chapter}{\numberline {5}Evaluarea performanței și funcționalității aplicației}{25}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Introducere în evaluarea tehnică}{25}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Metodologia de evaluare}{25}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Instrumente de monitorizare utilizate}{25}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Metrici de performanță monitorizate}{26}{subsection.5.2.2}%
+\contentsline {section}{\numberline {5.3}Rezultatele evaluării performanței}{26}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Performanța front-end}{26}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Performanța back-end}{26}{subsection.5.3.2}%
+\contentsline {section}{\numberline {5.4}Evaluarea funcționalităților}{27}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Testarea scenariilor de utilizare}{27}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Compatibilitatea cross-browser}{28}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Analiza securității}{28}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Evaluarea vulnerabilităților}{28}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Gestionarea erorilor și autentificării}{29}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Testarea responsive design}{29}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Adaptabilitatea pe diferite dimensiuni}{29}{subsection.5.6.1}%
+\contentsline {section}{\numberline {5.7}Optimizări implementate}{29}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Optimizări front-end}{29}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Optimizări back-end}{30}{subsection.5.7.2}%
+\contentsline {section}{\numberline {5.8}Monitorizarea în timp real}{30}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Dashboard de monitorizare}{30}{subsection.5.8.1}%
+\contentsline {section}{\numberline {5.9}Benchmark-uri și comparații}{31}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Comparație cu standarde industrie}{31}{subsection.5.9.1}%
+\contentsline {section}{\numberline {5.10}Recomandări pentru îmbunătățiri}{31}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Optimizări pe termen scurt}{31}{subsection.5.10.1}%
+\contentsline {subsection}{\numberline {5.10.2}Dezvoltări pe termen lung}{31}{subsection.5.10.2}%
+\contentsline {section}{\numberline {5.11}Concluzii evaluare tehnică}{32}{section.5.11}%
+\contentsline {chapter}{\numberline {6}Bibliografie}{33}{chapter.6}%
