@@ -205,7 +205,10 @@ De asemenea, sunt de acord ca Facultatea de Informatică \space de la Universita
 \tableofcontents
 % INTRODUCERE
 \newpage
+\begin{center}
 \section*{Motivația alegerii acestei teme}
+\end{center}
+
 
 Alegerea acestei teme a fost motivată de o combinație de factori personali, sociali și tehnologici care conduc către o necesitate urgentă de modernizare a comunicării civice în România.
 
@@ -226,7 +229,7 @@ Din perspectivă profesională, această temă reprezintă o oportunitate unică
 
 Problema actuală a  comunicării civice în România constă în faptul că în era digitalizării accelerate cetățenii se confruntă încă cu bariere birocratice din secolul trecut, atunci când doresc să raporteze probleme locale. Un simplu raport despre o gură de canal blocată poate necesita vizite la mai multe  instituții, formulare pe hârtie, și săptămâni de așteptare fără niciun feedback despre progresul rezolvării. Această ineficiență nu doar că frustrează cetățenii, dar duce și la perpetuarea problemelor care ar putea fi rezolvate mai rapid printr-o comunicare adecvată.
 
-Pandemia COVID-19 a accelerat dramatic transformarea digitală a serviciilor publice la nivel global, demonstrând că interacțiunea eficientă dintre cetățeni și autorități nu doar că este posibilă în mediul digital, dar este esențială pentru o administrație publică modernă și responsivă. Studiile recente arată că platformele digitale de civic engagement pot reduce timpul de rezolvare a problemelor cu până la 45\% și pot crește participarea civică cu 78\%\footnote{Linders, D. (2012). From e-government to we-government: Defining a typology for citizen coproduction in the age of social media. Government Information Quarterly, 29(4), 446-454.}.
+Pandemia COVID-19 a accelerat dramatic transformarea digitală a serviciilor publice la nivel global, demonstrând că interacțiunea eficientă dintre cetățeni și autorități nu doar că este posibilă în mediul digital, dar este esențială pentru o administrație publică modernă și responsivă. Studiile recente arată că platformele digitale de civic engagement pot reduce timpul de rezolvare a problemelor cu până la 45\% și pot crește participarea civică cu 78\%.
 
 România se află la o răscruce importantă în acest proces de modernizare. În contextul aderării la spațiul Schengen și al accesării fondurilor europene pentru digitalizare, țara noastră are oportunitatea unică de a face un salt calitativ în relația dintre cetățeni și administrația publică. Dezvoltarea unei platforme naționale pentru raportarea și urmărirea problemelor civice nu este doar o necesitate tehnologică, ci o cerință democratică fundamentală pentru o societate modernă și mai ales transparentă.
 
@@ -242,7 +245,7 @@ Obiectivul principal al lucrării constă în dezvoltarea unei platforme web mod
 
 \section*{Metodologia folosită}
 
-Pentru dezvoltarea platformei CivicAlert am adoptat o metodologie de dezvoltare iterativă și incrementală  inspirată din principiile Agile Software Development\footnote{Beck, K., et al. (2001). Manifesto for Agile Software Development.}. Această abordare a fost aleasă pentru flexibilitatea necesară în adaptarea la feedback-ul utilizatorilor și la cerințele în evoluție ale unei aplicații destinate serviciilor publice.
+Pentru dezvoltarea platformei CivicAlert am adoptat o metodologie de dezvoltare iterativă și incrementală  inspirată din principiile agile (Agile Software Development).  Această abordare a fost aleasă pentru flexibilitatea necesară în adaptarea la feedback-ul utilizatorilor și la cerințele în evoluție ale unei aplicații destinate serviciilor publice.
 
 \textbf{Etapele principale ale dezvoltării:}
 
@@ -278,8 +281,8 @@ CivicAlert este o platformă web interactivă dezvoltată folosind tehnologii mo
 \item \textbf{Design responsive:} Experiență optimizată pentru toate dispozitivele (desktop, mobile, tablet) asigurând accesibilitate maximă de oriunde si de pe orice
 \end{itemize}
 
-\textbf{Arhitectura tehnologică și deployment:}
-Soluția se bazează pe o arhitectură MVC;pentru backend am decis sa utilizez MongoDB pentru stocarea flexibilă a datelor, iar pentru frontend am ales sa folosesc  EJS, CSS3 și JavaScript ES6+. Integrarea Google Maps API oferă funcționalități geospațiale avansate pentru localizarea precisă a problemelor civice.
+\textbf{Arhitectura tehnologică:}
+Soluția se bazează pe o arhitectură MVC;pentru backend am decis sa utilizez MongoDB pentru stocarea flexibilă a datelor, iar pentru frontend am ales sa folosesc  EJS, CSS(3) și JavaScript (ES6+). Integrarea Google Maps API oferă funcționalități geospațiale avansate pentru localizarea precisă a problemelor civice.
 
 Platforma beneficiază de o infrastructură cloud robustă: aplicația web (frontend și backend) este hostată pe Render, o platformă modernă de cloud hosting care oferă deployment automat, SSL gratuit și scalare automată. Pentru persistența datelor, se utilizează MongoDB Atlas, serviciul cloud de la MongoDB care asigură backup automat, securitate asupra datelor și performanțe optimizate. Această combinație garantează disponibilitatea 99.9\%, securitate de nivel enterprise și capacitatea de a scala eficient odată cu creșterea numărului de utilizatori la nivel național.
 
@@ -293,6 +296,16 @@ CivicAlert nu este doar un instrument tehnologic, ci o soluție comprehensivă p
 \section{Problematica actuală în comunicarea civică}
 
 Comunicarea eficientă între cetățeni și autorități reprezintă un pilon fundamental al democrației moderne și al dezvoltării urbane durabile. În România contemporană, această relație crucială se confruntă cu provocări de sistem care afectează atât calitatea vieții urbane cât și încrederea cetățenilor în instituțiile democratice.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{problema in comunicare.png}
+    \caption{Imagine reprezentativă pentru comunicarea dintre cetățeni și autorități}
+    \label{fig:problema_comunicare}
+\end{figure}
+
+\vspace{0.5cm}
+
 \subsection{Impactul problemelor urbane nerezolvate}
 
 Studiile din domeniul psihologiei environmentale demonstrează că problemele urbane nerezolvate au efecte semnificative asupra stării de bine a locuitorilor\footnote{Evans, G. W., \& McCoy, J. M. (1998). When buildings don't work: The role of architecture in human health. Journal of Environmental Psychology, 18(1), 85-94.}. Cercetările recente evidențiază că deficiențele infrastructurii urbane, de la gropi în asfalt la iluminat public defect, contribuie la creșterea nivelului de stres urban și la scăderea satisfacției față de calitatea vieții.
@@ -300,31 +313,13 @@ Studiile din domeniul psihologiei environmentale demonstrează că problemele ur
 Un studiu realizat de Institutul Național de Statistică în 2023 relevă că 67\% dintre locuitorii din mediul urban din România consideră că problemele de infrastructură afectează negativ activitățile lor zilnice, iar 43\% raportează sentimente de frustrare și neputință față de lipsa de reacție a autorităților. Această situație generează nu doar disconfort individual, ci și fragmentarea coeziunii sociale și reducerea participării civice active.
 
 \begin{figure}[H]
-\centering
-\begin{tabular}{|l|c|c|}
-\hline
-\textbf{Tipul problemei urbane} & \textbf{Frecvența raportată (\%)} & \textbf{Impactul asupra calității vieții} \\
-\hline
-Gropi în asfalt & 78\% & Foarte mare \\
-\hline
-Iluminat public defect & 65\% & Mare \\
-\hline
-Gunoi necolectat & 72\% & Foarte mare \\
-\hline
-Parcuri abandonate & 45\% & Mediu \\
-\hline
-Scurgeri de apă & 38\% & Mare \\
-\hline
-Zgomot urban & 55\% & Mediu \\
-\hline
-Transport public deficient & 68\% & Foarte mare \\
-\hline
-\end{tabular}
-\caption{Tipurile de probleme urbane și impactul lor asupra calității vieții (Sursa: INS 2023)}
-\label{tab:probleme_urbane}
+    \centering
+    \includegraphics[width=0.8\textwidth]{frecventa problemelor raportate.png}
+    \caption{Frrecvența problemelor raportate}
+    \label{fig:frecvența problemelor raportate}
 \end{figure}
 
-Datele prezentate în Tabelul \ref{tab:probleme_urbane} ilustrează clara corelație dintre frecvența problemelor urbane și impactul lor asupra bunăstării cetățenilor români, justificând necesitatea unei soluții sistemice pentru comunicarea și rezolvarea acestor deficiențe.
+Datele prezentate în grafic ilustrează clara corelație dintre frecvența problemelor urbane și impactul lor asupra bunăstării cetățenilor români, justificând cumva necesitatea unei soluții sistemice pentru comunicarea și rezolvarea acestor deficiențe.
 \subsection{Barierele în comunicarea cu autoritățile}
 
 Procesele tradiționale de raportare a problemelor civice se confruntă cu multiple obstacole structurale și operaționale care împiedică comunicarea eficientă. Principalele bariere identificate includ:
@@ -366,7 +361,7 @@ Comentarii publice & Da & Da & Da \\
 \hline
 Dashboard admin & Simplu & Avansat & Avansat \\
 \hline
-Organizare geografică & Consilii locale & Municipalități & Județe \\
+Organizare geografică & Consilii locale & Municipii & Județe \\
 \hline
 Model de finanțare & Public & Freemium & Public \\
 \hline
@@ -386,6 +381,13 @@ Analiza din Tabelul \ref{tab:comparatie_detaliata} demonstrează că CivicAlert 
 \subsection{Situația din România}
 
 În prezent, țara noastră nu dispune de o platformă centralizată pentru raportarea problemelor de natură socială, situație care ne plasează  în urma majorității statelor membre UE în ceea ce privește digitalizarea comunicării civice. Acest decalaj tehnologic și organizațional are implicații directe asupra eficienței administrației publice și asupra gradului de satisfacție al cetățenilor.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{homepage.png}
+    \caption{Pagina de start  CivicAlert}
+    \label{fig:homepage}
+\end{figure}
 
 \chapter{Fundamentarea tehnologică}
 
@@ -458,7 +460,7 @@ Pentru o platformă de civic engagement precum CivicAlert, care necesită integr
 % Componentele MVC
 \node[component] (view) at (-4, 1) {
     \textbf{View}\\
-    \small{(Interfața utilizator)}\\
+    \small{(UI)}\\
     \tiny{- Template-uri HTML}\\
     \tiny{- CSS/JavaScript}\\
     \tiny{- Formulare}\\
@@ -466,7 +468,7 @@ Pentru o platformă de civic engagement precum CivicAlert, care necesită integr
 
 \node[component] (controller) at (0, 1) {
     \textbf{Controller}\\
-    \small{(Logica de control)}\\
+    \small{(Coordoneaza logica)}\\
     \tiny{- Procesare cereri}\\
     \tiny{- Validare input}\\
     \tiny{- Rutare}\\
@@ -474,16 +476,16 @@ Pentru o platformă de civic engagement precum CivicAlert, care necesită integr
 
 \node[component] (model) at (4, 1) {
     \textbf{Model}\\
-    \small{(Logica de business)}\\
+    \small{(Logica aplicației)}\\
     \tiny{- Entități de date}\\
-    \tiny{- Validări business}\\
+    \tiny{- Validări de date}\\
     \tiny{- Servicii}\\
 };
 
  Baza de date
 \node[component, fill=orange!20] (database) at (4, -2) {
     \textbf{Baza de Date}\\
-    \small{(Persistența datelor)}\\
+    \small{(Stocareaa datelor)}\\
     \tiny{- Tabele}\\
     \tiny{- Relații}\\
     \tiny{- Indecși}\\
@@ -513,103 +515,31 @@ Pentru o platformă de civic engagement precum CivicAlert, care necesită integr
 
 
 
-\subsection{Tehnologii web moderne}
-
-Platforma utilizează un stack tehnologic modern, optimizat pentru performanță și scalabilitate în contextul unei aplicații civice interactive.
-
+\subsection{Tehnologiile folosite}
+Pentru dezvoltarea platformei CivicAlert am ales să utilizez un stack tehnologic  optimizat pentru performanță și scalabilitate în contextul unei aplicații civice interactive. Această alegere tehnologică a fost fundamentată pe nevoia de a crea o soluție robustă care să poată gestiona eficient traficul din multiple județe ale României.
 \subsubsection{Node.js și ecosistemul JavaScript}
-
-Node.js a revoluționat dezvoltarea aplicațiilor web prin permiterea utilizării JavaScript pe partea de server, oferind un mediu de dezvoltare unificat pentru întreaga aplicație.
-
-\paragraph{Avantajele Node.js pentru CivicAlert}
-
-Alegerea Node.js a fost motivată de următoarele caracteristici esențiale:
-
-\begin{itemize}
-    \item \textbf{Arhitectura event-driven}: Gestionarea eficientă a cererilor simultanee, crucială pentru o platformă cu utilizatori activi din multiple județe
-    \item \textbf{Ecosistemul NPM}: Acces la biblioteci specializate pentru procesarea imaginilor, geocoding și autentificare
-    \item \textbf{Performanțe I/O}: Optimizări pentru operații intensive de bază de date și upload-uri de imagini
-    \item \textbf{Unificarea tehnologică}: JavaScript pe frontend și backend pentru o dezvoltare coherentă
-\end{itemize}
-
-\paragraph{Implementarea arhitecturii}
-
-Structura aplicației urmează principiile modulare:
-
-\begin{itemize}
-    \item \textbf{Express.js}: Framework pentru rutare și middleware, oferind flexibilitate în organizarea endpoint-urilor
-    \item \textbf{Middleware personalizat}: Pentru autentificare, validare și gestionarea erorilor
-    \item \textbf{Biblioteci integrate}: Multer pentru upload-uri, Bcrypt pentru securitate, Express-session pentru gestionarea utilizatorilor
-\end{itemize}
-
+În procesul de dezvoltare am optat pentru node.js ca platformă de server, o decizie care s-a dovedit extrem de benefică pentru natura aplicației. Node.js mi-a permis să folosesc JavaScript atât pe frontend cât și pe backend, creând astfel un mediu de dezvoltare unificat care a simplificat considerabil procesul de implementare. Arhitectura event-driven specifică node.js s-a dovedit ideală pentru gestionarea cererilor simultanee de la utilizatorii activi din diferite județe, asigurând o răspuns rapid și eficient la solicitări.
+Ecosistemul NPM m-a ajutat să integrez biblioteci specializate pentru procesarea imaginilor încărcate de utilizatori, servicii de geocoding pentru localizarea precisă a problemelor raportate și sisteme de autentificare securizate. Performanțele superioare în operațiile de input/output au fost esențiale pentru gestionarea bazei de date intensive și pentru procesarea upload-urilor de imagini pe care utilizatorii le atașează raportărilor.
+Pentru structurarea aplicației am folosit express.js ca framework principal, care mi-a oferit flexibilitatea necesară în organizarea endpoint-urilor și în implementarea middleware-ului personalizat. Am dezvoltat componente specifice pentru autentificare, validarea datelor și gestionarea erorilor, integrând biblioteci precum multer pentru gestionarea upload-urilor de fișiere, bcrypt pentru securitatea parolelor și express-session pentru managementul sesiunilor utilizatorilor.
 \subsubsection{MongoDB și bazele de date NoSQL}
-
-MongoDB oferă flexibilitatea necesară pentru stocarea diverselor tipuri de date specifice unei platforme civice, gestionând eficient informațiile de diferită natură și relațiile complexe între entități.
-
-\paragraph{Avantajele MongoDB}
-
-Am ales să folosesc MongoDB în cadrul acestui proiect deoarece:
-
-\begin{itemize}
-    \item \textbf{Flexibilitatea schemei}: Documentele JSON permit stocarea de date variate cum ar fi: coordonate geografice, imagini multiple, metadate
-    \item \textbf{Scalabilitatea orizontală}: Suport nativ pentru sharding, esențial pentru o platformă națională
-    \item \textbf{Date geospațiale}: Indecși 2D sphere pentru căutări eficiente bazate pe localizare
-    \item \textbf{Performanțe optimizate}: Obținerea completă a entităților într-o singură operație
-\end{itemize}
-
-\paragraph{Modelarea datelor}
-
-Designul bazei de date utilizează:
-
-\begin{itemize}
-    \item \textbf{Embedded documents}: Coordonate geografice și metadate încorporate în documentul principal
-    \item \textbf{Referințe selective}: ObjectId-uri pentru relații între utilizatori și postări
-    \item \textbf{Mongoose ODM(Object Data Modelling)}: Validare de scheme, middleware pentru documente și query builder expresiv
-\end{itemize}
-
-\subsubsection{Frontend cu EJS}
-
-Interfața utilizează server-side rendering combinat cu tehnologii client-side pentru a oferi o experiență rapidă și interactivă:
-
-\begin{itemize}
-    \item \textbf{EJS templates}: Server-side rendering pentru încărcare rapidă 
-    \item \textbf{Bootstrap 5}: Responsive design și componente UI consistente
-    \item \textbf{JavaScript ES6+}: Cod bine structurat și module ES6
-    \item \textbf{Google Maps API}: Integrare completă pentru funcționalități de mapping
-    \item \textbf{AOS animations}: Animații moderne pentru experiență utilizator îmbunătățită
-\end{itemize}
-
+Alegerea MongoDB ca sistem de gestiune a bazelor de date a fost motivată de flexibilitatea extraordinară pe care o oferă în stocarea diverselor tipuri de informații specifice unei platforme civice. Spre deosebire de bazele de date relaționale tradiționale, MongoDB mi-a permis să gestionez eficient date de natură variată, de la coordonate geografice și imagini multiple până la metadate complexe, toate într-o manieră coerentă și optimizată.
+Flexibilitatea schemei JSON s-a dovedit perfectă în dezvoltarea rapidă a platformei, permițându-mi să adaptez structura datelor pe măsură ce aplicația evolua și se îmbogățea cu noi funcționalități.Capacitatea de scalare prin împărțirea datelor este esențială pentru viitoarea extindere a platformei la nivel național, când volumul de date și numărul de utilizatori vor crește semnificativ.
+Un aspect deosebit de important pentru funcționalitatea platformei a fost suportul pentru date geospațiale. MongoDB oferă indecși 2D sphere care permit căutări eficiente bazate pe localizare, funcționalitate crucială pentru identificarea și afișarea problemelor din proximitatea unei locații specifice. Această caracteristică tehnică se traduce direct în utilitatea practică a platformei pentru utilizatorii finali.
+Pentru interacțiunea cu baza de date am implementat Mongoose ODM (Object Data Modelling), care mi-a oferit validarea automată de scheme, middleware pentru procesarea documentelor și un query builder expresiv care a simplificat considerabil operațiile complexe de interogare. Am utilizat o combinație de documente încorporate pentru coordonatele geografice și metadatele asociate, alături de referințe selective prin ObjectId-uri pentru a gestiona eficient relațiile între utilizatori și postările lor.
+\subsubsection{Frontend cu EJS și tehnologii complementare}
+Pentru realizarea interfeței UI am ales să combin metode tradiționale de afișare a conținutului cu tehnologii care fac aplicația mai rapidă și interactivă pentru a obține un echilibru optim între performanță și interactivitate. EJS (Embedded JavaScript) mi-a permis să generez pagini HTML dinamice pe server, asigurând o încărcare rapidă a conținutului și o experiență fluidă pentru utilizatori.
+Bootstrap 5 a constituit fundația pentru design-ul responsive al platformei, oferindu-mi componente UI consistente și un sistem de poziționare flexibil care garantează o experiență optimă pe toate tipurile de dispozitive, de la telefoane mobile la desktop-uri. Am complementat acestea cu JavaScript ES6+ pentru a implementa funcționalități interactive avansate, organizând codul în module clare și reutilizabile.
+Integrarea Google Maps API a fost esențială pentru funcționalitatea de mapping a platformei, permițând utilizatorilor să marcheze precis locația problemelor raportate și să vizualizeze distribuția geografică a acestora. Am implementat de asemenea AOS (Animate On Scroll) pentru a crea animații moderne și plăcute care îmbunătățesc experiența utilizatorului fără a compromite performanța aplicației.
 \section{Aspecte de securitate și confidențialitate}
-
-Securitatea și confidențialitatea datelor reprezintă piloni fundamentali ai platformei CivicAlert, având în vedere natura sensibilă a informațiilor civice și necesitatea de a proteja identitatea utilizatorilor care raportează probleme comunitare.
-
+Dezvoltarea platformei CivicAlert a necesitat o atenție deosebită acordată aspectelor de securitate și confidențialitate, având în vedere natura sensibilă a informațiilor civice gestionate și necesitatea de a proteja identitatea utilizatorilor care raportează probleme în comunitățile lor. Am implementat multiple straturi de protecție pentru a asigura integritatea și confidențialitatea datelor pe toată durata ciclului lor de viață.
 \subsection{Criptarea datelor sensibile}
-
-Protecția datelor utilizatorilor este a fost prioritate fundamentală în dezvoltarea platformei, implementând multiple straturi de securitate pentru datele în tranzit și în repaus.
-
-\subsubsection{Criptarea parolelor utilizatorilor}
-
-Sistemul utilizează algoritmi de hash moderni pentru protecția credențialelor:
-
-\begin{itemize}
-    \item \textbf{Bcrypt cu salt}: Implementarea algoritmului bcrypt cu factor de cost 12, asigurând protecție împotriva atacurilor de tip rainbow table și brute force
-    \item \textbf{Salt-uri unice}: Generarea automată de salt-uri aleatorii pentru fiecare parolă, eliminând vulnerabilitățile hash-urilor identice
-    \item \textbf{Validarea complexității}: Verificarea parolelor la nivel de frontend și backend pentru asigurarea unui nivel minim de securitate
-    \item \textbf{Politici de expirare}: Implementarea de mecanisme pentru resetarea periodică a parolelor în cazul conturilor administrative
-\end{itemize}
-
-
-\subsubsection{Securizarea datelor în baza de date}
-
-MongoDB beneficiază de configurări specifice de securitate:
-
-\begin{itemize}
-    \item \textbf{Autentificare robustă}: Utilizarea SCRAM-SHA-256 pentru autentificarea bazei de date
-    \item \textbf{Criptarea la nivel de câmp}: Protejarea informațiilor personale sensibile prin criptare selectivă
-    \item \textbf{Backup-uri securizate}: Arhivarea datelor cu criptare AES-256 și acces controlat
-    \item \textbf{Auditare completă}: Logging-ul tuturor operațiilor sensibile pentru monitorizarea securității
-\end{itemize}
-
+În procesul de dezvoltare am acordat prioritate maximă protecției datelor utilizatorilor, implementând soluții de securitate robuste pentru informațiile în tranzit și cele stocate în baza de date. Această abordare  asigură faptul că datele sensibile sunt protejate în toate punctele vulnerabile ale sistemului.
+\subsubsection{Protecția credențialelor utilizatorilor}
+Pentru securizarea parolelor am implementat algoritmul bcrypt cu un factor de cost de 12, care oferă o protecție eficientă împotriva atacurilor de tip rainbow table și brute force. Sistemul generează automat salt-uri aleatorii unice pentru fiecare parolă, eliminând riscul asociat cu hash-urile identice și asigurând că chiar parolele similare vor avea reprezentări complet diferite în baza de date.
+Am dezvoltat un sistem de validare în două etape care verifică complexitatea parolelor atât la nivelul interfeței utilizatorului cât și pe server, asigurând astfel că toate credențialele respectă standardele minime de securitate. Pentru conturile administrative am implementat politici de expirare și mecanisme de resetare periodică care mențin un nivel ridicat de securitate pe termen lung.
+\subsubsection{Securizarea bazei de date}
+Configurarea MongoDB include măsuri de securitate avansate care protejează datele la nivel de infrastructură. Am implementat autentificarea SCRAM-SHA-256 pentru accesul la baza de date, asigurând că doar serviciile autorizate pot interacționa cu informațiile stocate. Criptarea selectivă la nivel de câmp protejează informațiile personale sensibile, în timp ce backup-urile sunt securizate prin criptare AES-256 cu acces strict controlat.
+Sistemul include funcționalități comprehensive de auditare care înregistrează toate operațiile sensibile, permițând monitorizarea continuă a securității și identificarea rapidă a oricăror activități suspecte. Această abordare proactivă în domeniul securității asigură că platforma menține standardele ridicate de protecție necesare pentru o aplicație civică de încredere.
 \subsection{Managementul sesiunilor și autorizarea}
 
 Sistemul de autentificare și autorizare al CivicAlert se bazează pe principii moderne de securitate, implementând un model de acces granular și gestionarea securizată a sesiunilor utilizatorilor.
@@ -636,95 +566,60 @@ Sistemul definește următoarele nivele de acces:
     \item \textbf{Cont restricționat}: Limitări granulare (vizualizare, postare, votare, comentarii) cu expirare automată
 \end{itemize}
 
-\subsubsection{Middleware de securitate}
 
-Implementarea de straturi intermediare pentru validarea cererilor:
-
-\begin{itemize}
-    \item \textbf{Validarea autentificării}: Verificarea existenței și validității sesiunii pentru toate rutele protejate
-    \item \textbf{Controlul autorizării}: Validarea permisiunilor specifice pentru fiecare acțiune
-    \item \textbf{Rate limiting}: Limitarea cererilor per utilizator pentru prevenirea spam-ului și atacurilor DDoS
-\end{itemize}
 
 \subsection{Protecția împotriva vulnerabilităților comune}
-
-Platforma implementează măsuri specifice împotriva celor mai frecvente tipuri de atacuri web.
-
+În procesul de dezvoltare a platformei am acordat o atenție deosebită implementării măsurilor de protecție împotriva celor mai frecvente tipuri de atacuri web, creând un sistem rezistent care acoperă principalele puncte vulnerabile ale unei aplicații web.
 \subsubsection{Prevenirea atacurilor de injecție}
-
-\begin{itemize}
-    \item \textbf{NoSQL Injection}: Utilizarea Mongoose pentru validarea schemelor și sanitizarea query-urilor
-    \item \textbf{XSS Protection}: EJS procesează automat conținutul din șabloane și verifică datele introduse de uitilzator
-    \item \textbf{CSRF Prevention}: Implementarea de token-uri CSRF pentru toate formularele sensibile
-    \item \textbf{Command Injection}: Validarea strictă pentru upload-ul și procesarea fișierelor
-\end{itemize}
-
+Pentru protecția împotriva atacurilor de tip SQLInjection am utilizat mongoose care oferă validarea automată a schemelor și filtrarea query-urilor înainte de executarea lor în baza de date. Această abordare preventivă elimină riscul manipulării neautorizate a interogărilor și asigură integritatea datelor stocate.
+Protecția împotriva atacurilor XSS (Cross-Site Scripting) este asigurată prin faptul că EJS procesează automat conținutul din șabloane și verifică toate datele introduse de utilizatori înainte de afișarea lor în browser. Am implementat de asemenea un sistem robust de validare care curăță toate inputurile utilizatorilor pentru a preveni injectarea de scripturi malițioase.
+Pentru prevenirea atacurilor CSRF (Cross-Site Request Forgery) am dezvoltat un sistem de token-uri de securitate care sunt generate și verificate pentru toate formularele sensibile din aplicație, asigurând că doar cererile legitime sunt procesate de server. Protecția împotriva Command Injection este realizată prin validarea strictă a tuturor fișierelor încărcate și procesarea lor într-un mediu controlat și izolat.
 \subsubsection{Securizarea upload-ului de fișiere}
-
-Gestionarea securizată a imaginilor și documentelor:
-
-\begin{itemize}
-    \item \textbf{Validarea tipurilor}: Restricționarea la formate de imagini acceptate (JPEG, PNG, WebP)
-    \item \textbf{Limitarea dimensiunii}: Controlul mărimii fișierelor (10MB maxim per imagine)
-    \item \textbf{Izolarea fișierelor}: Stocarea în directoare separate fără acces direct la execuție
-\end{itemize}
-
+Gestionarea securizată a imaginilor și documentelor a reprezentat o provocare tehnică importantă, pe care am abordat-o prin implementarea unui sistem  de validare și control. Am restricționat tipurile de fișiere acceptate doar la formatele standard de imagini precum JPEG, PNG și WebP, eliminând riscul încărcării de fișiere executabile sau malițioase.
+Controlul mărimii fișierelor este implementat cu o limită maximă de 10MB per imagine, asigurând astfel că platforma nu poate fi supraîncărcată cu fișiere foarte mari care ar putea afecta performanța sistemului. Toate fișierele încărcate sunt stocate în directoare separate care nu permit execuția directă, creând o barieră suplimentară împotriva eventualelor amenințări de securitate.
 \subsection{Conformitatea cu reglementările de protecție a datelor}
-
-Platforma respectă principiile GDPR și ale legislației naționale privind protecția datelor personale.
-
+Dezvoltarea platformei CivicAlert a ținut cont de necesitatea respectării principiilor GDPR și ale legislației naționale privind protecția datelor personale, implementând mecanisme care asigură conformitatea completă cu aceste reglementări esențiale.
 \subsubsection{Principiile de minimizare a datelor}
+Am adoptat o logică de colectare limitată a datelor, implementând sisteme care solicită doar informațiile strict necesare pentru funcționarea eficientă a platformei. Această abordare minimalistă reduce riscurile de securitate și respectă principiul proporționalității din GDPR.
+Platforma include politici  care asigură ștergerea automată a datelor vechi care nu mai sunt necesare pentru funcționarea sistemului, menținând astfel o bază de date curată și conformă cu principiile de păstrare temporară. Pentru procesarea statisticilor și analizelor am implementat mecanisme de anonimizare care permit extragerea de informații utile fără a compromite confidențialitatea datelor personale ale utilizatorilor.
+\subsubsection{Implementarea drepturilor utilizatorilor}
+Pentru exercitarea drepturilor GDPR am dezvoltat funcționalități specifice care permit utilizatorilor să își gestioneze propriile date într-o manieră transparentă și accesibilă. Dreptul de acces este implementat prin intermediul unei secțiuni dedicate unde utilizatorii pot vizualiza toate datele personale stocate în sistem.
+Dreptul de modificare/ștergere a datelor este asigurat prin posibilitatea editării profilului și a informațiilor personale în orice moment, permițând utilizatorilor să mențină acuratețea datelor lor. Am implementat de asemenea dreptul la ștergere prin opțiunea de dezactivare sau ștergere completă a contului, proces care elimină definitiv toate datele asociate utilizatorului din sistem.
 
-\begin{itemize}
-    \item \textbf{Colectarea limitată}: Doar datele strict necesare pentru funcționarea platformei
-    \item \textbf{Păstrarea temporară}: Politici de retenție pentru ștergerea automată a datelor vechi
-    \item \textbf{Anonimizarea}: Procesarea statisticilor fără informații de identificare personală
-\end{itemize}
-
-\subsubsection{Drepturile utilizatorilor}
-
-Implementarea mecanismelor pentru exercitarea drepturilor GDPR:
-
-\begin{itemize}
-    \item \textbf{Dreptul de acces}: Funcționalitate pentru accesarea datelor personale
-    \item \textbf{Dreptul de rectificare}: Posibilitatea editării profilului și a informațiilor
-    \item \textbf{Dreptul la ștergere}: Opțiunea de dezactivare/ștergere a contului
-    \item \textbf{Portabilitatea datelor}: Export structurat al datelor utilizatorului
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{poza_profil.png}
+    \caption{Pagina de profil a utilizatorului}
+    \label{fig:profil}
+\end{figure}
 
 \section{Concluzii}
-
-Analiza contextului actual evidențiază necesitatea urgentă pentru o platformă centralizată de comunicare civică în România, iar dezvoltarea CivicAlert reprezintă un răspuns concret la această nevoie.
-
+Analiza detaliată a contextului actual evidențiază necesitatea pentru o platformă centralizată de comunicare civică în România, iar dezvoltarea CivicAlert reprezintă un răspuns concret și bine fundamentat la această nevoie  identificată în societatea contemporană.
 \chapter{Obiectivele atinse și contribuțiile realizate}
 
-Dezvoltarea platformei CivicAlert a demonstrat viabilitatea unei soluții tehnologice moderne pentru comunicarea civică în România. Implementarea tehnică s-a bazat pe o arhitectură MVC robustă, utilizând Node.js și Express.js pentru a crea o structură modulară și scalabilă. Integrarea armonioasă între MongoDB pentru flexibilitatea datelor, EJS pentru rendering server-side și tehnologiile frontend moderne a rezultat într-o platformă funcțională și eficientă. Toate caracteristicile esențiale au fost implementate cu succes, incluzând raportarea problemelor cu geolocalizare precisă, sistemul de votare democratică, gestionarea comentariilor interactive și panoul administrativ complet. În plus, aplicarea măsurilor de securitate moderne, de la criptarea datelor la protecția împotriva vulnerabilităților web comune, asigură un mediu sigur pentru utilizatori.
+Prin dezvoltarea platformei CivicAlert am demonstrat viabilitatea unei soluții tehnologice moderne pentru comunicarea civică în România. Implementarea tehnică care a constat în arhitectura MVC, utilizând node și express pentru a crea o structură modulară și scalabilă. Integrarea  între MongoDB pentru flexibilitatea datelor, EJS pentru rendering server-side și tehnologiile frontend moderne a rezultat într-o platformă funcțională și eficientă. Toate caracteristicile esențiale au fost implementate cu succes, incluzând raportarea problemelor cu geolocalizare precisă, sistemul de votare, gestionarea comentariilor  și panoul administrativ. În plus, aplicarea măsurilor de securitate moderne, de la criptarea datelor la protecția împotriva vulnerabilităților web comune, asigură un mediu sigur pentru utilizatori.
 
-Platforma aduce contribuții semnificative în ecosistemul civic românesc prin crearea unui punct unic de acces pentru problemele civice din toate județele țării, eliminând astfel fragmentarea actuală a sistemelor de raportare. Transparența completă asupra ciclului de viață al problemelor raportate, de la identificare la rezolvare, reprezintă o inovație majoră în relația dintre cetățeni și autorități. Democratizarea participării civice prin reducerea barierelor de intrare permite oricărui cetățean să se implice activ în îmbunătățirea comunității sale. Facilitarea prioritizării problemelor pe baza feedback-ului comunității prin sistemul de votare optimizează utilizarea resurselor publice și asigură o abordare bazată pe nevoile reale ale populației.
+Platforma aduce contribuții semnificative în ecosistemul civic românesc prin crearea unui punct unic de acces pentru problemele civice din toate județele țării, simplificând și centralizând raportarea. Transparența completă asupra ciclului de viață al problemelor raportate (de la identificare la rezolvare) reprezintă o îmbunătățire în relația dintre cetățeni și autorități. Participarea  fără restricții  permite oricărui cetățean să se implice activ în îmbunătățirea comunității sale, iar uitilizarea funcționalităților și prioritizarea  problemelor pe baza feedback-ului comunității prin sistemul de votare optimizează utilizarea resurselor publice și asigură o abordare bazată pe nevoile reale ale populației.
 
 \subsection{Impactul social și civic al platformei}
 
-Implementarea platformei CivicAlert are potențialul de a genera un impact transformațional asupra societății românești. Pentru cetățeni  platforma oferă instrumentele necesare pentru o implicare civică activă și responsabilă, creând un canal direct de comunicare cu autoritățile și posibilitatea urmăririi progresului în timp real. Vizibilitatea problemelor comune poate mobiliza comunități întregi pentru acțiuni coordonate, iar platforma funcționează ca un instrument practic de educație civică prin participarea directă în procesele democratice locale.
+Implementarea platformei CivicAlert are potențialul de a genera un mare impact asupra societății noastre. Pentru cetățeni  platforma oferă instrumentele necesare pentru o implicare civică activă și responsabilă, creând un canal direct de comunicare cu autoritățile și posibilitatea urmăririi progresului în timp real. Vizibilitatea problemelor comune poate mobiliza comunități întregi pentru acțiuni coordonate, iar platforma funcționează ca un instrument practic de educație civică prin participarea directă în rezolvarea problemelor locale.
 
 Din perspectiva autorităților, datele colectate permit identificarea și prioritizarea eficientă a problemelor cu impact major asupra comunității. Alocarea resurselor bazată pe date concrete și feedback-ul cetățenilor optimizează bugetele publice și îmbunătățește eficiența administrativă. Platforma oferă metrici obiective pentru evaluarea performanței în rezolvarea problemelor publice și contribuie la îmbunătățirea comunicării și încrederii dintre autorități și cetățeni prin transparență și responsabilitate.
 
 \subsection{Limitări și provocări identificate}
 
-În parcursul dezvoltării platformei am  identificat anumite limitări tehnice care necesită atenție în versiunile viitoare. Implementarea actuală necesită optimizări pentru gestionarea eficientă a datelor la nivel național, iar lipsa API-urilor standardizate cu sistemele administrative locale limitează automatizarea proceselor. Deși platforma este responsivă, o aplicație mobilă dedicată ar putea îmbunătăți semnificativ adopția în rândul utilizatorilor. Instrumentele actuale de raportare și analiză pot fi extinse pentru a oferi puncte de vedere  mai profunde asupra tendințelor și modelelor de comportament civic.
+În parcursul dezvoltării platformei am  identificat anumite limitări tehnice care necesită atenție în versiunile viitoare. Implementarea actuală necesită optimizări pentru gestionarea eficientă a datelor la nivel național, iar lipsa API-urilor standardizate cu sistemele administrative locale limitează automatizarea proceselor. Deși platforma este responsivă, o aplicație mobilă dedicată ar putea îmbunătăți semnificativ adopția în rândul utilizatorilor. Instrumentele actuale de raportare și analiză pot fi extinse pentru a oferi puncte de vedere  mai detaliate asupra tendințelor și modelelor de comportament civic.
 
-Provocările de adopție includ necesitatea educării utilizatorilor asupra beneficiilor și modului de utilizare a platformei, depășirea reticenței față de platformele digitale în special în rândul populației mai în vârstă, și provocarea de a convinge autoritățile locale să adopte și să utilizeze activ platforma. Dezvoltarea unui model de finanțare sustenabil pe termen lung pentru mentenanța și dezvoltarea continuă reprezintă o provocare strategică importantă.
+Provocările de adopție includ necesitatea educării utilizatorilor asupra beneficiilor și modului de utilizare a platformei, depășirea reticenței față de platformele digitale în special în rândul populației mai în vârstă  și provocarea de a convinge autoritățile locale să adopte și să utilizeze activ platforma. Dezvoltarea unui model de finanțare sustenabil pe termen lung pentru mentenanța și dezvoltarea continuă reprezintă o provocare strategică importantă.
 
 \subsection{Direcții de dezvoltare și viziune de viitor}
 
-Pe baza experienței acumulate în dezvoltarea versiunii actuale, se conturează direcții clare de evoluție pentru platformă. Dezvoltarea de aplicații mobile native pentru iOS și Android va optimiza experiența pe dispozitive mobile, iar crearea unei interfețe de programare publice va permite integrarea cu alte sisteme și aplicații. Implementarea algoritmilor de inteligență artificială pentru clasificarea automată și prioritizarea problemelor, precum și introducerea elementelor de gamificare, vor îmbunătăți atât eficiența cât și angajamentul utilizatorilor.
+Pe baza experienței acumulate în dezvoltarea versiunii actuale, se conturează direcții clare de evoluție pentru platformă. Dezvoltarea de aplicații mobile  pentru iOS și Android va optimiza experiența pe dispozitive mobile, iar crearea unei interfețe de programare publice va permite integrarea cu alte sisteme și aplicații. Implementarea algoritmilor de inteligență artificială pentru clasificarea automată și prioritizarea problemelor, precum și introducerea elementelor de gamificare, vor îmbunătăți atât eficiența cât și angajamentul utilizatorilor.
 
 Extensiile funcționale planificate includ dezvoltarea unui sistem complet de notificări, integrarea cu rețelele sociale pentru amplificarea vizibilității problemelor, funcționalități de raportare offline și instrumente avansate de analiză pentru autorități și cercetători. Extinderea ecosistemului prin parteneriate instituționale oficiale cu primării și consilii județene va facilita adopția la scară largă, iar conectivitatea cu platforme similare din Uniunea Europeană va permite schimbul de bune practici și standardizarea abordărilor la nivel european.
 
 \subsection{Reflecții finale și perspectiva de ansamblu}
-
-Dezvoltarea platformei CivicAlert reprezintă mai mult decât o realizare tehnică, constituind o demonstrație concretă a modului în care tehnologia poate servi nevoi sociale reale și presante. Procesul de dezvoltare a evidențiat importanța fundamentală a echilibrului între inovația tehnică și înțelegerea profundă a contextului social și cultural în care operează o platformă civică.
-
-Succesul pe termen lung al CivicAlert nu va depinde exclusiv de robustețea tehnică, ci și de capacitatea de a provoca o schimbare culturală profundă în modul în care cetățenii și autoritățile interacționează și colaborează. Platforma are potențialul de a deveni un catalizator pentru transformarea României într-o societate mai participativă, mai transparentă și mai responsabilă, unde vocea fiecărui cetățean poate contribui efectiv la îmbunătățirea colectivă a calității vieții.
 
 În contextul actual al digitalizării accelerate a serviciilor publice și al nevoii crescute de participare civică, CivicAlert se poziționează ca un exemplu de aplicare practică a principiilor de e-governance și participare civică digitală. Prin conectarea tehnologiei moderne cu aspirațiile democratice ale societății românești, platforma contribuie la modernizarea fundamentală a relației dintre stat și cetățeni, promovând o cultură a transparenței, responsabilității și participării active în viața publică.
 
@@ -734,7 +629,7 @@ Succesul pe termen lung al CivicAlert nu va depinde exclusiv de robustețea tehn
 \chapter{Implementarea practică și scenarii de utilizare}
 
 
-\section{Provocări tehnice și soluții adoptate}
+\section{Constrângeri tehnice și strategii de abordaree}
 
 În procesul de dezvoltare am întâmpinat și rezolvat multiple provocări tehnice specifice unei platforme de civic engagement.
 
@@ -753,7 +648,7 @@ Pentru a demonstra  utilitatea platformei m-am gândit la câteva scenarii reali
 
 \subsection{Scenariul 1: Raportarea unei gropi periculoase}
 
-\textbf{Context:} Maria Lefter, o cetățeancă din Cluj-Napoca, observă o groapă mare pe strada pe care o parcurge zilnic pentru a ajunge la serviciu. Groapa reprezintă un pericol real pentru siguranța în trafic și a cauzat deja avarii la mai multe autoturisme.
+\textbf{Context:} Maria Lefter, o cetățeancă din Vaslui, observă o groapă mare pe strada pe care o parcurge zilnic pentru a ajunge la serviciu. Groapa reprezintă un pericol real pentru siguranța în trafic și a cauzat deja avarii la mai multe autoturisme si motociclete.
 
 \textbf{Procesul în CivicAlert:}
 \begin{enumerate}
@@ -766,14 +661,22 @@ Pentru a demonstra  utilitatea platformei m-am gândit la câteva scenarii reali
 \item Trimite raportarea (care intră automat în statusul "În așteptare")
 \end{enumerate}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{groapa in asfalt.png}
+    \caption{Problema raportată de Maria Lefter}
+    \label{fig:groapa}
+\end{figure}
+
 \textbf{Impactul comunitar:} În următoarele zile, raportarea Mariei primește 47 de voturi de susținere din partea altor cetățeni care confirmă problema. Comentariile adăugate de comunitate oferă informații suplimentare despre frecvența utilizării străzii și alte incidente similare. Autoritatea locală accesează platforma, marchează problema ca "În lucru" și oferă un termen estimativ de rezolvare.
 
-\subsection{Scenariul 2: Campanie comunitară pentru parc abandonat}
 
-\textbf{Context:} comunitatea din cartierul Floreasca din București se mobilizează pentru reabilitarea unui parc abandonat care ar putea deveni un spațiu de recreere pentru locatari.
+\subsection{Scenariul 2: Campanie comunitară pentru un parc abandonat}
+
+\textbf{Context:} comunitatea din cartierul Băneasa din București se mobilizează pentru reabilitarea unui parc abandonat care ar putea deveni un spațiu de recreere pentru locatari.
 
 \textbf{Evoluția în platformă:}
-Andrei Astefanesei raportează inițial cum arata  parcul cu imagini sugestive și o descriere detaliată a potențialului de reabilitare. Raportarea câștigă treptat susținerea comunității prin sistemul de votare, ajungând la 156 de voturi în două săptămâni. Prin comentarii, cetățenii adaugă sugestii specifice pentru amenajare, propun să se implice voluntar și organizează întâlniri de planificare. Autoritatea locală observă interesul ridicat și include proiectul în planul de investiții publice pentru anul următor.
+Andrei Aștefănesei raportează inițial cum arata  parcul cu imagini sugestive și o descriere detaliată a potențialului de reabilitare. Raportarea câștigă treptat susținerea comunității prin sistemul de votare, ajungând la 156 de voturi în două săptămâni. Prin comentarii, cetățenii adaugă sugestii specifice pentru amenajare, propun să se implice voluntar și organizează întâlniri de planificare. Autoritatea locală observă interesul ridicat și include proiectul în planul de investiții publice pentru anul următor.
 
 \textbf{Rezultatul:} Platforma facilitează nu doar identificarea problemei, ci și mobilizarea comunitară și comunicarea eficientă cu autoritatea responsabilă.
 
@@ -820,13 +723,13 @@ Adopția platformei CivicAlert oferă autorităților locale multiple avantaje �
 \hline
 \textbf{Domeniu de impact} & \textbf{Beneficiu specific} \\
 \hline
-Eficiența operațională & Centralizarea raportărilor elimină comunicarea fragmentată și reduce timpii de procesare cu până la 40\% \\
+Eficiența operațională & Centralizarea raportărilor elimină comunicarea slabă și reduce timpii de procesare  \\
 \hline
 Transparența decizională & Datele publice despre probleme și progres îmbunătățesc încrederea cetățenilor și responsabilitatea instituțională \\
 \hline
 Planificarea bugetară & Identificarea problemelor cu impact major permite prioritizarea investițiilor și optimizarea alocării resurselor \\
 \hline
-Comunicarea publică & Canalul direct de comunicare reduce presiunea pe call center-ele și permite comunicarea proactivă \\
+Comunicarea publică & Canalul direct de comunicare reduce presiunea pe call-centers și permite comunicarea proactivă \\
 \hline
 \end{tabular}
 \end{table}
@@ -919,13 +822,13 @@ Evaluarea s-a focusat pe următoarele metrici cheie:
 \label{tab:performance_metrics}
 \begin{tabular}{|l|p{7cm}|c|}
 \hline
-\textbf{Metrica} & \textbf{Descriere} & \textbf{Ținta} \\
+\textbf{Metrica} & \textbf{Descriere} & \textbf{Rezultatul} \\
 \hline
-First Contentful Paint (FCP) & Timpul până la primul element vizibil & $< 2s$ \\
+First Contentful Paint (FCP) & Timpul până la primul element vizibil & $0.7s$ \\
 \hline
-Largest Contentful Paint (LCP) & Timpul până la încărcarea elementului principal & $< 2.5s$ \\
+Largest Contentful Paint (LCP) & Timpul până la încărcarea elementului principal & $0.8s$ \\
 \hline
-Time to Interactive (TTI) & Timpul până la interactivitatea completă & $< 3s$ \\
+Time to Interactive (TTI) & Timpul până la interactivitatea completă & $< 2s$ \\
 \hline
 Query Response Time & Timpul de răspuns al cererilor către baza de date & $< 200ms$ \\
 \hline
@@ -933,6 +836,13 @@ Memory Usage & Utilizarea memoriei de către aplicația Node.js & $< 512MB$ \\
 \hline
 \end{tabular}
 \end{table}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{metrics.png}
+    \caption{Metricile din Lighthouse}
+    \label{fig:metrics}
+\end{figure}
 
 \section{Rezultatele evaluării performanței}
 
@@ -948,15 +858,15 @@ Evaluarea interfeței utilizator folosind Google Lighthouse a demonstrat perform
 \hline
 \textbf{Pagină} & \textbf{Performance} & \textbf{Accessibility} & \textbf{Best Practices} \\
 \hline
-Homepage & 92/100 & 95/100 & 88/100 \\
+Homepage & 99/100 & 89/100 & 96/100 \\
 \hline
-Feed probleme & 89/100 & 94/100 & 91/100 \\
+Feed probleme & 99/100 & 89/100 & 94/100 \\
 \hline
-Detalii postare & 91/100 & 96/100 & 89/100 \\
+Detalii postare & 99/100 & 88/100 & 96/100 \\
 \hline
-Admin dashboard & 87/100 & 93/100 & 90/100 \\
+Admin dashboard & 99/100 & 90/100 & 95/100 \\
 \hline
-\textbf{Media} & \textbf{90/100} & \textbf{95/100} & \textbf{90/100} \\
+\textbf{Media} & \textbf{99/100} & \textbf{89/100} & \textbf{96/100} \\
 \hline
 \end{tabular}
 \end{table}
@@ -1002,26 +912,26 @@ Toate funcționalitățile principale au fost testate sistematic prin simularea 
 
 Scenariul 1: Înregistrare și primul raport
 \begin{itemize}
-\item Înregistrare utilizator nou: \checkmark\ Completă în 2 minute
-\item Validare email și parolă: \checkmark\ Funcționează corect
-\item Primul raport de problemă: \checkmark\ Proces intuitiv
-\item Upload imagini: \checkmark\ Suportă multiple formate
+\item Înregistrare utilizator nou: completă în 2 minute
+\item Validare email și parolă: funcționează corect
+\item Primul raport de problemă: roces intuitiv
+\item Upload imagini: suportă multiple formate
 \end{itemize}
 
 Scenariul 2: Navigare și interacțiune
 \begin{itemize}
-\item Explorare feed probleme: \checkmark\ Încărcare rapidă
-\item Filtrare după status/județ: \checkmark\ Răspuns instant
-\item Votare probleme: \checkmark\ Update real-time
-\item Adăugare comentarii: \checkmark\ Validare corectă
+\item Explorare feed probleme: încărcare rapidă
+\item Filtrare după status/județ: răspuns instant
+\item Votare probleme: update real-time
+\item Adăugare comentarii: postare real-time
 \end{itemize}
 
 Scenariul 3: Administrare și gestionare
 \begin{itemize}
-\item Acces panou admin: \checkmark\ Autorizare corectă
-\item Schimbare status probleme: \checkmark\ Notificări funcționale
-\item Gestionare utilizatori: \checkmark\ Operații CRUD complete
-\item Vizualizare statistici: \checkmark\ Date actualizate
+\item Acces panou admin: autorizare corectă
+\item Schimbare status probleme: funcționare corectă
+\item Gestionare utilizatori: operații CRUD complete
+\item Vizualizare statistici: date actualizate
 \end{itemize}
 
 \subsection{Compatibilitatea cross-browser}
@@ -1036,13 +946,13 @@ Aplicația a fost testată pe principalele browsere și platforme:
 \hline
 \textbf{Browser} & \textbf{Desktop} & \textbf{Mobile} & \textbf{Observații} \\
 \hline
-Chrome 120+ & \checkmark & \checkmark & Suport complet \\
+Chrome 120+ & \checkmark & \checkmark & Funcționează corect \\
 \hline
-Firefox 119+ & \checkmark & \checkmark & Performanțe bune \\
+Firefox 119+ & \checkmark & \checkmark & Funcționează corect \\
 \hline
-Safari 17+ & \checkmark & \checkmark & Mici ajustări CSS necesare \\
+Safari 17+ & \checkmark & \checkmark & Funcționează corect \\
 \hline
-Edge 118+ & \checkmark & \checkmark & Compatibilitate completă \\
+Edge 118+ & \checkmark & \checkmark & Funcționează corect \\
 \hline
 Opera 105+ & \checkmark & \checkmark & Funcționează corect \\
 \hline
@@ -1057,18 +967,18 @@ Aplicația a fost auditată pentru identificarea potențialelor vulnerabilităț
 
 Autentificarea și autorizarea:
 \begin{itemize}
-\item Hash-uirea parolelor cu bcrypt: \checkmark\ Implementat corect
-\item Sesiuni securizate cu expirare: \checkmark\ Funcțional
-\item Validarea rolurilor utilizator: \checkmark\ Restricții aplicate
-\item Protecție CSRF: \checkmark\ Tokeni implementați
+\item Hash-uirea parolelor cu bcrypt: implementat corect
+\item Sesiuni securizate cu expirare: funcțional
+\item Validarea rolurilor utilizator: restricții aplicate
+\item Protecție CSRF: tokeni implementați
 \end{itemize}
 
 Validarea input-urilor:
 \begin{itemize}
-\item Sanitizare date formular: \checkmark\ Implementată
-\item Validare tipuri fișiere upload: \checkmark\ Restricții active
-\item Protecție SQL injection: \checkmark\ Queries parametrizate
-\item Limitarea mărimii request-uri: \checkmark\ Configurată
+\item Sanitizare date formular: implementată
+\item Validare tipuri fișiere upload: restricții active
+\item Protecție SQL injection: queries parametrizate
+\item Limitarea mărimii request-uri: configurată
 \end{itemize}
 
 
@@ -1076,11 +986,12 @@ Validarea input-urilor:
 
 Sistemul de autentificare implementat asigură monitorizarea activității și identificarea problemelor:
 
-- Autentificarea centralizată cu niveluri diferențiate (error, warn, info, debug)
-- Rotația automată a fișierelor de log
-- Alerte pentru erori critice
-- Anonimizarea datelor sensibile în log-uri
-
+\begin{itemize}
+\item Autentificarea centralizată cu niveluri diferențiate (error, warn, info, debug)
+\item Rotația automată a fișierelor de log
+\item Alerte pentru erori critice
+\item Anonimizarea datelor sensibile în log-uri
+\end{itemize}
 \section{Testarea responsive design}
 
 \subsection{Adaptabilitatea pe diferite dimensiuni}
@@ -1095,47 +1006,21 @@ Interfața a fost testată pe multiple dimensiuni de ecran pentru asigurarea une
 \hline
 \textbf{Dimensiune ecran} & \textbf{Rezoluție} & \textbf{Layout} & \textbf{Funcționalitate} \\
 \hline
-Mobile Portrait & 360x640 & \checkmark\ Adaptat & \checkmark\ Completă \\
+Mobile Portrait & 360x640 & \checkmark\  & \checkmark\ \\
 \hline
-Mobile Landscape & 640x360 & \checkmark\ Optimizat & \checkmark\ Funcțională \\
+Mobile Landscape & 640x360 & \checkmark\  & \checkmark\  \\
 \hline
-Tablet Portrait & 768x1024 & \checkmark\ Responsive & \checkmark\ Completă \\
+Tablet Portrait & 768x1024 & \checkmark\  & \checkmark\  \\
 \hline
-Tablet Landscape & 1024x768 & \checkmark\ Adaptat & \checkmark\ Optimă \\
+Tablet Landscape & 1024x768 & \checkmark\ & \checkmark\ \\
 \hline
-Desktop Small & 1366x768 & \checkmark\ Standard & \checkmark\ Completă \\
+Desktop Small & 1366x768 & \checkmark\  & \checkmark\  \\
 \hline
-Desktop Large & 1920x1080 & \checkmark\ Extins & \checkmark\ Optimă \\
+Desktop Large & 1920x1080 & \checkmark\  & \checkmark\  \\
 \hline
 \end{tabular}
 \end{table}
 
-Principalele adaptări implementate:
-\begin{itemize}
-\item Navigation collapse pe mobile cu menu hamburger
-\item Reorganizarea coloanelor pe ecrane mici
-\item Dimensiuni touch-friendly pentru butoane pe mobile
-\item Optimizarea imaginilor pentru diferite densități pixel
-\end{itemize}
-
-\section{Optimizări implementate}
-
-\subsection{Optimizări front-end}
-
-Compresarea și minimizarea:
-\begin{itemize}
-\item CSS minificat reduce dimensiunea cu 35\%
-\item JavaScript concatenat și comprimat
-\item Imagini optimizate cu format WebP pentru browsere compatibile
-\item Lazy loading pentru imagini din feed
-\end{itemize}
-
-Aplicării de caching:
-\begin{itemize}
-\item Cache browser pentru asset-uri statice (24h)
-\item Service Worker pentru cache offline (resurse critice)
-\item CDN pentru biblioteci externe (Bootstrap, FontAwesome)
-\end{itemize}
 
 \subsection{Optimizări back-end}
 
@@ -1147,34 +1032,14 @@ db.postari.createIndex({ "status": 1, "voturi": -1 })
 db.utilizatori.createIndex({ "email": 1 }, { unique: true })
 \end{verbatim}
 
-Optimizarea server-ului:
-\begin{itemize}
-\item Implementarea rate limiting pentru API endpoints
-\item Compresarea răspunsurilor HTTP cu gzip
-\item Connection pooling pentru MongoDB
-\item Caching în memorie pentru queries frecvente
-\end{itemize}
-
-\section{Monitorizarea în timp real}
-
-\subsection{Dashboard de monitorizare}
-
-Pentru monitorizarea continuă a aplicației a fost implementat un dashboard intern care afișează:
-
-\begin{itemize}
-\item Metrici de performanță în timp real
-\item Numărul utilizatorilor activi
-\item Timpii de răspuns ai API-urilor
-\item Utilizarea resurselor server (CPU, memorie)
-\item Statistici ale bazei de date
-\end{itemize}
-
+\paragraph{Optimizarea server-ului}
+Pentru îmbunătățirea performanțelor platformei am implementat limitări pe API endpoints-uri, o măsură care previne supraîncărcarea sistemului prin limitarea numărului de cereri consecutive de la același utilizator într-un interval de timp specificat. Această funcționalitate protejează platforma împotriva atacurilor de tip DDoS și asigură o distribuție echitabilă a resurselor între toți utilizatorii.
+Am configurat compresarea răspunsurilor HTTP cu gzip pentru a reduce semnificativ cantitatea de date transmise între server și client, rezultând în timpi de încărcare mai rapizi și o experiență îmbunătățită pentru utilizatori, în special pentru cei cu conexiuni internet mai lente. Connection pooling-ul pentru MongoDB optimizează gestionarea conexiunilor la baza de date prin reutilizarea conexiunilor existente în loc de crearea unor noi conexiuni pentru fiecare cerere, reducând astfel overhead-ul și îmbunătățind timpii de răspuns.
+Pentru îmbunătățirea răspunsului la queries frecvente am implementat un sistem de caching în memorie care stochează temporar rezultatele cererilor des accesate, eliminând nevoia de a interoga repetat baza de date pentru aceleași informații și reducând considerabil latența sistemului.
 
 \section{Benchmark-uri și comparații}
-
-\subsection{Comparație cu standarde industrie}
-
-Performanțele CivicAlert comparativ cu benchmarks-urile industriei pentru aplicații web similare:
+\subsection{Evaluarea performanțelor relative}
+Pentru validarea eficacității soluției dezvoltate am realizat o analiză comparativă a performanțelor CivicAlert în raport cu standardele industriei pentru aplicații web similare. Această evaluare a evidențiat că platforma se situează favorabil în contextul benchmark-urilor consacrate, demonstrând că alegerile tehnologice și implementarea au rezultat într-o soluție competitivă și eficientă din punct de vedere al performanțelor.
 
 \begin{table}[H]
 \centering
@@ -1184,67 +1049,55 @@ Performanțele CivicAlert comparativ cu benchmarks-urile industriei pentru aplic
 \hline
 \textbf{Metrica} & \textbf{CivicAlert} & \textbf{Standard industrie} & \textbf{Evaluare} \\
 \hline
-Page Load Time & 1.8s & 3.0s & \checkmark\ Superior \\
+Page Load Time & 1.8s & 3.0s & Superior \\
 \hline
-Time to Interactive & 2.1s & 3.5s & \checkmark\ Superior \\
+Time to Interactive & 2.1s & 3.5s &  Superior \\
 \hline
-API Response Time & 145ms & 250ms & \checkmark\ Superior \\ 
+API Response Time & 145ms & 250ms &  Superior \\ 
 \hline
-Lighthouse Score & 90/100 & 75/100 & \checkmark\ Superior \\
+Lighthouse Score & 99/100 & 75/100 &  Superior \\
 \hline
-Mobile Performance & 89/100 & 70/100 & \checkmark\ Superior \\
+Mobile Performance & 89/100 & 70/100 &  Superior \\
 \hline
 \end{tabular}
 \end{table}
 
-\section{Recomandări pentru îmbunătățiri}
-
+\section{Eventuale îmbunătățiri}
 \subsection{Optimizări pe termen scurt}
+Pentru îmbunătățirea continuă a platformei am identificat mai multe direcții de dezvoltare care pot fi implementate în perioada imediat următoare. Din perspectiva performanței, implementarea unui sistem cache Redis pentru gestionarea sesiunilor și a datelor frecvent accesate ar aduce beneficii semnificative în reducerea timpilor de răspuns și în optimizarea utilizării resurselor serverului. Această soluție ar permite stocarea temporară a informațiilor des solicitate și ar reduce numărul de interogări directe ale bazei de date principale.
 
-Performanță:
-\begin{itemize}
-\item Implementarea cache Redis pentru sesiuni și date frecvente
-\item Optimizarea imaginilor cu procesare automată (resize, compress)
-\item Implementarea Progressive Web App (PWA) features
-\end{itemize}
+Optimizarea imaginilor prin procesare automată reprezintă o altă îmbunătățire esențială care ar include funcționalități de redimensionare și compresie automată a fotografiilor încărcate de utilizatori. Această funcționalitate ar reduce semnificativ timpul de încărcare al paginilor și ar îmbunătăți experiența utilizatorilor, în special pentru cei care accesează platforma de pe dispozitive mobile cu conexiuni mai lente la internet.
 
-Funcționalitate:
-\begin{itemize}
-\item Sistem de notificări push pentru actualizări probleme
-\item API REST mai granular pentru mobile apps viitoare
-\item Backup automat și disaster recovery procedures
-\end{itemize}
+Implementarea caracteristicilor Progressive Web App ar transforma platforma într-o aplicație mai accesibilă și mai rapidă, oferind funcționalități offline și o experiență similară aplicațiilor native. Din punct de vedere funcțional, dezvoltarea unui sistem de notificări push pentru actualizările problemelor raportate ar îmbunătăți considerabil comunicarea cu utilizatorii și ar crește gradul de implicare în procesul civic.
 
+Crearea unui API REST mai granular ar facilita dezvoltarea viitoare de aplicații mobile dedicate și ar permite integrarea mai ușoară cu alte sisteme și platforme. Implementarea procedurilor de backup automat și disaster recovery ar asigura continuitatea serviciului și protecția datelor în situații neprevăzute, aspecte cruciale pentru o platformă civică de încredere.
 \subsection{Dezvoltări pe termen lung}
+Pentru viitorul pe termen lung al platformei am conceput o strategie de dezvoltare care să răspundă nevoilor de scalabilitate și securitate avansată. Migrarea către o arhitectură microservices pentru componentele critice ar permite scalarea independentă a diferitelor module ale platformei și ar facilita mentenanța și actualizarea sistemului fără întreruperea serviciilor pentru utilizatori.
 
-Scalabilitate:
-\begin{itemize}
-\item Migrarea către arhitectură microservices pentru componente critice
-\item Implementarea load balancing pentru multiple instanțe
-\item Database sharding pentru volume mari de date
-\end{itemize}
+Implementarea load balancing-ului pentru multiple instanțe ar asigura distribuirea echilibrată a traficului și ar elimina punctele unice de eșec, îmbunătățind disponibilitatea și fiabilitatea platformei. Database sharding-ul devine esențial pentru gestionarea volumelor mari de date pe măsură ce platforma se va extinde la nivel național și numărul utilizatorilor și al raportărilor va crește exponențial.
 
-Securitate avansată:
-\begin{itemize}
-\item Implementarea Two-Factor Authentication (2FA)
-\item Audit logs detaliate pentru compliance
-\item Penetration testing profesional periodic
-\end{itemize}
+Din perspectiva securității avansate, implementarea autentificării cu doi factori ar adăuga un nivel suplimentar de protecție pentru conturile utilizatorilor, în special pentru cele cu privilegii administrative. Dezvoltarea unui sistem comprehensiv de audit logs ar asigura conformitatea cu reglementările în vigoare și ar facilita monitorizarea activităților sensibile din platformă.
 
-\section{Concluzii evaluare tehnică}
+Realizarea periodică de teste de penetrare profesionale ar identifica proactiv potențialele vulnerabilități de securitate și ar menține platforma la standardele cele mai ridicate de protecție. Aceste măsuri collective ar transforma CivicAlert într-o soluție robustă, scalabilă și sigură, capabilă să servească eficient nevoile civice ale României pe termen lung.
+
+\section{Concluzii}
 
 Evaluarea tehnică a platformei  demonstrează o implementare solidă care îndeplinește și depășește majoritatea standardelor de performanță din industrie.
-
 Rezultatele evaluării confirmă că aplicația este pregătită pentru utilizare în producție și oferă o bază tehnică solidă pentru dezvoltări viitoare și scalare la nivel național.
-
 Arhitectura modulară și tehnologiile modern alese   asigură sustenabilitatea tehnică pe termen lung și facilitează integrarea cu alte sisteme și servicii publice.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{end.png}
+    \caption{Secțiune de footer a website-ului}
+    \label{fig:end}
+\end{figure}
 
 % BIBLIOGRAFIE
 \newpage
 
 \chapter{Bibliografie}
 \begin{itemize}
-    \item Beck, K., et al., \textit{Manifesto for Agile Software Development}, 2001
     \item Chodorow, K., \textit{MongoDB: The Definitive Guide: Powerful and Scalable Data Storage}, O'Reilly Media, 2013
     \item Elmasri, R., \& Navathe, S., \textit{Fundamentals of Database Systems}, 7th Edition, Pearson, 2015
     \item Fowler, M., \textit{Patterns of Enterprise Application Architecture}, Addison-Wesley Professional, 2002
@@ -1269,8 +1122,8 @@ Arhitectura modulară și tehnologiile modern alese   asigură sustenabilitatea 
     \item Google Developers, \textit{Google Maps JavaScript API Documentation}, 2024
     \item Mozilla Developer Network, \textit{Web APIs and Modern JavaScript Development}, 2024
     \item Stack Overflow Community, \textit{Programming Questions and Solutions Database} - utilizat pentru research și rezolvarea problemelor tehnice specifice, 2020-2024
-    \item OpenAI, \textit{ChatGPT} - utilizat pentru research, analiză conceptuală și clarificarea aspectelor tehnice , 2024
-    \item Anthropic, \textit{Claude AI} - utilizat pentru research, analiză și consultanță tehnică în procesul de dezvoltare , 2024
+    \item OpenAI, \textit{ChatGPT}, utilizat pentru research, analiză conceptuală, generare de imagini și clarificarea aspectelor tehnice , 2024
+    \item Anthropic, \textit{Claude AI},utilizat pentru research, analiză, și consultanță tehnică în procesul de dezvoltare , 2024
     \item Font Awesome Inc., \textit{Font Awesome Icon Library Documentation}, 2024
     \item AOS Library, \textit{Animate On Scroll Library Documentation}, 2024
     \item Express.js Team, \textit{Express.js Framework Documentation: Fast, unopinionated, minimalist web framework for Node.js}, 2024
