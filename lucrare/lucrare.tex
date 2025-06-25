@@ -272,14 +272,14 @@ Această metodologie a permis adaptarea rapidă la schimbările de cerințe, rez
 CivicAlert este o platformă web interactivă dezvoltată folosind tehnologii moderne  ce permite cetățenilor din România să raporteze probleme civice locale într-un mod organizat și transparent. Platforma servește ca o punte digitală între comunitate și autorități, facilitând comunicarea eficientă și urmărirea progresului în rezolvarea problemelor de acest tip.
 
 \textbf{Funcționalități principale:}
-\begin{itemize}
-\item \textbf{Raportare intuitivă:} Interfață simplă pentru crearea rapoartelor cu text descriptiv, fotografii multiple și localizare precisă prin Google Maps API
-\item \textbf{Organizare geografică:} Structurare pe județe adaptată sistemului administrativ românesc, permițând filtrarea și căutarea eficientă a problemelor locale
-\item \textbf{Engagement comunitar:} Sistem democratic de votare pentru prioritizarea problemelor și funcționalitate de comentarii pentru dialog constructiv între cetățeni
-\item \textbf{Tracking transparent:} Urmărirea în timp real a statusului fiecărei probleme (în așteptare, în lucru, rezolvat) cu notificări automate pentru utilizatori
-\item \textbf{Panou administrativ:} Dashboard complet pentru admin cu statistici detaliate, instrumente de moderare și generare de rapoarte pentru luarea deciziilor
-\item \textbf{Design responsive:} Experiență optimizată pentru toate dispozitivele (desktop, mobile, tablet) asigurând accesibilitate maximă de oriunde si de pe orice
-\end{itemize}
+Funcționalitățile principale ale platformei CivicAlert au fost concepute pentru a răspunde nevoilor concrete ale utilizatorilor și pentru a facilita comunicarea eficientă între cetățeni și autorități. Procesul de raportare intuitivă beneficiază de o interfață simplă și accesibilă care permite utilizatorilor să creeze rapoarte complete prin introducerea de text descriptiv, încărcarea de fotografii multiple pentru documentarea problemelor și localizarea precisă prin integrarea Google Maps API.
+
+Organizarea rapoartelor și a semnalărilor este structurată pe județe ce seamănă puțin cu  sistemul administrativ românesc și permite utilizatorilor să filtreze și să caute eficient problemele specifice zonei lor de interes. Această abordare teritorială facilitează identificarea rapidă a problemelor locale și îmbunătățește relevanța informațiilor pentru fiecare utilizator în parte.
+
+Platforma promovează implicarea comunitară prin implementarea unui sistem  de votare care permite utilizatorilor să prioritizeze problemele considerate cele mai urgente, alături de o funcționalitate de comentarii care promovează dialogul constructiv între cetățeni și oferă un spațiu pentru schimbul de idei și soluții. Această abordare transformă platforma dintr-un simplu instrument de raportare într-o comunitate activă de cetățeni implicați.
+
+Transparența procesului este asigurată prin urmărirea în timp real a statusului fiecărei probleme raportate, cu trei etape clare: în așteptare, în lucru și rezolvat. Sistemul actulaizează in mod  automat schimbările de status ale postărilor și  informează utilizatorii despre progresul problemelor pe care le-au raportat sau pe care le urmăresc menținând în același timp implicarea pe termen lung și încrederea în proces.
+
 
 \textbf{Arhitectura tehnologică:}
 Soluția se bazează pe o arhitectură MVC;pentru backend am decis sa utilizez MongoDB pentru stocarea flexibilă a datelor, iar pentru frontend am ales sa folosesc  EJS, CSS(3) și JavaScript (ES6+). Integrarea Google Maps API oferă funcționalități geospațiale avansate pentru localizarea precisă a problemelor civice.
@@ -330,9 +330,9 @@ Procesele tradiționale de raportare a problemelor civice se confruntă cu multi
 
 \textbf{Procesele analogice inadecvate:} Formularea pe hârtie, vizitele fizice obligatorii și arhivarea manuală creează impedimente care exclud categoriile vulnerabile și pe cei cu programuri restrictive de lucru.
 
-\subsection{Digitalizarea serviciilor publice în era post-pandemie}
+\subsection{Digitalizarea serviciilor publice}
 
-Pandemia COVID-19 a accelerat procesul de digitalizare a serviciilor publice la nivel global, demonstrând că interacțiunea eficientă dintre cetățeni și autorități nu doar că este posibilă în mediul digital, dar a devenit esențială pentru continuitatea administrației publice. Raportul Comisiei Europene din 2023 indică o creștere de 340\% a utilizării serviciilor publice digitale în perioada 2020-2023, România înregistrând una dintre cele mai spectaculoase accelerații din Uniunea Europeană.
+Prin prisma pandemiei s-a accelerat procesul de digitalizare a serviciilor publice la nivel global, demonstrând că interacțiunea eficientă dintre cetățeni și autorități nu doar că este posibilă în mediul digital, dar a devenit esențială pentru continuitatea administrației publice. Raportul Comisiei Europene din 2023 indică o creștere de 340\% a utilizării serviciilor publice digitale în perioada 2020-2023, România înregistrând una dintre cele mai spectaculoase accelerații din Uniunea Europeană.
 
 Transformarea digitală post-pandemică a evidențiat două aspecte cruciale: capacitatea tehnică a instituțiilor de a se adapta rapid când există presiune sistemică, și apetitul crescut al cetățenilor pentru soluții digitale convenabile și eficiente. Totuși, comunicarea civică a rămas în mare parte neafectată de acest trend internațional.
 
@@ -372,7 +372,7 @@ Anul lansării & 2007 & 2008 & 2025 \\
 Acoperire teritorială & Națională & 300+ orașe & 42 județe \\
 \hline
 \end{tabular}
-\caption{Comparația detaliată: CivicAlert vs. platforme de referință}
+\caption{Comparația detaliată: CivicAlert vs. platformele actuale de pe piață}
 \label{tab:comparatie_detaliata}
 \end{figure}
 
@@ -537,34 +537,6 @@ Dezvoltarea platformei CivicAlert a necesitat o atenție deosebită acordată as
 \subsubsection{Protecția credențialelor utilizatorilor}
 Pentru securizarea parolelor am implementat algoritmul bcrypt cu un factor de cost de 12, care oferă o protecție eficientă împotriva atacurilor de tip rainbow table și brute force. Sistemul generează automat salt-uri aleatorii unice pentru fiecare parolă, eliminând riscul asociat cu hash-urile identice și asigurând că chiar parolele similare vor avea reprezentări complet diferite în baza de date.
 Am dezvoltat un sistem de validare în două etape care verifică complexitatea parolelor atât la nivelul interfeței utilizatorului cât și pe server, asigurând astfel că toate credențialele respectă standardele minime de securitate. Pentru conturile administrative am implementat politici de expirare și mecanisme de resetare periodică care mențin un nivel ridicat de securitate pe termen lung.
-\subsubsection{Securizarea bazei de date}
-Configurarea MongoDB include măsuri de securitate avansate care protejează datele la nivel de infrastructură. Am implementat autentificarea SCRAM-SHA-256 pentru accesul la baza de date, asigurând că doar serviciile autorizate pot interacționa cu informațiile stocate. Criptarea selectivă la nivel de câmp protejează informațiile personale sensibile, în timp ce backup-urile sunt securizate prin criptare AES-256 cu acces strict controlat.
-Sistemul include funcționalități comprehensive de auditare care înregistrează toate operațiile sensibile, permițând monitorizarea continuă a securității și identificarea rapidă a oricăror activități suspecte. Această abordare proactivă în domeniul securității asigură că platforma menține standardele ridicate de protecție necesare pentru o aplicație civică de încredere.
-\subsection{Managementul sesiunilor și autorizarea}
-
-Sistemul de autentificare și autorizare al CivicAlert se bazează pe principii moderne de securitate, implementând un model de acces granular și gestionarea securizată a sesiunilor utilizatorilor.
-
-\subsubsection{Arhitectura sistemului de autentificare}
-
-Platforma implementează un sistem de autentificare pe mai multe niveluri:
-
-\begin{itemize}
-    \item \textbf{Sesiuni server-side}: Utilizarea express-session cu store MongoDB pentru persistența sesiunilor
-    \item \textbf{Cookie-uri securizate}: Configurarea cookie-urilor cu atribute HttpOnly, Secure și SameSite pentru protecția CSRF
-    \item \textbf{Expirarea automată}: Timeout configurabil pentru sesiuni inactive (24 ore implicit)
-    \item \textbf{Invalidarea sesiunilor}: Mecanisme pentru logout forțat și invalidarea sesiunilor compromise
-\end{itemize}
-
-\subsubsection{Modelul de autorizare bazat pe roluri}
-
-Sistemul definește următoarele nivele de acces:
-
-\begin{itemize}
-    \item \textbf{Utilizator anonim}: Vizualizarea problemelor publice fără posibilitatea de interacțiune
-    \item \textbf{Utilizator autentificat}: Raportarea problemelor, votarea și comentarea cu validare de proprietate
-    \item \textbf{Administrator}: Gestionarea completă a problemelor, utilizatorilor și aplicarea de restricții
-    \item \textbf{Cont restricționat}: Limitări granulare (vizualizare, postare, votare, comentarii) cu expirare automată
-\end{itemize}
 
 
 
@@ -791,27 +763,15 @@ Evaluarea aplicației CivicAlert s-a concentrat pe măsurarea performanțelor te
 
 Procesul de evaluare s-a desfășurat pe parcursul dezvoltării folosind diverse instrumente și metrici pentru a asigura calitatea tehnică a soluției finale.
 
-\section{Metodologia de evaluare}
+\section{Metode de evaluare}
 
 \subsection{Instrumente de monitorizare utilizate}
 
-Pentru evaluarea comprehensivă a aplicației au fost implementate următoarele categorii de instrumente:
+Pentru verificarea aplicației am folosit mai multe tipuri de instrumente care mi-au ajutat să identific problemele și să îmbunătățesc performanțele platformei.
 
-Monitorizarea performanțelor:
-\begin{itemize}
-\item  Lighthouse pentru auditurile de performanță web
-\item  DevTools integrat în browsere pentru analiza detaliată
-\item  MongoDB Compass pentru monitorizarea bazei de date
-\item  Node.js performance hooks pentru măsurarea timpilor de execuție
-\end{itemize}
+Pe de o parte, pentru  monitorizarea performanțelor am utilizat Lighthouse care îmi oferă rapoarte detaliate despre viteza de încărcare și calitatea paginilor web în timp ce DevTools integrate în browsere m-au ajutat să analizez în timp real cum se comportă aplicația și să identific zonele care necesită optimizare.M-am folosit de  MongoDB Compass  să urmăresc performanțele bazei de date și să verific eficiența query-urilor, iar Node.js performance hooks mi-au oferit informații precise despre timpii de execuție ai diferitelor operații din backend.
 
-Testarea funcționalității:
-\begin{itemize}
-\item  Testare manuală sistematică a tuturor funcționalităților
-\item  Simularea scenariilor de utilizare reale
-\item  Verificarea compatibilității cross-browser
-\item  Testarea responsivității pe diverse dimensiuni de ecran
-\end{itemize}
+Pe de altă parte, pentru testarea funcționalității am realizat o verificare manuală sistematică a tuturor caracteristicilor platformei, testând fiecare buton, formular și funcționalitate pentru a mă asigura că totul funcționează conform așteptărilor. Am simulat scenarii reale de utilizare, punându-mă în locul utilizatorilor și testând parcursuri normale de lucru pe care aceștia le-ar urma. Am verificat compatibilitatea cu diferite browsere pentru a mă asigura că experiența este consistentă indiferent de tehnologia folosită de utilizatori, și am testat cum arată și funcționează aplicația pe diverse dimensiuni de ecran, de la telefoane mobile la monitoare mari de desktop.
 \subsection{Metrici de performanță monitorizate}
 
 Evaluarea s-a focusat pe următoarele metrici cheie:
@@ -907,32 +867,13 @@ Analiza bazei de date:
 \section{Evaluarea funcționalităților}
 
 \subsection{Testarea scenariilor de utilizare}
+Pentru validarea completă a funcționalităților platformei am desfășurat un proces sistematic de testare prin simularea scenariilor reale de utilizare, care mi-a permis să identific și să optimizez toate aspectele critice ale experienței utilizatorului. Această abordare  de testare a fost esențială pentru a mă asigurara că platforma răspunde eficient nevoilor practice ale utilizatorilor în diferite situații.
 
-Toate funcționalitățile principale au fost testate sistematic prin simularea scenariilor reale de utilizare:
+Primul scenariu testat a fost procesul de înregistrare și raportarea primei probleme de către un utilizator nou. Am descoperit că întregul proces de înregistrare se poate finaliza în aproximativ două minute, demonstrând că interfața este suficient de intuitivă pentru utilizatorii care nu au experiență anterioară cu platforma. Validarea automată a adresei de email și a parolei funcționează corect și oferă feedback instantaneu utilizatorului, eliminând confuzia și erorile comune. Procesul de raportare a primei probleme s-a dovedit intuitiv permițând utilizatorilor să navigheze natural prin pașii necesari fără să aibă nevoie de instrucțiuni suplimentare. Funcționalitatea de upload pentru imagini suportă toate formatele standard și oferă feedback vizual pentru progresul încărcării, asigurând o experiență placută pentru utilizatoru de rând.
 
-Scenariul 1: Înregistrare și primul raport
-\begin{itemize}
-\item Înregistrare utilizator nou: completă în 2 minute
-\item Validare email și parolă: funcționează corect
-\item Primul raport de problemă: roces intuitiv
-\item Upload imagini: suportă multiple formate
-\end{itemize}
+Al doilea scenariu a vizat navigarea și interacțiunea în cadrul platformei, aspecte importante pentru implicarea pe termen lung a utilizatorilor. Explorarea feed-ului cu problemele raportate beneficiază de o durată de încărcare foarte rapidă datorită optimizărilor implementate la nivel de backend și frontend. Sistemul de filtrare după status și județ oferă răspuns instantaneu  permițând utilizatorilor să găsească rapid informațiile relevante pentru ei. Funcționalitatea de votare a problemelor include actualizări în timp real care se reflectă imediat în interfața utilizatorului, creând un sentiment de participare activă și impact imediat. Sistemul de comentarii permite postarea în timp real, facilitând conversații dinamice între utilizatori și autorități pe tematica problemelor raportate.
 
-Scenariul 2: Navigare și interacțiune
-\begin{itemize}
-\item Explorare feed probleme: încărcare rapidă
-\item Filtrare după status/județ: răspuns instant
-\item Votare probleme: update real-time
-\item Adăugare comentarii: postare real-time
-\end{itemize}
-
-Scenariul 3: Administrare și gestionare
-\begin{itemize}
-\item Acces panou admin: autorizare corectă
-\item Schimbare status probleme: funcționare corectă
-\item Gestionare utilizatori: operații CRUD complete
-\item Vizualizare statistici: date actualizate
-\end{itemize}
+Scenariul de administrare și gestionare a testat funcționalitățile destinate utilizatorilor cu privilegii administrative, validând astfel robustețea sistemului de autorizare și control. Accesul la panoul de administrare include verificări riguroase de autorizare care asigură că doar utilizatorii autentificați și cu permisiuni corespunzătoare pot accesa funcționalitățile speciale. Funcționalitatea de modificare a statutului problemelor operates seamlessly, permițând administratorilor să actualizeze progresul în timp real și să comunice eficient cu comunitatea. Gestionarea utilizatorilor include operații CRUD complete care permit administratorilor să mențină un mediu sigur și organizat pe platformă.De asemenea, vizualizarea statisticilor oferă date actualizate în timp real care permit monitorizarea eficientă a activității platformei și identificarea tendințelor importante în raportările civice.
 
 \subsection{Compatibilitatea cross-browser}
 
@@ -961,76 +902,17 @@ Opera 105+ & \checkmark & \checkmark & Funcționează corect \\
 
 \section{Analiza securității}
 
-\subsection{Evaluarea vulnerabilităților}
+\subsection{Rezistența la  vulnerabilități}
+Pentru asigurarea unui nivel ridicat de securitate  am realizat o evaluare completă a aplicației cu scopul de a identifica și elimina potențialele vulnerabilități care ar putea compromite integritatea platformei sau datele utilizatorilor. Acest proces de evaluare a fost esențial pentru validarea implementării măsurilor de protecție și pentru demonstrarea rezistenței  sistemului în fața amenințărilor de securitate din zilele de astăzi.
 
-Aplicația a fost auditată pentru identificarea potențialelor vulnerabilități de securitate:
+În ceea ce privește autentificarea și autorizarea, am verificat  implementarea algoritmului bcrypt pentru hash-uirea parolelor, confirmând că aceasta funcționează conform standardelor de securitate și că fiecare parolă beneficiază de criptări unice. Sistemul de sesiuni securizate include mecanisme de expirare automată care previn accesul neautorizat pe termen lung și forțează reautentificarea utilizatorilor după perioade de inactivitate. Validarea rolurilor utilizatorilor este implementată la multiple niveluri, asigurând că restricțiile de acces sunt aplicate consistent în toată aplicația și că fiecare utilizator poate accesa doar resursele pentru care are autorizație. Protecția împotriva atacurilor CSRF este realizată prin implementarea și validarea de tokeni unici pentru toate operațiunile sensibile, eliminând riscul execuției neautorizate de acțiuni în numele utilizatorilor.
 
-Autentificarea și autorizarea:
-\begin{itemize}
-\item Hash-uirea parolelor cu bcrypt: implementat corect
-\item Sesiuni securizate cu expirare: funcțional
-\item Validarea rolurilor utilizator: restricții aplicate
-\item Protecție CSRF: tokeni implementați
-\end{itemize}
-
-Validarea input-urilor:
-\begin{itemize}
-\item Sanitizare date formular: implementată
-\item Validare tipuri fișiere upload: restricții active
-\item Protecție SQL injection: queries parametrizate
-\item Limitarea mărimii request-uri: configurată
-\end{itemize}
-
-
-\subsection{Gestionarea erorilor și autentificării}
-
-Sistemul de autentificare implementat asigură monitorizarea activității și identificarea problemelor:
-
-\begin{itemize}
-\item Autentificarea centralizată cu niveluri diferențiate (error, warn, info, debug)
-\item Rotația automată a fișierelor de log
-\item Alerte pentru erori critice
-\item Anonimizarea datelor sensibile în log-uri
-\end{itemize}
-\section{Testarea responsive design}
-
-\subsection{Adaptabilitatea pe diferite dimensiuni}
-
-Interfața a fost testată pe multiple dimensiuni de ecran pentru asigurarea unei experiențe optime:
-
-\begin{table}[H]
-\centering
-\caption{Testarea responsive design}
-\label{tab:responsive_testing}
-\begin{tabular}{|l|c|c|c|}
-\hline
-\textbf{Dimensiune ecran} & \textbf{Rezoluție} & \textbf{Layout} & \textbf{Funcționalitate} \\
-\hline
-Mobile Portrait & 360x640 & \checkmark\  & \checkmark\ \\
-\hline
-Mobile Landscape & 640x360 & \checkmark\  & \checkmark\  \\
-\hline
-Tablet Portrait & 768x1024 & \checkmark\  & \checkmark\  \\
-\hline
-Tablet Landscape & 1024x768 & \checkmark\ & \checkmark\ \\
-\hline
-Desktop Small & 1366x768 & \checkmark\  & \checkmark\  \\
-\hline
-Desktop Large & 1920x1080 & \checkmark\  & \checkmark\  \\
-\hline
-\end{tabular}
-\end{table}
+Procesul de validare a input-urilor reprezintă o componentă esențială a securității platformei  pe care am implementat-o cu atenție. Curățarea și filtrarea datelor din formulare este aplicată sistematic pentru toate informațiile introduse de utilizatori, eliminând potențialele scripturi malițioase sau caractere periculoase înainte de procesare. Validarea tipurilor de fișiere pentru upload include restricții active care permit doar formatele sigure și verifică integritatea fișierelor înainte de stocarea lor pe server. Protecția împotriva atacurilor de tip SQL injection este asigurată prin utilizarea exclusivă de înregistrări parametrizate și prin validarea  tuturor parametrilor transmiși către baza de date. Am configurat de asemenea limitări pentru mărimea request-urilor care previn atacurile de tip DOS(denial-of-service) și asigură utilizarea sigură a resurselor serverului.
 
 
 \subsection{Optimizări back-end}
 
-Optimizarea bazei de date:
-\begin{verbatim}
-// Exemple de indexi MongoDB implementați
-db.postari.createIndex({ "localizare.judet": 1, "dataPostare": -1 })
-db.postari.createIndex({ "status": 1, "voturi": -1 })
-db.utilizatori.createIndex({ "email": 1 }, { unique: true })
-\end{verbatim}
+
 
 \paragraph{Optimizarea server-ului}
 Pentru îmbunătățirea performanțelor platformei am implementat limitări pe API endpoints-uri, o măsură care previne supraîncărcarea sistemului prin limitarea numărului de cereri consecutive de la același utilizator într-un interval de timp specificat. Această funcționalitate protejează platforma împotriva atacurilor de tip DDoS și asigură o distribuție echitabilă a resurselor între toți utilizatorii.
@@ -1086,12 +968,12 @@ Evaluarea tehnică a platformei  demonstrează o implementare solidă care înde
 Rezultatele evaluării confirmă că aplicația este pregătită pentru utilizare în producție și oferă o bază tehnică solidă pentru dezvoltări viitoare și scalare la nivel național.
 Arhitectura modulară și tehnologiile modern alese   asigură sustenabilitatea tehnică pe termen lung și facilitează integrarea cu alte sisteme și servicii publice.
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{end.png}
-    \caption{Secțiune de footer a website-ului}
-    \label{fig:end}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{end.png}
+%     \caption{Secțiune de footer a website-ului}
+%     \label{fig:end}
+% \end{figure}
 
 % BIBLIOGRAFIE
 \newpage
