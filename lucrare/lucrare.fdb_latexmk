@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1750885807.84601 "c:/Users/Luki/Desktop/Licenta/civicalert/lucrare/lucrare.tex" "lucrare.pdf" "lucrare" 1750885811.78675 0
+["pdflatex"] 1750886609.99337 "c:/Users/Luki/Desktop/Licenta/civicalert/lucrare/lucrare.tex" "lucrare.pdf" "lucrare" 1750886613.79229 0
   "C:/Users/Luki/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1749744564.36128 82507 a9eef8696c92627b87e9975edea03b2a ""
   "C:/Users/Luki/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1749492377.41504 13234453 2e0fc5f4c896cd430ab1b35a13e5d038 ""
   "C:/Users/Luki/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc" 1458473887 4993 1194fb36dfcb11d9ae9802f2b00b60a3 ""
@@ -204,14 +204,14 @@
   "C:/Users/Luki/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1748713680 7243 a2c17f18e2c9b702b84fad03d5f9c78b ""
   "C:/Users/Luki/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/Luki/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/Luki/Desktop/Licenta/civicalert/lucrare/lucrare.tex" 1750885802.95117 82175 2944633b96452245fdb73d72a3445f56 ""
+  "c:/Users/Luki/Desktop/Licenta/civicalert/lucrare/lucrare.tex" 1750886608.94355 80883 735d369254af2e2412d2d2da797d0f67 ""
   "frecventa problemelor raportate.png" 1750516930.44244 67934 abcb21603a8715bea6ca1a07360c1143 ""
   "groapa in asfalt.png" 1750592606.08782 613396 3a6d7df5b883c8bafba7282187dbdabe ""
   "homepage.png" 1750589762.68808 512644 df0ee3044da9b31934693fa22e7facf7 ""
   "logo_uaic.png" 1750499982.07861 8760 126aa7d8abf4647ba1766206622bb2ba ""
-  "lucrare.aux" 1750885811.3736 13958 f2f5196e7f66be60d6b3348de01ebe11 "pdflatex"
-  "lucrare.out" 1750885811.3906 13855 5e41380f6f8d659957e03ca3dc55f26c "pdflatex"
-  "lucrare.toc" 1750885811.4046 6590 07ad0752217e0f06fb53ea0be663d0f0 "pdflatex"
+  "lucrare.aux" 1750886613.37825 13889 8333e01ee5813a017cfdaa22c0cc2511 "pdflatex"
+  "lucrare.out" 1750886613.39424 13578 e83e3e364f076f3caa1414ba261e6ef9 "pdflatex"
+  "lucrare.toc" 1750886613.40832 6521 f5a2cb6206111461d4d0f93ae350d1b5 "pdflatex"
   "metrics.png" 1750593554.54993 494870 8e4a25b4f27abe7edd8ea03aa35428bd ""
   "poza_profil.png" 1750589497.04419 120880 66649f26e059b1b2398b2f866230269e ""
   "problema in comunicare.png" 1750516296.05482 2768051 bd93a66b8de299bc79e4198eb48a6f55 ""

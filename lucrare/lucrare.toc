@@ -7,7 +7,7 @@
 \contentsline {subsection}{\numberline {1.1.3}Digitalizarea serviciilor publice}{9}{subsection.1.1.3}%
 \contentsline {section}{\numberline {1.2}Analiză comparativă a soluțiilor existente}{9}{section.1.2}%
 \contentsline {subsection}{\numberline {1.2.1}Platforme internaționale de referință}{9}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Situația din România}{10}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Concluzii}{10}{section.1.3}%
 \contentsline {chapter}{\numberline {2}Fundamentarea tehnologică}{11}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Arhitectura Model-View-Controller}{11}{section.2.1}%
 \contentsline {subsection}{\numberline {2.1.1}Tehnologiile folosite}{12}{subsection.2.1.1}%
@@ -28,7 +28,7 @@
 \contentsline {subsection}{\numberline {3.0.1}Impactul social și civic al platformei}{17}{subsection.3.0.1}%
 \contentsline {subsection}{\numberline {3.0.2}Limitări și provocări identificate}{18}{subsection.3.0.2}%
 \contentsline {subsection}{\numberline {3.0.3}Direcții de dezvoltare și viziune de viitor}{18}{subsection.3.0.3}%
-\contentsline {subsection}{\numberline {3.0.4}Reflecții finale și perspectiva de ansamblu}{18}{subsection.3.0.4}%
+\contentsline {section}{\numberline {3.1}Concluzii}{18}{section.3.1}%
 \contentsline {chapter}{\numberline {4}Implementarea practică și scenarii de utilizare}{19}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Constrângeri tehnice și strategii de abordaree}{19}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Scenarii de utilizare și studii de caz}{19}{section.4.2}%
